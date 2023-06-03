@@ -1,0 +1,51 @@
+
+
+.Post{
+  padding: 30px;
+  max-height: 550px;
+  margin-top: 10px;
+  border-radius: 20px;
+  .PostStat{
+    display: flex;
+    justify-content: space-between;
+    .Stats{
+      display: flex;
+      .Stat{
+        display: flex;
+        margin-right:20px ;
+      }
+    }
+   .Actions *{
+     margin-left: 10px;
+   }
+  }
+
+  .Date{
+    margin-top: 30px;
+    margin-left: 20px;
+  }
+  .Tags{
+    display: flex;
+    justify-content: right;
+  }
+  .Tags *{
+     margin-left: 10px;
+  }
+  .Image {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .Date, .Title{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 20px;
+    .Name{
+      max-width: 700px;
+      font-weight: 600;
+      font-size: 32px;
+    }
+  }
+}
