@@ -1,0 +1,116 @@
+@import "../../../colors";
+
+.fixed.light{
+   background: linear-gradient(to right, $headerLeftColorLight, $headerRightColorLight);
+ }
+
+.fixed.dark{
+  background: linear-gradient(to right, $headerLeftColorDark, $headerRightColorDark);
+}
+
+.fixed{
+  position: fixed;
+  margin-top: 70px;
+  border-radius: 0 0 32px 32px;
+  z-index: 100;
+  height: 100px;
+  .Image{
+    position: absolute;
+    display: none;
+    border-radius:0 0 32px 32px;
+    height: 100px;
+    z-index: 9;
+  }
+  .User {
+    z-index: 10;
+    .Avatar{
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+.free{
+  z-index: 1000;
+  background: $bannerGradient;
+  border-radius:32px;
+  height: 245px;
+  margin-top: 90px;
+  .Avatar{
+    width: 100px;
+    height: 100px;
+  }
+  .Image{
+    position: absolute;
+    margin-top: 190px;
+    height: 245px;
+    border-radius:32px;
+    z-index: -1;
+  }
+  .User{
+    margin-bottom: 20px;
+  }
+
+}
+
+
+.Banner {
+  width: 1280px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  .Image{
+    width: 1280px;
+  }
+  .User{
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    .Avatar {
+      border-radius: 50%;
+      margin-left: 20px;
+    }
+    .NN{
+      margin-left: 50px;
+      margin-right: 50px;
+      .Name{
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .Nickame{
+        font-size: 16px;
+      }
+    }
+    .Stat{
+      margin-left: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 10px;
+      .statNumber{
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .statName{
+        font-size: 20px;
+      }
+    }
+    .Subscribe{
+      margin-left: 120px;
+      margin-right: 10px;
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 20px;
+      border-radius: 20px;
+      width: 200px;
+      height: 40px;
+    }
+    .Subscribe:hover{
+      cursor: pointer;
+    }
+  }
+}
+

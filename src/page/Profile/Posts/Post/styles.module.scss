@@ -1,0 +1,77 @@
+.Stat{
+  display: flex;
+  align-self: center;
+}
+
+.Avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.User{
+  margin-left: 10px;
+}
+
+.Title{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+
+.Post {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  width: 800px;
+  border-radius: 20px;
+}
+
+.Name{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.Nickname{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8C8C8C;
+}
+
+.Actions * {
+  margin-left: 10px;
+}
+
+.Text{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.Date{
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7C7C7C;
+}
+
+.PostStat{
+ display: flex;
+  & * {
+    color: #7C7C7C;
+  }
+}

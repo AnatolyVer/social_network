@@ -1,0 +1,79 @@
+@import "colors.scss";
+
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol, li,
+figure,
+dl, dd, dt {
+  margin: 0;
+  padding: 0;
+}
+
+html, #root, body{
+  height: 100%;
+}
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.lightPost{
+  background-color: $postBackgroundLight;
+}
+
+.darkPost{
+  background-color: $postBackgroundDark;
+}
+
+.darkHeader{
+  background: linear-gradient(to right, $headerLeftColorDark, $headerRightColorDark);
+}
+
+.lightHeader{
+  background: linear-gradient(to right, $headerLeftColorLight, $headerRightColorLight);
+}
+
+.lightText{
+  color: $textColorLight;
+}
+
+.lightText::placeholder{
+  color: $textColorLight;
+}
+
+.darkText{
+  color: $textColorDark;
+}
+
+.darkText::placeholder{
+  color: $textColorDark;
+}
+
+.flex{
+  display: flex;
+  justify-content: left;
+}

@@ -1,42 +1,50 @@
 import React from 'react'
-import './styles.scss'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
+
+import {VertDots,  EffectButton } from '../../../shared/Icons'
+
 import banner from "./banner.png"
 import avatar from "../medusa.jpg"
-import IconButton from "@mui/material/IconButton";
+
+import classes from './styles.module.scss'
+import {useSelector} from "react-redux";
+import {State} from "../../../redux/store";
 
 interface BannerProps{
     disabled:boolean
 }
 
 function Banner({disabled}:BannerProps) {
-    const hidden = disabled ? "invisible" : "visible"
+
+    const theme:string = useSelector((state:State) => state.theme)
+
+    const fixed = disabled ? classes.fixed : classes.free
+    const color = theme === "light" ? classes.light : classes.dark
     return (
-        <div className={`Banner ${hidden}`}>
-            <img className="Image" src={banner} alt="User banner"/>
-            <div className="User">
-                <img className="Avatar" src={avatar} alt=""/>
-                <div className="NN">
-                    <p className="Name">AnatolyVer</p>
-                    <p className="Nickname">@anatoly_ver</p>
+        <div className={`${classes.Banner} ${fixed} ${color}`}>
+            <img className={classes.Image} src={banner} alt="User banner"/>
+            <div className={classes.User}>
+                <img className={classes.Avatar} src={avatar} alt=""/>
+                <div className={classes.NN}>
+                    <p className={classes.Name}>AnatolyVer</p>
+                    <p className={classes.Nickame}>@anatoly_ver</p>
                 </div>
-                <div className="Stat">
-                    <p className="statNumber">1.3к</p>
-                    <p className="statName">підписників</p>
+                <div className={classes.Stat}>
+                    <p className={classes.statNumber}>1.3к</p>
+                    <p className={classes.statName}>підписників</p>
                 </div>
-                <div className="Stat">
-                    <p className="statNumber">50</p>
-                    <p className="statName">публікацій</p>
+                <div className={classes.Stat}>
+                    <p className={classes.statNumber}>50</p>
+                    <p className={classes.statName}>публікацій</p>
                 </div>
-                <div className="Stat">
-                    <p className="statNumber">35</p>
-                    <p className="statName">фотографій</p>
+                <div className={classes.Stat}>
+                    <p className={classes.statNumber}>35</p>
+                    <p className={classes.statName}>фотографій</p>
                 </div>
 
-                <button className="Subscribe">Підписатися</button>
-                <IconButton sx={{color:"white"}}>
-                    <MoreVertIcon sx={{color:'white'}}/>
-                </IconButton>
+                <button className={classes.Subscribe}>Підписатися</button>
+                <EffectButton sx={{color:"white"}}>
+                    <VertDots sx={{color:'white'}}/>
+                </EffectButton>
             </div>
         </div>
     );
