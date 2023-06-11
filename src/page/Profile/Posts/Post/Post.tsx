@@ -12,13 +12,12 @@ function Post({images}:any) {
 
     const imageCount = images?.length
     const dispatch = useDispatch()
-    const styles = imageCount == 3 ? [2, 4, 4] : [imageCount, imageCount, imageCount, imageCount]
+    const styles = imageCount === 3 ? [2, 4, 4] : [imageCount, imageCount, imageCount, imageCount]
 
     const theme:string = useSelector((state:State) => state.theme)
-    const icon = {height: "20px", width: "20px", alignSelf:"center"}
 
-    const openModal = (image: string) => {
-        dispatch(setModalOpen(true, image))
+    const openModal = (images: [string], num: number) => {
+        dispatch(setModalOpen(true, images, num, images.at(num)))
     }
 
     return (
@@ -33,9 +32,9 @@ function Post({images}:any) {
                         </div>
                     </div>
                     <div className={classes.Actions}>
-                        <ReplyIcon/>
-                        <BookmarkIcon/>
-                        <HorDots/>
+                        <ReplyIcon sx={{cursor: "pointer"}}/>
+                        <BookmarkIcon sx={{cursor: "pointer"}}/>
+                        <HorDots sx={{cursor: "pointer"}}/>
                     </div>
                 </div>
                 <div className={`${classes.Text} ${theme}Text`}>
@@ -49,7 +48,7 @@ function Post({images}:any) {
             {images && (
                 <div className={classes.Photos}>
                     {images.map((image: any | undefined, index: number) => (
-                        <img onClick={() => openModal(image)} className={`Photo${styles[index]}`} key={index} src={image} alt={`Image ${index}`} />
+                        <img onClick={() => openModal(images, index)} className={`Photo${styles[index]}`} key={index} src={image} alt={`${index}`} />
                     ))}
                 </div>
             )}
@@ -61,17 +60,17 @@ function Post({images}:any) {
                 </div>
                 <div className={classes.PostStat}>
                     <div className={`${classes.Stat} ${theme}Text`}>
-                        <LikeIcon sx={icon}/>
+                        <LikeIcon sx={{height: "20px", width: "20px", alignSelf:"center", cursor: "pointer"}}/>
                         <p>150k</p>
                     </div>
                     <Dot sx={{height: "10px", alignSelf:"center"}}/>
                     <div className={`${classes.Stat} ${theme}Text`}>
-                        <Comment sx={icon}/>
+                        <Comment sx={{height: "20px", width: "20px", alignSelf:"center", cursor: "pointer"}}/>
                         <p>150k</p>
                     </div>
                     <Dot sx={{height: "10px", alignSelf:"center"}}/>
                     <div className={`${classes.Stat} ${theme}Text`}>
-                        <EyeIcon sx={icon}/>
+                        <EyeIcon sx={{height: "20px", width: "20px", alignSelf:"center"}}/>
                         <p>150k</p>
                     </div>
                 </div>

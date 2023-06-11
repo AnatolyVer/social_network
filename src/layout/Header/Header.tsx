@@ -52,8 +52,8 @@ function Header({auth}:HeaderProps) {
                 <nav>
                     {auth ? (
                         <div className={classes.add_button}>
-                        <AddIcon sx={style}/>
-                        <button className={classes.header_button}>Додати пост</button>
+                            <AddIcon sx={style}/>
+                            <button>Додати пост</button>
                         </div>
                     ) : (
                         <></>

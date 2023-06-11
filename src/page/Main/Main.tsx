@@ -15,6 +15,7 @@ function Main() {
                     <div className="Left">
                         <div className={`${classes.circle} ${classes.blue}`}></div>
                         <div className={`${classes.circle} ${classes.magenta}`}></div>
+                        <div className={`${classes.circle} ${classes.sky}`}></div>
                         <Post/>
                         <div className={classes.Comment}>
                             <Comment/>

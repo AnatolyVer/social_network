@@ -1,10 +1,11 @@
 .Footer{
+  position: fixed;
   height: 80px;
   width: 100%;
   display: flex;
   justify-content: center;
+  bottom: 0;
 }
-
 
 .Content{
   width: 1280px;

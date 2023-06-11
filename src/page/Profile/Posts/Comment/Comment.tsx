@@ -8,7 +8,7 @@ import avatar from '../../medusa.jpg'
 import {ArrowDownIcon, ArrowLeftIcon, Dot, LikeIcon, TvIcon} from '../../../../shared/Icons';
 
 
-function Comment({}) {
+function Comment() {
 
     const theme:string = useSelector((state:State) => state.theme)
 
@@ -22,8 +22,8 @@ function Comment({}) {
                         <p className={classes.Nickname}>@senproger</p>
                     </div>
                     <div className={classes.Reply}>
-                        <p>У відповідь</p>
-                        <p>@anatoly_ver</p>
+                        <p>у відповідь</p>
+                        <p className={classes.Nickname}>@anatoly_ver</p>
                     </div>
                 </div>
             </div>
@@ -32,16 +32,18 @@ function Comment({}) {
             </div>
             <div className={classes.PostStat}>
                 <div className={`${classes.Stat} ${theme}Text`}>
-                    <LikeIcon/>
+                    <LikeIcon sx={{cursor:"pointer"}}/>
                     <p>150k</p>
                 </div>
                 <Dot sx={{height: "10px", alignSelf:"center"}}/>
-                <ArrowLeftIcon sx={{alignSelf:"center"}}/>
-                <p className={classes.Answers}>10 відповідей</p>
-                <ArrowDownIcon/>
+                <div className={classes.Answer}>
+                    <ArrowLeftIcon/>
+                    <p className={classes.Answers}>10 відповідей</p>
+                    <ArrowDownIcon sx={{cursor:"pointer"}}/>
+                </div>
                 <Dot sx={{height: "10px", alignSelf:"center"}}/>
                 <p>20 хв. тому</p>
-                <TvIcon sx={{height: "17px", alignSelf:"center"}}/>
+                <TvIcon sx={{height: "17px", marginLeft:'3px', alignSelf:"center"}}/>
             </div>
         </div>
     );

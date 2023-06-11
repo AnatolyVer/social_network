@@ -7,9 +7,17 @@ export const switchTheme = (data: string) => {
     }
 }
 
-export const setModalOpen = (data: boolean, image? : string) => {
+export const setModalOpen = (isOpen: boolean, images? : [string], num?: number, image?:string) => {
+    console.log(image)
     return  {
         type: Actions.SET_MODAL_OPEN,
-        payload: {isOpen: data, image: image}
+        payload: {isOpen, images, num, image}
+    }
+}
+
+export const changeModalNum = (num: number) => {
+    return  {
+        type: Actions.CHANGE_MODAL_NUM,
+        payload: num
     }
 }

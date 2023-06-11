@@ -27,6 +27,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import PhotoIcon from '@mui/icons-material/Photo';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export {
     MoreVertIcon as VertDots,
@@ -57,4 +59,6 @@ export {
     PeopleAltIcon as PeopleIcon,
     EventIcon as CalendarIcon,
     AssignmentIndIcon as PortraitIcon,
+    ChevronLeftIcon as PreviousIcon,
+    ChevronRightIcon as NextIcon
 };

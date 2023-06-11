@@ -42,6 +42,20 @@
         justify-content: center;
         align-items: center;
         margin-right: 25px;
+        border-bottom: 2px solid transparent;
+        button{
+          background-color: transparent;
+          border: none;
+          color: white;
+          font-size: 20px;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        &:hover{
+          border-bottom: 2px solid white;
+          cursor: pointer;
+        }
       }
       .header_input {
         width: 400px;
