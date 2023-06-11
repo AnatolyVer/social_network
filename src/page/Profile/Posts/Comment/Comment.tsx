@@ -1,21 +1,13 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+import {State} from "../../../../redux/store";
+
 import classes from  './styles.module.scss';
 
 import avatar from '../../medusa.jpg'
+import {ArrowDownIcon, ArrowLeftIcon, Dot, LikeIcon, TvIcon} from '../../../../shared/Icons';
 
-import ShortcutIcon from '@mui/icons-material/Shortcut';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ReplyIcon from '@mui/icons-material/Reply';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import TvIcon from '@mui/icons-material/Tv';
-import {useSelector} from "react-redux";
-import {State} from "../../../../redux/store";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+
 function Comment({}) {
 
     const theme:string = useSelector((state:State) => state.theme)
@@ -40,14 +32,14 @@ function Comment({}) {
             </div>
             <div className={classes.PostStat}>
                 <div className={`${classes.Stat} ${theme}Text`}>
-                    <FavoriteBorderIcon/>
+                    <LikeIcon/>
                     <p>150k</p>
                 </div>
-                <FiberManualRecordIcon sx={{height: "10px", alignSelf:"center"}}/>
-                <ShortcutIcon sx={{alignSelf:"center"}}/>
+                <Dot sx={{height: "10px", alignSelf:"center"}}/>
+                <ArrowLeftIcon sx={{alignSelf:"center"}}/>
                 <p className={classes.Answers}>10 відповідей</p>
-                <ExpandMoreIcon/>
-                <FiberManualRecordIcon sx={{height: "10px", alignSelf:"center"}}/>
+                <ArrowDownIcon/>
+                <Dot sx={{height: "10px", alignSelf:"center"}}/>
                 <p>20 хв. тому</p>
                 <TvIcon sx={{height: "17px", alignSelf:"center"}}/>
             </div>

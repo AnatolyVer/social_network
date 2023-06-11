@@ -1,11 +1,6 @@
 .Stat{
   display: flex;
   align-self: center;
-  height: 30px;
-  font-size: 19px;
-  & > p {
-    margin-left: 3px;
-  }
 }
 
 .Avatar{
@@ -24,15 +19,15 @@
   margin-bottom: 15px;
 }
 
-
 .Post {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 15px;
-  width: 800px;
+  width: 600px;
   border-radius: 20px;
+}
+
+.Answers{
+  margin-left: 5px;
 }
 
 .Name{
@@ -62,6 +57,9 @@
   color: #000000;
 }
 
+
+
+
 .Date{
   display: flex;
   align-items: center;
@@ -69,30 +67,23 @@
   margin-bottom: 10px;
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 17px;
   color: #7C7C7C;
 }
 
 .PostStat{
- display: flex;
+  display: flex;
+  margin-top: 10px;
   & * {
     color: #7C7C7C;
   }
 }
 
-.Photos{
+.Reply{
+  margin-left: 10px;
   display: flex;
-  flex-wrap: wrap;
-  height: 460px;
-  justify-content: space-between;
-  margin-top: 20px;
-  img{
-    object-fit: cover;
-    margin-bottom: 20px;
-    border-radius: 15px;
-  }
-  img:hover{
-    cursor: pointer;
+  & * {
+    margin-right: 7px;
   }
 }

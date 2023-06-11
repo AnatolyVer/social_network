@@ -1,23 +1,27 @@
 .free{
   padding: 2px;
-
 }
 
 .fixed{
   position: fixed;
-  top: 190px;
+  top: 160px;
   right: 295px;
 }
 
 .ProfileInfo{
   width: 410px;
-
+  margin-top: 20px;
   .bold{
+    font-style: normal;
     font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    color: #000000;
   }
   .Photos{
     width: 410px;
-    height: 270px;
+    height: 150px;
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -34,14 +38,16 @@
     }
   }
   .Label{
+    height: 30px;
     margin-bottom: 10px;
     display: flex;
-    margin-left: 5px;
-    p{
-      margin-left: 3px;
+    align-items: flex-end;
+    margin-left: 10px;
+    & p {
+      margin-left: 5px;
+      margin-right: 5px;
     }
     .All{
-      margin-left: 200px;
       border: 2px solid;
       display: flex;
       justify-content: center;
@@ -55,23 +61,22 @@
   }
   .Links{
     margin-bottom: 9px;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     border-radius: 10px;
     height: 50px;
-  }
-  .Links *{
     :hover{
       cursor: pointer;
     }
   }
   .Info{
+    padding: 5px;
     margin-bottom: 9px;
     border-radius: 10px;
     .InfoPart{
       display: flex;
-      margin-left: 5px;
-      margin-bottom: 5px;
+      padding: 5px;
       p{
         margin-left: 10px;
         font-size: 16px;
@@ -84,7 +89,7 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    padding: 10px;
     :hover{
       cursor: pointer;
     }
@@ -111,4 +116,8 @@
       }
     }
   }
+}
+
+.sb{
+  justify-content: space-between;
 }

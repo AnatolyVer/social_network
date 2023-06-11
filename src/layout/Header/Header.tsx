@@ -4,13 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../redux/store";
 import {switchTheme} from "../../redux/action-creators";
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import BedtimeIcon from '@mui/icons-material/Bedtime';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
+
 
 import classes from './styles.module.scss';
+import {AddIcon, EffectButton, MoonIcon, SearchIcon, SunIcon} from "../../shared/Icons";
 
 interface HeaderProps{
     auth:boolean
@@ -36,7 +33,7 @@ function Header({auth}:HeaderProps) {
 
     const style = {height: "30px", width:"30px", color: "white"}
 
-    const switcher = theme === "light" ? <BedtimeIcon sx={style}/> : <LightModeIcon sx={style}/>
+    const switcher = theme === "light" ? <MoonIcon sx={style}/> : <SunIcon sx={style}/>
 
     return (
         <header className={`${classes.Header} ${theme}Header`}>
@@ -55,7 +52,7 @@ function Header({auth}:HeaderProps) {
                 <nav>
                     {auth ? (
                         <div className={classes.add_button}>
-                        <AddCircleIcon sx={style}/>
+                        <AddIcon sx={style}/>
                         <button className={classes.header_button}>Додати пост</button>
                         </div>
                     ) : (
@@ -67,9 +64,9 @@ function Header({auth}:HeaderProps) {
                         <input placeholder="Пошук" value={search} onChange={changeSearch}/>
 
                     </div>
-                    <IconButton sx={style} onClick = {swapTheme}>
+                    <EffectButton sx={style} onClick = {swapTheme}>
                         {switcher}
-                    </IconButton>
+                    </EffectButton>
                 </nav>
             </div>
         </header>

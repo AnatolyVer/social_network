@@ -1,16 +1,12 @@
 import React from 'react';
 
 import classes from './styles.module.scss'
-import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
 
 import Post from '../Profile/Posts/Post/Post';
 import Comment from '../Profile/Posts/Comment/Comment'
 import Stat from './Stat/Stat';
 
 function Main() {
-
-    const theme:string = useSelector((state:State) => state.theme)
 
     return (
         <div className={`${classes.Main}`}>

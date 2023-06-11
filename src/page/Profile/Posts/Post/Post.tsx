@@ -1,15 +1,25 @@
 import React from 'react';
 import classes from  './styles.module.scss';
-
+import './photos.scss'
 import avatar from '../../medusa.jpg'
 
 import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon,} from '../../../../shared/Icons'
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../../../redux/store";
-function Post() {
+import {setModalOpen} from "../../../../redux/action-creators";
+function Post({images}:any) {
+
+    const imageCount = images?.length
+    const dispatch = useDispatch()
+    const styles = imageCount == 3 ? [2, 4, 4] : [imageCount, imageCount, imageCount, imageCount]
 
     const theme:string = useSelector((state:State) => state.theme)
+    const icon = {height: "20px", width: "20px", alignSelf:"center"}
+
+    const openModal = (image: string) => {
+        dispatch(setModalOpen(true, image))
+    }
 
     return (
         <div className={`${classes.Post} ${theme}Post`}>
@@ -35,24 +45,33 @@ function Post() {
                     Panem nostrum quotidianum da nobis hodie.
                 </div>
             </div>
+
+            {images && (
+                <div className={classes.Photos}>
+                    {images.map((image: any | undefined, index: number) => (
+                        <img onClick={() => openModal(image)} className={`Photo${styles[index]}`} key={index} src={image} alt={`Image ${index}`} />
+                    ))}
+                </div>
+            )}
+
             <div>
                 <div className={classes.Date}>
                     <p>Опубліковано: сьогоднi о 02:14</p>
-                    <PhoneIcon sx={{height: "17px"}}/>
+                    <PhoneIcon sx={{height: "17px" }}/>
                 </div>
                 <div className={classes.PostStat}>
                     <div className={`${classes.Stat} ${theme}Text`}>
-                        <LikeIcon/>
+                        <LikeIcon sx={icon}/>
                         <p>150k</p>
                     </div>
                     <Dot sx={{height: "10px", alignSelf:"center"}}/>
                     <div className={`${classes.Stat} ${theme}Text`}>
-                        <Comment/>
+                        <Comment sx={icon}/>
                         <p>150k</p>
                     </div>
                     <Dot sx={{height: "10px", alignSelf:"center"}}/>
                     <div className={`${classes.Stat} ${theme}Text`}>
-                        <EyeIcon/>
+                        <EyeIcon sx={icon}/>
                         <p>150k</p>
                     </div>
                 </div>

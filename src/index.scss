@@ -49,6 +49,14 @@ img {
   background-color: $postBackgroundDark;
 }
 
+.lightBody{
+  background-color: $bodyColorLight;
+}
+
+.darkBody{
+  background-color: $bodyColorDark;
+}
+
 .darkHeader{
   background: linear-gradient(to right, $headerLeftColorDark, $headerRightColorDark);
 }

@@ -6,3 +6,10 @@ export const switchTheme = (data: string) => {
         payload: data
     }
 }
+
+export const setModalOpen = (data: boolean, image? : string) => {
+    return  {
+        type: Actions.SET_MODAL_OPEN,
+        payload: {isOpen: data, image: image}
+    }
+}

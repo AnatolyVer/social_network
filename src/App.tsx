@@ -9,10 +9,10 @@ import classes from './App.module.scss'
 
 function App() {
 
-  const [auth, setAuthed] = useState(false)
+  const [auth, setAuthed] = useState(true)
 
   return (
-    <div className={classes.App}>
+    <div className={`${classes.App}`}>
         <Header auth = {auth}/>
         <BrowserRouter>
             <Routes>

@@ -1,17 +1,7 @@
 import React from 'react';
 import classes from './styles.module.scss';
 
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import CakeIcon from '@mui/icons-material/Cake';
-import PlaceIcon from '@mui/icons-material/Place';
-import EventIcon from '@mui/icons-material/Event';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import LinkIcon from '@mui/icons-material/Link';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import PhotoIcon from '@mui/icons-material/Photo';
+
 
 import o from "./1.jpg"
 import tw from "./2.jpg"
@@ -23,7 +13,20 @@ import second from "./2.png"
 import third from "./3.png"
 import {useSelector} from "react-redux";
 import {State} from "../../../redux/store";
-import IconButton from "@mui/material/IconButton";
+import {
+    CakeIcon,
+    CalendarIcon,
+    Dot,
+    EffectButton,
+    InstagramIcon,
+    LinkIcon,
+    PeopleIcon,
+    PhotoIcon,
+    PlaceIcon,
+    PortraitIcon,
+    TelegramIcon,
+    TwitterIcon
+} from '../../../shared/Icons';
 
 interface ProfileInfoProps{
     isFixed:boolean
@@ -37,7 +40,7 @@ function ProfileInfo({isFixed}:ProfileInfoProps) {
     return (
         <div className={`${classes.ProfileInfo} ${fixed}`}>
             <div className={`${theme}Text ${classes.Label}`}>
-                <AssignmentIndIcon/>
+                <PortraitIcon/>
                 <p className={`${theme}Text ${classes.bold}`}>Загальна інформація</p>
             </div>
             <div className={`${classes.Info} ${theme}Post`}>
@@ -47,19 +50,23 @@ function ProfileInfo({isFixed}:ProfileInfoProps) {
                 </div>
                 <div className={`${classes.InfoPart}  ${theme}Text`}>
                     <PlaceIcon/>
-                    <p className={`${theme}Text`}>Маріуполь, Україна</p>
+                    <p className={`${theme}Text`}>Маріуполь,</p>
+                    <h4>&nbsp;Україна</h4>
                 </div>
                 <div className={`${classes.InfoPart}  ${theme}Text`}>
-                    <EventIcon/>
+                    <CalendarIcon/>
                     <p className={`${theme}Text`}>Учасник з</p>
-                    <p className={`${classes.bold}`}>2 чер. 2023 р.</p>
+                    <h4>&nbsp;2 чер. 2023 р.</h4>
                 </div>
             </div>
             <div className={`${theme}Text ${classes.Label}`}>
-                <PeopleAltIcon/>
+                <PeopleIcon/>
                 <p className={`${theme}Text ${classes.bold}`}>Друзі, що читають</p>
-                <FiberManualRecordIcon sx={{height: "10px", alignSelf:"center"}}/>
-                <p className={`${theme}Text`}>7</p>
+                <div className="flex">
+                    <Dot sx={{height: "10px", alignSelf:"center"}}/>
+                    <p className={`${theme}Text ${classes.bold}`}>7</p>
+                </div>
+
             </div>
             <div className={`${classes.Friends} ${theme}Post`}>
                 <img className={`${classes.Friend}`} src={o} alt=""/>
@@ -72,36 +79,39 @@ function ProfileInfo({isFixed}:ProfileInfoProps) {
             </div>
             <div className={`${theme}Text ${classes.Label}`}>
                 <LinkIcon/>
-                <p className={`${theme}Text`}>Посилання</p>
-                <FiberManualRecordIcon sx={{height: "10px", alignSelf:"center"}}/>
-                <p className={`${theme}Text`}>3</p>
+                <p className={`${theme}Text ${classes.bold}`}>Посилання</p>
+                <div className="flex">
+                    <Dot sx={{height: "10px", alignSelf:"center"}}/>
+                    <p className={`${theme}Text ${classes.bold}`}>3</p>
+                </div>
             </div>
             <div className={`${classes.Links} ${theme}Post ${theme}Text`}>
-                <IconButton sx={{color}}>
+                <EffectButton sx={{color}}>
                     <TwitterIcon/>
-                </IconButton>
-                <IconButton sx={{color}}>
+                </EffectButton>
+                <EffectButton sx={{color}}>
                     <InstagramIcon/>
-                </IconButton>
-                <IconButton sx={{color}}>
+                </EffectButton>
+                <EffectButton sx={{color}}>
                     <TelegramIcon/>
-                </IconButton>
+                </EffectButton>
             </div>
 
-            <div className={`${theme}Text ${classes.Label}`}>
-                <PhotoIcon/>
-                <p className={`${theme}Text`}>Фотографії</p>
-                <FiberManualRecordIcon sx={{height: "10px", alignSelf:"center"}}/>
-                <p className={`${theme}Text`}>35</p>
+            <div className={`${theme}Text ${classes.Label} ${classes.sb}`}>
+                <div className="flex">
+                    <PhotoIcon/>
+                    <p className={`${theme}Text ${classes.bold}`}>Фотографії</p>
+                    <div className="flex">
+                        <Dot sx={{height: "10px", width: "10px",  alignSelf:"center"}}/>
+                        <p className={`${theme}Text ${classes.bold}`}>35</p>
+                    </div>
+                </div>
                 <div className={`${classes.All} ${theme}Text`}>Усі</div>
             </div>
             <div className={`${classes.Photos} ${theme}Post`}>
                 <img className={`${classes.Photo}`} src={first} alt=""/>
                 <img className={`${classes.Photo}`} src={second} alt=""/>
                 <img className={`${classes.Photo}`} src={third} alt=""/>
-                <img className={`${classes.Photo}`} src={third} alt=""/>
-                <img className={`${classes.Photo}`} src={second} alt=""/>
-                <img className={`${classes.Photo}`} src={first} alt=""/>
             </div>
         </div>
     );

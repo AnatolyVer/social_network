@@ -4,20 +4,17 @@ import Banner from "./Banner/Banner";
 import Main from "./Main/Main";
 
 import classes from './styles.module.scss'
-import {cardClasses} from "@mui/material";
+import PhotoModalWindow from "../../shared/PhotoModalWindow/PhotoModalWindow";
+import {useSelector} from "react-redux";
+import {State} from "../../redux/store";
 
 function Profile() {
 
     const [isFixed,setIsFixed] = useState(false);
 
-   useEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
-            if (window.pageYOffset >= 165) {
-                setIsFixed(true)
-            }
-            else {
-                setIsFixed(false)
-            }
+            setIsFixed(window.pageYOffset >= 165)
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -28,11 +25,12 @@ function Profile() {
     }, []);
 
     return (
-        <div className={classes.Profile}>
+        <div className={`${classes.Profile}`}>
             <div className={classes.Content}>
                 <Banner disabled={isFixed}/>
                 <Main isFixed={isFixed}/>
             </div>
+            <PhotoModalWindow/>
         </div>
     );
 }
