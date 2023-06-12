@@ -7,7 +7,7 @@ export const themeReducer = (state = defaultTheme, action: IAction) => {
     switch (action.type){
         case Actions.SWITCH_THEME:
             localStorage.setItem("theme", action.payload)
-            const color = action.payload === "light" ? '#EBEBEB' : 'gray'
+            const color = action.payload === "light" ? '#EBEBEB' : '#333333'
             document.body.style.backgroundColor = color;
             return action.payload
         default:

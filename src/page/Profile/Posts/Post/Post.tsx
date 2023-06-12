@@ -27,11 +27,11 @@ function Post({images}:any) {
                     <div className={'flex'}>
                         <img className={classes.Avatar} src={avatar} alt=""/>
                         <div className={classes.User}>
-                            <p className={classes.Name}>AnatolyVer</p>
-                            <p className={classes.Nickname}>@anatoly_ver</p>
+                            <p className={`${classes.Name} ${theme}Text`}>AnatolyVer</p>
+                            <p className={`${classes.Nickname}`}>@anatoly_ver</p>
                         </div>
                     </div>
-                    <div className={classes.Actions}>
+                    <div className={`${classes.Actions} ${theme}Text`}>
                         <ReplyIcon sx={{cursor: "pointer"}}/>
                         <BookmarkIcon sx={{cursor: "pointer"}}/>
                         <HorDots sx={{cursor: "pointer"}}/>

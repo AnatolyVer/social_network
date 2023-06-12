@@ -5,8 +5,12 @@ import classes from './styles.module.scss'
 import Post from '../Profile/Posts/Post/Post';
 import Comment from '../Profile/Posts/Comment/Comment'
 import Stat from './Stat/Stat';
+import {useSelector} from "react-redux";
+import {State} from "../../redux/store";
 
 function Main() {
+
+    const theme:string = useSelector((state:State) => state.theme)
 
     return (
         <div className={`${classes.Main}`}>
@@ -23,13 +27,13 @@ function Main() {
                     </div>
                     <div className={classes.Right}>
                         <div>
-                            <p className={classes.Title}>SOCIAL NETWORK</p>
-                            <p className={classes.Message}>
+                            <p className={`${classes.Title} ${theme}Text`}>SOCIAL NETWORK</p>
+                            <p className={`${classes.Message} ${theme}Text`}>
                                 Діліться своїми думками, обговорюйте та створюйте
                                 власний контент.
                             </p>
                         </div>
-                        <div className={classes.Sign}>
+                        <div className={`${classes.Sign} ${theme}Text`}>
                             Увійти / Зареєструватися
                         </div>
                     </div>

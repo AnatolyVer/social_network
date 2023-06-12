@@ -18,11 +18,11 @@ function Comment() {
                 <div className={'flex'}>
                     <img className={classes.Avatar} src={avatar} alt=""/>
                     <div className={classes.User}>
-                        <p className={classes.Name}>SenPRoger</p>
+                        <p className={`${classes.Name} ${theme}Text`}>SenPRoger</p>
                         <p className={classes.Nickname}>@senproger</p>
                     </div>
                     <div className={classes.Reply}>
-                        <p>у відповідь</p>
+                        <p className={`${theme}Text`}>у відповідь</p>
                         <p className={classes.Nickname}>@anatoly_ver</p>
                     </div>
                 </div>

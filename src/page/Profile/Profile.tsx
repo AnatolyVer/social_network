@@ -5,8 +5,6 @@ import Main from "./Main/Main";
 
 import classes from './styles.module.scss'
 import PhotoModalWindow from "../../shared/PhotoModalWindow/PhotoModalWindow";
-import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
 
 function Profile() {
 
