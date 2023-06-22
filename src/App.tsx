@@ -1,27 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Footer from './layout/Footer/Footer';
-import Header from "./layout/Header/Header";
 import Main from './page/Main/Main';
 import Profile from "./page/Profile/Profile";
 
 import classes from './App.module.scss'
+import Sign from './page/Sign/Sign';
+import {useDispatch} from "react-redux";
+import {switchTheme} from "./redux/action-creators";
+import Auth from './page/Auth/Auth';
 
 function App() {
 
-  const [auth, setAuthed] = useState(true)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (localStorage.getItem("theme") == null) localStorage.setItem("theme", "light")
+        dispatch(switchTheme(localStorage.getItem("theme") || 'light'))
+    }, [])
 
   return (
     <div className={`${classes.App}`}>
-        <Header auth = {auth}/>
         <BrowserRouter>
             <Routes>
                 {/*<Route path="" element={<Navigate to="/profile" replace />} />*/}
                 <Route path="" element={<Main/>} />
-                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/profile/:nickname" element={<Profile/>}/>
+                <Route path='/sign_up' element={<Sign/>}/>
+                <Route path='/sign_in' element={<Auth/>}/>
             </Routes>
         </BrowserRouter>
-        {!auth ? <Footer/> : <></>}
+
     </div>
   );
 }

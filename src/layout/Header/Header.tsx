@@ -8,22 +8,17 @@ import {switchTheme} from "../../redux/action-creators";
 
 import classes from './styles.module.scss';
 import {AddIcon, EffectButton, MoonIcon, SearchIcon, SunIcon} from "../../shared/Icons";
+import {Link} from "react-router-dom";
 
-interface HeaderProps{
-    auth:boolean
-}
 
-function Header({auth}:HeaderProps) {
+function Header() {
     const [search, setSearch] = useState("")
 
+    const auth = localStorage.getItem('logged') === 'true' ? true : false
     const dispatch = useDispatch()
+    const nickname = localStorage.getItem('nickname')
 
     const theme:string = useSelector((state:State) => state.theme)
-
-    useEffect(() => {
-        if (localStorage.getItem("theme") == null) localStorage.setItem("theme", "light")
-        dispatch(switchTheme(localStorage.getItem("theme") || 'light'))
-    }, [])
 
     const swapTheme = () => {
         if (localStorage.getItem("theme") === "light") dispatch(switchTheme("dark"))
@@ -41,12 +36,18 @@ function Header({auth}:HeaderProps) {
                 <nav>
                     {auth ? (
                         <>
-                        <button className={classes.header_button}>Профіль</button>
+                            <Link to={`/profile/${nickname}`}>
+                                <div className={classes.header_button}>Профіль</div>
+                            </Link>
                         <button className={classes.header_button}>Стрічка</button>
                         <button className={classes.header_button}>Друзі</button>
                         </>
                     ) : (
-                    <button className={classes.header_button}>Увійти / Зареєструватися</button>
+                        <Link to="/sign_up">
+                            <div className={`${classes.header_button}`}>
+                                Увійти / Зареєструватися
+                            </div>
+                        </Link>
                     )}
                 </nav>
                 <nav>

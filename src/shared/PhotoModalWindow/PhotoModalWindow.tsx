@@ -15,6 +15,7 @@ function PhotoModalWindow() {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
                 dispatch(setModalOpen(false, undefined))
+                document.body.style.overflow = 'auto';
             }
         };
 
@@ -28,11 +29,9 @@ function PhotoModalWindow() {
     const closeModal = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target instanceof HTMLDivElement) {
             dispatch(setModalOpen(false, undefined))
+            document.body.style.overflow = 'auto';
         }
-
     }
-
-    console.log(modal)
 
     const incImage = () => {
         const result = modal.num === modal.images.length - 1 ? 0 : modal.num + 1
@@ -60,7 +59,7 @@ function PhotoModalWindow() {
                 </EffectButton>
             </div>
             <div className={classes.Footer}>
-                <p>{modal.num + 1}/{modal.images.length}</p>
+                <p>Фото &nbsp;{modal.num + 1}/{modal.images.length}</p>
             </div>
         </div>
     ) : (

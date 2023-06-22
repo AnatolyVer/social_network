@@ -42,19 +42,19 @@ img {
 }
 
 .lightPost{
-  background-color: $postBackgroundLight;
+  background-color: $postBackgroundLight  !important;
 }
 
 .darkPost{
-  background-color: $postBackgroundDark;
+  background-color: $postBackgroundDark  !important;
 }
 
 .lightBody{
-  background-color: $bodyColorLight;
+  background-color: $bodyColorLight  !important;
 }
 
 .darkBody{
-  background-color: $bodyColorDark;
+  background-color: $bodyColorDark  !important;
 }
 
 .darkHeader{
@@ -66,19 +66,19 @@ img {
 }
 
 .lightText{
-  color: $textColorLight;
+  color: $textColorLight  !important;
 }
 
 .lightText::placeholder{
-  color: $textColorLight;
+  color: $textColorLight  !important;
 }
 
 .darkText{
-  color: $textColorDark;
+  color: $textColorDark !important;
 }
 
 .darkText::placeholder{
-  color: $textColorDark;
+  color: $textColorDark  !important;
 }
 
 .flex{
@@ -88,4 +88,33 @@ img {
 
 img{
   -webkit-user-drag: none;
+}
+
+.dark{
+
+  .MuiDateCalendar-root{
+    & *{
+      color: white !important;
+    }
+    .MuiPickersDay-today{
+      border: 1px solid white !important;
+    }
+    background-color: #222222 !important;
+    .Mui-disabled:not(.Mui-selected){
+      color:rgba(255,255,255, 0.2) !important;
+    }
+
+    .MuiPickersDay-root.Mui-selected{
+      border: 1px solid white !important;
+      background-color: white !important;
+      color: black !important;
+    }
+
+    .MuiPickersYear-root{
+      .MuiPickersYear-yearButton.Mui-selected {
+        background-color: white !important;
+        color: black !important;
+      }
+    }
+  }
 }

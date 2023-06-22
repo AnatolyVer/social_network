@@ -16,3 +16,7 @@ declare module '*.scss' {
     const content: { [className: string]: string };
     export default content;
 }
+declare module 'path' {
+    const path: any;
+    export default path;
+}

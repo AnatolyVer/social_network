@@ -1,18 +1,12 @@
 import React from 'react';
 import classes from './styles.module.scss';
-
-
-
-import o from "./1.jpg"
-import tw from "./2.jpg"
-import th from "./3.jpg"
-import f from "./4.jpg"
-
 import first from "./1.png"
 import second from "./2.png"
 import third from "./3.png"
 import {useSelector} from "react-redux";
 import {State} from "../../../redux/store";
+import dayjs from 'dayjs';
+import 'dayjs/locale/uk'
 import {
     CakeIcon,
     CalendarIcon,
@@ -27,12 +21,24 @@ import {
     TelegramIcon,
     TwitterIcon
 } from '../../../shared/Icons';
+import {Avatar, AvatarGroup} from '@mui/material';
+import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
 
 interface ProfileInfoProps{
-    isFixed:boolean
+    isFixed:boolean,
+    user:IProfileInfo | null
 }
 
-function ProfileInfo({isFixed}:ProfileInfoProps) {
+const changeDateMode = (inputDate: string) => {
+    dayjs.locale('uk');
+    const date = inputDate?.slice(0, 10)
+    const formattedDate = dayjs(date).format('D MMM YYYY')
+    return formattedDate
+}
+
+
+
+function ProfileInfo({isFixed, user}:ProfileInfoProps) {
 
     const theme:string = useSelector((state:State) => state.theme)
     const color = theme === "light" ? "black" : "white"
@@ -46,17 +52,19 @@ function ProfileInfo({isFixed}:ProfileInfoProps) {
             <div className={`${classes.Info} ${theme}Post`}>
                 <div className={`${classes.InfoPart} ${theme}Text`}>
                     <CakeIcon/>
-                    <p className={`${theme}Text`}>День народження: 18 лис. 2003 р.</p>
+                    <p className={`${theme}Text`}>День народження: {changeDateMode(user?.birth_date!)}</p>
                 </div>
-                <div className={`${classes.InfoPart}  ${theme}Text`}>
-                    <PlaceIcon/>
-                    <p className={`${theme}Text`}>Маріуполь,</p>
-                    <h4>&nbsp;Україна</h4>
-                </div>
+                {user?.city ? (
+                    <div className={`${classes.InfoPart}  ${theme}Text`}>
+                        <PlaceIcon/>
+                        <p className={`${theme}Text`}>{user?.city}, {user?.country}</p>
+                    </div>
+                ) : (
+                    <></>
+                )}
                 <div className={`${classes.InfoPart}  ${theme}Text`}>
                     <CalendarIcon/>
-                    <p className={`${theme}Text`}>Учасник з</p>
-                    <h4>&nbsp;2 чер. 2023 р.</h4>
+                    <p className={`${theme}Text`}>Учасник з {changeDateMode(user?.created_at!)}</p>
                 </div>
             </div>
             <div className={`${theme}Text ${classes.Label}`}>
@@ -69,13 +77,13 @@ function ProfileInfo({isFixed}:ProfileInfoProps) {
 
             </div>
             <div className={`${classes.Friends} ${theme}Post`}>
-                <img className={`${classes.Friend}`} src={o} alt=""/>
-                <img className={`${classes.Friend}`} src={tw} alt=""/>
-                <img className={`${classes.Friend}`} src={th} alt=""/>
-                <img className={`${classes.Friend}`} src={f} alt=""/>
-                <div className={`${classes.Extra} ${classes.Friend}`}>
-                    <p>+3</p>
-                </div>
+                <AvatarGroup max={4}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
+                    <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg"/>
+                    <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg"/>
+                    <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg"/>
+                    <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg"/>
+                </AvatarGroup>
             </div>
             <div className={`${theme}Text ${classes.Label}`}>
                 <LinkIcon/>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import classes from './styles.module.scss'
 
@@ -7,6 +7,9 @@ import Comment from '../Profile/Posts/Comment/Comment'
 import Stat from './Stat/Stat';
 import {useSelector} from "react-redux";
 import {State} from "../../redux/store";
+import Header from "../../layout/Header/Header";
+import Footer from "../../layout/Footer/Footer";
+import { Link } from 'react-router-dom';
 
 function Main() {
 
@@ -14,6 +17,7 @@ function Main() {
 
     return (
         <div className={`${classes.Main}`}>
+            <Header/>
             <div className={`${classes.Content}`} >
                 <div className={classes.Part1}>
                     <div className="Left">
@@ -33,9 +37,11 @@ function Main() {
                                 власний контент.
                             </p>
                         </div>
-                        <div className={`${classes.Sign} ${theme}Text`}>
-                            Увійти / Зареєструватися
-                        </div>
+                        <Link to="/sign_up">
+                            <div className={`${classes.Sign} ${theme}Text`}>
+                                Увійти / Зареєструватися
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <div className={classes.Part2}>
@@ -46,6 +52,7 @@ function Main() {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

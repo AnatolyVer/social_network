@@ -18,7 +18,9 @@ function Post({images}:any) {
 
     const openModal = (images: [string], num: number) => {
         dispatch(setModalOpen(true, images, num, images.at(num)))
+        document.body.style.overflow = 'hidden'
     }
+
 
     return (
         <div className={`${classes.Post} ${theme}Post`}>

@@ -4,22 +4,25 @@ import Posts from "../Posts/Posts";
 
 import classes from './styles.module.scss'
 import SearchBar from "./SearchBar/SearchBar";
+import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
 
 interface MainProps{
-    isFixed:boolean
+    isFixed:boolean,
+    user: IProfileInfo
 }
 
-function Main({isFixed}:MainProps) {
+function Main({isFixed, user}:MainProps) {
 
   const margin = isFixed ? classes.added : classes.no
+  const posts:any[] = []
 
   return (
         <div className={`${classes.Main} ${margin}`}>
             <div>
                 <SearchBar isFixed={isFixed}/>
-                <Posts/>
+                <Posts posts={posts} />
             </div>
-            <ProfileInfo isFixed={isFixed}/>
+            <ProfileInfo user={user}  isFixed={isFixed}/>
         </div>
     );
 }
