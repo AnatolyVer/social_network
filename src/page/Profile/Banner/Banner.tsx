@@ -5,26 +5,12 @@ import classes from './styles.module.scss'
 import {useSelector} from "react-redux";
 import {State} from "../../../redux/store";
 import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
-import {Backdrop, CircularProgress, Skeleton } from '@mui/material'
 interface BannerProps {
     disabled: boolean,
     user: IProfileInfo | null  // Обновлено: добавлено значение по умолчанию null
 }
 
-
-
 function Banner({ disabled, user }: BannerProps) {
-    const banner = user ? (
-        <img className={classes.Image} src={user.account_banner} alt="User banner" />
-    ) : (
-        <Skeleton variant="rounded" width={1280} height={245} />
-    )
-
-    const avatar = user ? (
-        <img className={classes.Avatar} src={`https://django-auth-gfm6.onrender.com` +  user.account_photo} alt="" />
-    ) : (
-        <Skeleton variant="circular" width={100} height={100} />
-    )
 
     const theme: string = useSelector((state: State) => state.theme)
 
@@ -32,9 +18,9 @@ function Banner({ disabled, user }: BannerProps) {
     const color = theme === "light" ? classes.light : classes.dark
     return (
         <div className={`${classes.Banner} ${fixed} ${color}`}>
-            {banner}
+            {user?.account_banner ? <img className={classes.Image} src={user.account_banner} alt="User banner" /> : <></>}
             <div className={classes.User}>
-                {avatar}
+                <img className={classes.Avatar} src={`https://django-auth-gfm6.onrender.com` +  user?.account_photo} alt="" />
                 <div className={classes.NN}>
                     <p className={classes.Name}>{user?.username}</p>
                     <p className={classes.Nickame}>@{user?.nickname}</p>

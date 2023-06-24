@@ -17,7 +17,6 @@ function* SignInWorker(action: IAction){
             localStorage.setItem('access-token', data.access_token)
             localStorage.setItem('nickname', data.nickname)
             const refreshToken = headers['refresh-token'];
-            Cookies.remove('refreshToken')
             Cookies.set('refreshToken', refreshToken, {
                 secure: false,
                 httpOnly: false,
@@ -28,7 +27,7 @@ function* SignInWorker(action: IAction){
         }
 
     }catch (error) {
-        yield put(setFetch({text: 'Усьо хуйня, заново', status: 404}))
+        yield put(setFetch({text: 'Не вдалося авторизуватися', status: 404}))
     }
 }
 
@@ -36,8 +35,9 @@ function* SignUpWorker(action: IAction) {
     try {
         yield put(setFetch({ text: 'Loading', status: 999 }))
         const formData = new FormData();
+        if (action.payload.account_photo) formData.append('account_photo', action.payload['account_photo'])
         for (const key in action.payload) {
-            formData.append(key, action.payload[key]);
+            if (key != 'account_photo') formData.append(key, action.payload[key]);
         }
         const {data, headers, status} = yield call(signUp, formData);
         if (status === 200) {
@@ -56,7 +56,7 @@ function* SignUpWorker(action: IAction) {
 
         yield put(clearFetch());
     } catch (error) {
-        yield put(setFetch({ text: 'Усьо хуйня, заново', status: 404 }));
+        yield put(setFetch({ text: 'Не вдалося створити акаунт', status: 404 }));
         console.log(error);
     }
 }
@@ -70,7 +70,7 @@ function* getProfileInfoWorker(action: IAction){
         yield put(setFetch({ text: 'Done', status: 200 }));
     }catch (error) {
         console.log(error)
-        yield put(setFetch({ text: 'Усьо хуйня, заново', status: 404 }));
+        yield put(setFetch({ text: '', status: 404 }));
     }
 }
 

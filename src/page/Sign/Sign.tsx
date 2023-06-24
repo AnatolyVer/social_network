@@ -18,7 +18,7 @@ import AvatarUploader from "./AvatarUploader/AvatarUploader";
 import Rules from './Rules/Rules';
 import {Link, useNavigate} from "react-router-dom";
 import ava from "./default.png";
-import { signUser } from '../../redux/action-creators';
+import {clearFetch, signUser} from '../../redux/action-creators';
 import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
 import {Backdrop, CircularProgress} from "@mui/material";
 
@@ -52,6 +52,10 @@ export default function Sign() {
         confirmPassword:"",
         birth_date:dayjs().format('YYYY-MM-DD')
     })
+
+    useEffect(() => {
+        dispatch(clearFetch())
+    }, [user])
 
     const [errors, setErrors] = useState<Errors>({
         username:{
@@ -104,7 +108,7 @@ export default function Sign() {
 
     const changeNickname = (event: React.ChangeEvent<HTMLInputElement>) => {
         const nickname = event.target.value
-        const regex = /^[a-zA-Z0-9_]{1,16}$/;
+        const regex = /^[a-zA-Z0-9_]{0,16}$/;
         if (regex.test(nickname))  setUser({...user, nickname})
         if (nickname.length > 0){
             setErrors({...errors, nickname:{status:false, border:false, text:" "}})

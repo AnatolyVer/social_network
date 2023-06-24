@@ -7,7 +7,7 @@ import CustomTextField from "../../shared/CustomTextField/CustomTextField";
 import CustomPasswordField from "../../shared/CustomPasswordField/CustomPasswordField";
 
 
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {clearFetch, logUserAPI} from "../../redux/action-creators";
 import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
 import {Backdrop, CircularProgress} from "@mui/material";
@@ -63,6 +63,9 @@ export default function Auth() {
             <button onClick={sign} className={`${classes.SignButton} ${theme}Text`}>
                 Продовжити
             </button>
+            <Link to='/sign_up'>
+                <p className={`${classes.HasAccount} ${classes.Rules}`}>Немає акаунту? Зареєструватися</p>
+            </Link>
         </div>
     )
 

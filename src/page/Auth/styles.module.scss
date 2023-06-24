@@ -48,7 +48,16 @@
 
 .Error{
   position: absolute;
-  top: 18%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.Rules{
+  cursor: pointer;
+  color: #3997DB;
+  border-bottom: 1px solid transparent;
+  &:hover{
+    border-bottom: 1px solid #3997DB;
+  }
 }

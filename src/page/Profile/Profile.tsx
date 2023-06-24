@@ -27,12 +27,6 @@ function Profile() {
         dispatch(getProfileInfo(params.nickname!))
     }, [])
 
-
-
-    useEffect(() => {
-        console.log(fetch)
-    }, [fetch])
-
     const [isFixed,setIsFixed] = useState(false);
 
     useEffect(() => {
@@ -64,7 +58,7 @@ function Profile() {
                     </div>
                 ) : (
                     <div className={`${classes.NoUser} ${theme}Text`}>
-                        Користувача не знайдено
+                        Користувача @{params.nickname!} не знайдено
                     </div>
                 )}
                 <Footer/>

@@ -69,7 +69,7 @@ function ProfileInfo({isFixed, user}:ProfileInfoProps) {
             </div>
             <div className={`${theme}Text ${classes.Label}`}>
                 <PeopleIcon/>
-                <p className={`${theme}Text ${classes.bold}`}>Друзі, що читають</p>
+                <p className={`${theme}Text ${classes.bold}`}>Друзі, що підписані</p>
                 <div className="flex">
                     <Dot sx={{height: "10px", alignSelf:"center"}}/>
                     <p className={`${theme}Text ${classes.bold}`}>7</p>
