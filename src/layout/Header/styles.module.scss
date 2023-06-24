@@ -92,5 +92,43 @@
     }
   }
 
+@media (max-width: 1320px) {
+  .Header {
+    .Content {
+      width: 90%;
 
+      nav {
+        justify-content: space-between;
+
+        .header_button {
+          margin-right: 10px;
+          font-size: 16px;
+        }
+
+        .add_button {
+          margin-right: 15px;
+
+          button {
+            font-size: 16px;
+          }
+        }
+
+        .header_input {
+          margin-right: 10px;
+          width: 300px;
+
+          input {
+            padding-left: 30px;
+            font-size: 14px;
+          }
+
+          input::placeholder {
+            margin-left: 15px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
 

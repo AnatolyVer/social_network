@@ -17,9 +17,26 @@ interface TextFieldProps{
 export default function CustomTextField({theme, id, label, variant, value, onChange, required, error}:TextFieldProps) {
     return(
         theme === 'light' ? (
-            <LightTextField error={error?.border} helperText={error?.text} id={id} required={required} label={label} value={value} variant={variant} onChange={onChange}/>
+            <LightTextField
+                error={error?.border}
+                helperText={error?.text}
+                id={id}
+                required={required}
+                label={label}
+                value={value}
+                variant={variant}
+                onChange={onChange}/>
         ) : (
-            <DarkTextField error={error?.border} helperText={error?.text} id={id} required={required}  label={label} value={value} variant={variant} onChange={onChange}/>
+            <DarkTextField
+                error={error?.border}
+                helperText={error?.text}
+                id={id}
+                required={required}
+                label={label}
+                value={value}
+                variant={variant}
+                onChange={onChange}
+            />
         )
     )
 }

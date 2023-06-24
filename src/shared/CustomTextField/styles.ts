@@ -3,39 +3,63 @@ import {styled, TextField} from "@mui/material";
 export const LightTextField = styled(TextField)({
     '& .MuiInputBase-input': {
         color: 'black', // Цвет текста
+        marginTop:'-7px !important',
+        backgroundColor:'transparent !important',
+        zIndex:'2'
     },
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
-            borderColor: 'black !important', // Цвет рамки
+            borderColor: 'transparent !important',
+            borderRadius:'20px',
+            height: '45px',
+            backgroundColor:'#F3F3F3 !important',
         },
         '&:hover fieldset': {
-            borderColor: 'black !important', // Цвет рамки при наведении
+            borderColor: 'transparent !important', // Цвет рамки при наведении
+            backgroundColor:'#F3F3F3 !important',
         },
         '&.Mui-focused fieldset': {
-            borderColor: 'black !important', // Цвет рамки при фокусе
+            borderColor: 'transparent !important',// Цвет рамки при фокусе
+            backgroundColor:'#F3F3F3 !important',
         },
     },
     '& .MuiInputLabel-root': {
-        color: 'black !important', // Цвет заполнителя (placeholder)
+        color: 'black !important',
+        marginTop: '-7px !important', // Цвет заполнителя (placeholder)
     },
+    '& .MuiFormHelperText-root':{
+        marginTop:'-5px !important',
+    }
 });
 
 export const DarkTextField = styled(TextField)({
     '& .MuiInputBase-input': {
         color: 'white', // Цвет текста
+        marginTop:'-7px !important',
+        backgroundColor:'transparent !important',
+        zIndex:'2'
     },
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
-            borderColor: 'white !important', // Цвет рамки
+            borderColor: 'transparent !important',
+            borderRadius:'20px',
+            height: '45px',
+            backgroundColor:'#333333 !important',
         },
         '&:hover fieldset': {
-            borderColor: 'white !important', // Цвет рамки при наведении
+            borderColor: 'transparent !important', // Цвет рамки при наведении
+            backgroundColor:'#333333 !important',
         },
         '&.Mui-focused fieldset': {
-            borderColor: 'white !important', // Цвет рамки при фокусе
+            borderColor: 'transparent !important',// Цвет рамки при фокусе
+            backgroundColor:'#333333 !important',
         },
     },
     '& .MuiInputLabel-root': {
-        color: 'white !important', // Цвет заполнителя (placeholder)
+        color: 'white !important',
+        marginTop: '-7px !important', // Цвет заполнителя (placeholder)
     },
+    '& .MuiFormHelperText-root':{
+        marginTop:'-5px !important',
+    }
 });
