@@ -18,15 +18,17 @@ import AvatarUploader from "./AvatarUploader/AvatarUploader";
 import Rules from './Rules/Rules';
 import {Link, useNavigate} from "react-router-dom";
 import ava from "./default.png";
-import {clearFetch, signUser} from '../../redux/action-creators';
+import {checkSignEmail, checkSignNickname, clearFetch, signUser} from '../../redux/action-creators';
 import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
-import {Backdrop, CircularProgress} from "@mui/material";
+import Loader from '../../shared/Loader/Loader';
 
 export default function Sign() {
 
     const nav = useNavigate()
     const dispatch = useDispatch()
     const fetch:IFetch = useSelector((state:State) => state.fetch)
+    const signRed: {nickname: boolean, email: boolean} = useSelector((state:State) => state.sign)
+
 
     const [page, setPage] = useState(1)
 
@@ -41,6 +43,7 @@ export default function Sign() {
     const [canSign, setCanSign ] = useState(false)
 
     const [avatar, setAvatar] = useState<File | null>()
+    const [photo, setPhoto] = useState<string>()
 
     const [date, setDate] = useState<Dayjs | null | unknown>(dayjs());
 
@@ -56,6 +59,15 @@ export default function Sign() {
     useEffect(() => {
         dispatch(clearFetch())
     }, [user])
+
+    useEffect(() => {
+        const nicknameTextValid = signRed.nickname ? " " : 'Зайнято'
+        const emailText = signRed.email ? " " : 'Зайнято'
+        setErrors({...errors,
+            nickname:{status: !signRed.nickname, border:!signRed.nickname,  text: nicknameTextValid},
+            email:{status: !signRed.email, border:!signRed.email,  text: emailText}})
+
+    }, [signRed])
 
     const [errors, setErrors] = useState<Errors>({
         username:{
@@ -109,13 +121,21 @@ export default function Sign() {
     const changeNickname = (event: React.ChangeEvent<HTMLInputElement>) => {
         const nickname = event.target.value
         const regex = /^[a-zA-Z0-9_]{0,16}$/;
-        if (regex.test(nickname))  setUser({...user, nickname})
-        if (nickname.length > 0){
-            setErrors({...errors, nickname:{status:false, border:false, text:" "}})
+        if (nickname.length > user.nickname!.length){
+            if (regex.test(nickname)){
+                setUser({...user, nickname})
+                dispatch(checkSignNickname(nickname))
+            }
         }
-        else (
-            setErrors({...errors, nickname:{status: true, border:true,  text: "Порожне поле"}})
-        )
+        else  {
+            if (nickname.length > 0) {
+                dispatch(checkSignNickname(nickname))
+                console.log(nickname)
+            }
+            else setErrors({...errors, nickname:{status: true, border:true, text: "Порожне поле"}})
+            setUser({...user, nickname})
+        }
+
     }
 
     const changeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,12 +144,15 @@ export default function Sign() {
         const regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/; // Регулярное выражение
         if (email.length > 0){
             const status = !regex.test(email)
-            const border = status
-            const text = status ? "Невірний формат пошти" : " "
-            setErrors({...errors, email:{status, border, text}})
+            if (!status) dispatch(checkSignEmail(email))
+            else {
+                const border = status
+                const text = status ? "Невірний формат пошти" : " "
+                setErrors({...errors, email:{status, border, text}})
+            }
         }
         else (
-            setErrors({...errors, email:{status:true, border:false, text:" "}})
+            setErrors({...errors, email:{status:true, border:true, text:"Порожнє поле"}})
         )
     }
 
@@ -189,11 +212,9 @@ export default function Sign() {
             setErrors({...errors, birth_date:{status: true, border: true, text:" "}})
         }
     }
-
-
     const main =  page === 2 ?  (
         <>
-            <AvatarUploader ava={ava} avatar={avatar} setAvatar={setAvatar} theme={theme}/>
+            <AvatarUploader ava={ava} avatar={avatar} setAvatar={setAvatar} photo={photo!} setPhoto={setPhoto} theme={theme}/>
             <div className={classes.Inputs}>
                 <CustomTextField required error={errors.username} theme={theme} onChange={changeUsername} value={user.username} id="standard-basic" label="Введіть ім'я" variant="outlined" />
                 <CustomDatePicker theme={theme} date={date} onChange={changeDate} label="Введіть день народження"/>
@@ -213,12 +234,7 @@ export default function Sign() {
     )
 
     return (fetch.status === 999 ? (
-            <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={true}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+        <Loader/>
         ) : (
         <div className={classes.Sign}>
             <div className={`${classes.SignForm} ${theme}Post ${theme}Text`}>

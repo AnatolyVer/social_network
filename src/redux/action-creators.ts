@@ -68,3 +68,38 @@ export const signUser = (data:IUser, account_photo: File, nav:NavigateFunction) 
         nav
     }
 }
+
+export const setSignNickname = (data:boolean)  => {
+    return{
+        type: Actions.SET_SIGN_NICKNAME,
+        payload: data
+    }
+}
+
+export const setSignEmail = (data: boolean)  => {
+    return{
+        type: Actions.SET_SIGN_EMAIL,
+        payload: data
+    }
+}
+
+export const checkSignNickname = (data:string)  => {
+    return{
+        type: Actions.CHECK_SIGN_NICKNAME,
+        payload: data
+    }
+}
+
+export const checkSignEmail = (data: string)  => {
+    return{
+        type: Actions.CHECK_SIGN_EMAIL,
+        payload: data
+    }
+}
+
+
+export const clearSign = ()  => {
+    return{
+        type: Actions.CLEAR_SIGN
+    }
+}

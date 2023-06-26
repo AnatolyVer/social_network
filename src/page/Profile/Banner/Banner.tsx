@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import {VertDots,  EffectButton } from '../../../shared/Icons'
 import classes from './styles.module.scss'
 import {useSelector} from "react-redux";
 import {State} from "../../../redux/store";
 import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
+
 interface BannerProps {
     disabled: boolean,
-    user: IProfileInfo | null  // Обновлено: добавлено значение по умолчанию null
+    user: IProfileInfo | null
 }
 
 function Banner({ disabled, user }: BannerProps) {
@@ -18,7 +19,7 @@ function Banner({ disabled, user }: BannerProps) {
     const color = theme === "light" ? classes.light : classes.dark
     return (
         <div className={`${classes.Banner} ${fixed} ${color}`}>
-            {user?.account_banner ? <img className={classes.Image} src={user.account_banner} alt="User banner" /> : <></>}
+            {user?.account_banner ? <img className={classes.Image} src={`https://django-auth-gfm6.onrender.com` + user.account_banner} alt="User banner" /> : <></>}
             <div className={classes.User}>
                 <img className={classes.Avatar} src={`https://django-auth-gfm6.onrender.com` +  user?.account_photo} alt="" />
                 <div className={classes.NN}>

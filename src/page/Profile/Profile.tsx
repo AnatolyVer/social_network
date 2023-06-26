@@ -12,16 +12,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../redux/store";
 import {IProfileInfo} from "../../shared/TypesAndInterfaces/IProfileInfo";
 import {useParams} from "react-router-dom";
-import {Backdrop, CircularProgress} from "@mui/material";
 import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
+import Loader from '../../shared/Loader/Loader';
 
 function Profile() {
 
     const dispatch = useDispatch()
     const profile:IProfileInfo = useSelector((state:State) => state.profile)
-    const params = useParams()
     const fetch:IFetch = useSelector((state:State) => state.fetch)
     const theme:string = useSelector((state:State) => state.theme)
+    const params = useParams()
 
     useEffect(() => {
         dispatch(getProfileInfo(params.nickname!))
@@ -41,13 +41,8 @@ function Profile() {
         };
     }, []);
 
-    return ( fetch.status === 999 ? (
-            <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={true}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+    return ( fetch.status !== 200 ? (
+            <Loader/>
        ) : (
             <div className={`${classes.Profile}`}>
                 <Header/>
@@ -62,7 +57,6 @@ function Profile() {
                     </div>
                 )}
                 <Footer/>
-                <PhotoModalWindow/>
             </div>
         )
     );

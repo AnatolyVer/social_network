@@ -6,6 +6,7 @@ import {themeReducer} from "./themeReducer";
 import {modalReducer} from "../../shared/PhotoModalWindow/store/modalReducer";
 import {profileReducer} from "./profileReducer";
 import {fetchReducer} from "./lastFetchReducer";
+import {signReducer} from "./signReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     theme: themeReducer,
     modal: modalReducer,
     profile:profileReducer,
-    fetch:fetchReducer
+    fetch:fetchReducer,
+    sign:signReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));

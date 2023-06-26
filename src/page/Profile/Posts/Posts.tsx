@@ -16,11 +16,17 @@ function Posts({posts}:{posts:any[]}) {
 
     return (
         <div className={classes.Posts}>
-            {posts.length ? (
+            <Post images={[img1,img2, img1, img2]}/>
+            <Post images={[img3,img4, img3, img4]}/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            {/*{posts.length ? (
                 posts.map((post:any) => <div>post</div> )
             ) : (
                 <div className={`${classes.NoPost} ${theme}Post ${theme}Text`}>No posts yet</div>
-            )}
+            )}*/}
         </div>
     );
 }

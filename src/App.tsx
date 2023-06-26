@@ -8,6 +8,7 @@ import Sign from './page/Sign/Sign';
 import {useDispatch} from "react-redux";
 import {switchTheme} from "./redux/action-creators";
 import Auth from './page/Auth/Auth';
+import PhotoModalWindow from "./shared/PhotoModalWindow/PhotoModalWindow";
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
                 <Route path='/sign_in' element={<Auth/>}/>
             </Routes>
         </BrowserRouter>
-
+        <PhotoModalWindow/>
     </div>
   );
 }
