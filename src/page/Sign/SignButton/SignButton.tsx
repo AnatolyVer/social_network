@@ -1,17 +1,15 @@
 import classes from "./styles.module.scss";
-import React from "react";
 
 interface SignButtonProps{
     theme:string,
     page: number,
     next: () => void,
-    sign: () => void,
 }
 
-export default function SignButton({theme, page, next, sign}:SignButtonProps) {
+export default function SignButton({theme, page, next}:SignButtonProps) {
 
-    const button = page === 2 ? (
-        <button onClick={sign} className={`${classes.SignButton} ${theme}Text`}>
+    const button = page === 3 ? (
+        <button onClick={next} className={`${classes.SignButton} ${theme}Text`}>
             Зареєструватися
         </button>
     ) : (

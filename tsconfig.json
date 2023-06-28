@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@interfaces/*": ["src/interfaces/*"],
+      "@layout/*": ["src/layout/*"],
+      "@page/*": ["src/page/*"],
+      "@redux/*": ["src/redux/*"],
+      "@shared/*": ["src/shared/*"],
+    },
     "target": "es5",
     "lib": [
       "dom",

@@ -9,7 +9,6 @@ import {useDispatch} from "react-redux";
 import {switchTheme} from "./redux/action-creators";
 import Auth from './page/Auth/Auth';
 import PhotoModalWindow from "./shared/PhotoModalWindow/PhotoModalWindow";
-
 function App() {
 
     const dispatch = useDispatch()

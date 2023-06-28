@@ -3,7 +3,7 @@ import IAction from "../../interfaces/IAction";
 
 const defaultSign = {
     nickname:true,
-    email:true
+    email:false
 }
 
 export const signReducer = (state = defaultSign, action: IAction) => {

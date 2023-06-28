@@ -46,10 +46,10 @@ function Profile() {
        ) : (
             <div className={`${classes.Profile}`}>
                 <Header/>
-                {fetch.status === 200 ? (
+                {profile ? (
                     <div className={classes.Content}>
-                        <Banner user={profile} disabled={isFixed}/>
-                        <Main user={profile} isFixed={isFixed}/>
+                        <Banner user={profile!} disabled={isFixed}/>
+                        <Main user={profile!} isFixed={isFixed}/>
                     </div>
                 ) : (
                     <div className={`${classes.NoUser} ${theme}Text`}>

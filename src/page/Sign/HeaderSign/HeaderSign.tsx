@@ -11,7 +11,7 @@ const HeaderSign = ({page, progress}:HeaderSignProps) => {
     return (
         <div className={classes.Header} >
             <p className={`${classes.Title}`}>Реєстрація</p>
-            <p className={`${classes.Steps}`}>{`${page}/2`}</p>
+            <p className={`${classes.Steps}`}>{`${page}/3`}</p>
             <Box  sx={{ width: '100%' }}>
                 <LinearProgress variant="determinate" value={progress} />
             </Box>

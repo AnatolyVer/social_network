@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import classes from './styles.module.scss'
 
@@ -6,9 +6,9 @@ import Post from '../Profile/Posts/Post/Post';
 import Comment from '../Profile/Posts/Comment/Comment'
 import Stat from './Stat/Stat';
 import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
+import {State} from "@redux/store";
 import Header from "../../layout/Header/Header";
-import Footer from "../../layout/Footer/Footer";
+import Footer from '../../layout/Footer/Footer';
 import { Link } from 'react-router-dom';
 
 function Main() {

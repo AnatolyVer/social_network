@@ -103,3 +103,17 @@ export const clearSign = ()  => {
         type: Actions.CLEAR_SIGN
     }
 }
+
+export const sendEmail = (data:string)  => {
+    return{
+        type: Actions.SEND_EMAIL,
+        payload: data
+    }
+}
+
+export const sendCode = (data:string, user:IUser, account_photo: File, nav:NavigateFunction)  => {
+    return{
+        type: Actions.SEND_CODE,
+        payload: {data, user, account_photo, nav}
+    }
+}

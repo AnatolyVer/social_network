@@ -52,19 +52,19 @@ function ProfileInfo({isFixed, user}:ProfileInfoProps) {
             <div className={`${classes.Info} ${theme}Post`}>
                 <div className={`${classes.InfoPart} ${theme}Text`}>
                     <CakeIcon/>
-                    <p className={`${theme}Text`}>День народження: {changeDateMode(user?.birth_date!)}</p>
+                    <p className={`${theme}Text`}>День народження: <strong>{changeDateMode(user?.birth_date!)}</strong></p>
                 </div>
                 {user?.city ? (
                     <div className={`${classes.InfoPart}  ${theme}Text`}>
                         <PlaceIcon/>
-                        <p className={`${theme}Text`}>{user?.city}, {user?.country}</p>
+                        <p className={`${theme}Text`}>{user?.city}, <strong>{user?.country}</strong></p>
                     </div>
                 ) : (
                     <></>
                 )}
                 <div className={`${classes.InfoPart}  ${theme}Text`}>
                     <CalendarIcon/>
-                    <p className={`${theme}Text`}>Учасник з {changeDateMode(user?.created_at!)}</p>
+                    <p className={`${theme}Text`}>Учасник з <strong>{changeDateMode(user?.created_at!)}</strong></p>
                 </div>
             </div>
             <div className={`${theme}Text ${classes.Label}`}>

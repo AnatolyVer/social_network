@@ -86,8 +86,30 @@
 
 .Error{
   position: absolute;
+  text-align: center;
   top: 15%;
   left: 50%;
   transform: translateX(-50%);
 }
 
+
+.Message{
+  text-align: center;
+}
+
+.Resend{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Send{
+  margin-top: 20px;
+  background: none;
+  border: none;
+}
+
+.Send:disabled{
+  color:gray !important;
+}

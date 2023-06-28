@@ -2,19 +2,17 @@ import React, {useEffect, useState} from 'react';
 
 import classes from './styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "../../redux/store";
+import {State} from "@redux/store";
 import CustomTextField from "../../shared/CustomTextField/CustomTextField";
 import CustomPasswordField from "../../shared/CustomPasswordField/CustomPasswordField";
 
 
 import {Link, useNavigate} from "react-router-dom";
 import {clearFetch, logUserAPI} from "../../redux/action-creators";
-import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
+import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import {Backdrop, CircularProgress} from "@mui/material";
 
 export default function Auth() {
-
-
 
     const theme:string = useSelector((state:State) => state.theme)
     const fetch:IFetch = useSelector((state:State) => state.fetch)

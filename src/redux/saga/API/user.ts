@@ -13,7 +13,6 @@ export const signIn = (data: string):Promise<Axios> =>{
         data,
     });
 }
-
 export const signUp = (data: FormData):Promise<Axios> =>{
     return axios({
         url: REACT_APP_DEPLOY_URL + 'account/register/',
@@ -25,8 +24,6 @@ export const signUp = (data: FormData):Promise<Axios> =>{
         data,
     });
 }
-
-
 export const getProfileInfo = (data: string):Promise<Axios> =>{
     return axios({
         url: REACT_APP_DEPLOY_URL + `account/${data}/`,
@@ -37,8 +34,6 @@ export const getProfileInfo = (data: string):Promise<Axios> =>{
         }
     });
 }
-
-
 export const checkNickname = (data: string):Promise<Axios> =>{
     return axios({
         url: REACT_APP_DEPLOY_URL + `account/check_nickname/${data}/`,
@@ -49,7 +44,6 @@ export const checkNickname = (data: string):Promise<Axios> =>{
         }
     });
 }
-
 export const checkEmail = (data: string):Promise<Axios> =>{
     return axios({
         url: REACT_APP_DEPLOY_URL + `account/check_email/${data}/`,
@@ -58,5 +52,28 @@ export const checkEmail = (data: string):Promise<Axios> =>{
         headers: {
             'Content-Type': 'application/json'
         }
+    });
+}
+export const sendEmail = (data: string):Promise<Axios> =>{
+    return axios({
+        url: REACT_APP_DEPLOY_URL + `account/send_email_code/`,
+        method: 'POST',
+        withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data
+    });
+}
+
+export const sendCode = (data: string):Promise<Axios> =>{
+    return axios({
+        url: REACT_APP_DEPLOY_URL + `account/confirm_email/`,
+        method: 'POST',
+        withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data
     });
 }

@@ -5,18 +5,14 @@ import { useDebounceEffect } from './useDebounceEffect'
 import ReactCrop, {centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-image-crop';
 
 import 'react-image-crop/src/ReactCrop.scss'
+import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 
 interface CropModalProps {
-    src:string | undefined,
     open:boolean,
     crop:Crop | undefined,
     setCrop:Dispatch<SetStateAction<Crop | undefined>>,
     setOpen:Dispatch<SetStateAction<boolean>>,
-    setSrc:Dispatch<SetStateAction<string | undefined>>,
-    setFile:Dispatch<SetStateAction<File | null | undefined>>,
-    lastAvatar:File | null | undefined,
-    setPreviewPhoto:Dispatch<SetStateAction<string>>,
-    setLastAvatar:Dispatch<SetStateAction<File | null | undefined>>,
+    avatar:IAvatarHook
 }
 
 
@@ -60,7 +56,7 @@ function centerAspectCropPx(
     )
 }
 
-const CropModal = ({src, setSrc, setFile,  open, setOpen, crop, setCrop, setPreviewPhoto, lastAvatar, setLastAvatar}:CropModalProps) => {
+const CropModal = ({open, setOpen, crop, setCrop, avatar}:CropModalProps) => {
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
     const imgRef = useRef<HTMLImageElement>(null)
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
@@ -76,7 +72,7 @@ const CropModal = ({src, setSrc, setFile,  open, setOpen, crop, setCrop, setPrev
 
     function undo() {
         setOpen(false)
-        setFile(lastAvatar)
+        avatar.cancelEditing()
     }
 
     function imageSave() {
@@ -89,12 +85,10 @@ const CropModal = ({src, setSrc, setFile,  open, setOpen, crop, setCrop, setPrev
                 throw new Error('Failed to create blob');
             }
             const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg' });
-            setFile(file);
-            setLastAvatar(file)
+
             const reader = new FileReader();
             reader.onload = function (event) {
-                //@ts-ignore
-                event.target && setPreviewPhoto(event.target.result);
+                avatar.confirmEditing(file, event.target!.result! as string)
             };
             reader.readAsDataURL(file);
             setOpen(false)
@@ -136,7 +130,7 @@ const CropModal = ({src, setSrc, setFile,  open, setOpen, crop, setCrop, setPrev
                            <img
                                ref={imgRef}
                                alt="Crop me"
-                               src={src}
+                               src={avatar.avatar.photoToEdit as string}
                                onLoad={onImageLoad}
                            />
                        </ReactCrop>
