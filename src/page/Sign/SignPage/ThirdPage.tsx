@@ -11,7 +11,7 @@ import {Errors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import VerifyCode from "../../../shared/VerifyCode/VerifyCode";
 import SignButton from "../SignButton/SignButton";
-import {sendCode, sendEmail} from "../../../redux/action-creators";
+import {clearFetch, sendCode, sendEmail} from "../../../redux/action-creators";
 import {useNavigate} from "react-router-dom";
 
 interface Props{
@@ -43,6 +43,11 @@ const ThirdPage = ({theme, progress, user, page, setPage, avatar}:Props) => {
         handleClick()
     }, []);
 
+
+    useEffect(() => {
+        dispatch(clearFetch())
+    }, [code])
+
     useEffect(() => {
         if (lastClickTime) {
             const currentTime = new Date();
@@ -62,7 +67,7 @@ const ThirdPage = ({theme, progress, user, page, setPage, avatar}:Props) => {
                     setDisableButton(false);
                     setLastClickTime(null);
                     clearInterval(timer);
-                }, delay);
+                }, delay + 1000);
 
                 return () => {
                     clearInterval(timer);

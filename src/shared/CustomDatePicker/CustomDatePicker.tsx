@@ -1,4 +1,3 @@
-import React from 'react';
 import {DateValidationError, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -21,7 +20,8 @@ export default function CustomDatePicker({theme, label, date, onChange}:CustomDa
             <DatePicker
                 label={label}
                 value={date}
-                maxDate = {dayjs()}
+                minDate={dayjs().subtract(70, 'year')}
+                maxDate = {dayjs().subtract(14, 'year')}
                 onChange={onChange}
             />
         </LocalizationProvider>

@@ -1,7 +1,7 @@
 export interface AvatarState {
     fileToUpload: File | null |undefined;
     photoToEdit: string | ArrayBuffer | undefined;
-    previewPhoto: string;
+    previewPhoto: string | undefined;
     lastAvatar: File | null | undefined;
 }
 

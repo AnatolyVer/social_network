@@ -23,7 +23,7 @@ const SignPage = () => {
     const [firstTime, setFirstTime] = useState(true)
 
     const {user, changeUser} = useUser()
-    const {errors, isErrors, changeErrors} = useErrors()
+    const {errors, isErrors, changeErrors} = useErrors(setProgress)
     const avatar:IAvatarHook = useAvatarUploading()
 
     useEffect(() => {
@@ -31,25 +31,21 @@ const SignPage = () => {
     }, [user, checked, page])
 
     useEffect(() => {
-        const nicknameTextValid = signRed.nickname ? " " : 'Зайнято'
-        changeErrors({
-            nickname:{status: !signRed.nickname, border:!signRed.nickname,  text: nicknameTextValid},
-        })
-    }, [signRed.nickname])
+        if (checked) setProgress(prevState => prevState + 17)
+        else setProgress(prevState => prevState - 17)
+    }, [checked]);
 
     useEffect(() => {
-        if (firstTime){
-            setFirstTime(false)
-            changeErrors({
-                email:{status: signRed.email, border:signRed.email,  text: " "}
-            })
-        }else{
+        if (!firstTime){
+            setFirstTime(true)
+            const nicknameTextValid = signRed.nickname ? " " : 'Зайнято'
             const emailText = signRed.email ? " " : 'Зайнято'
             changeErrors({
+                nickname:{status: !signRed.nickname, border:!signRed.nickname,  text: nicknameTextValid},
                 email:{status: !signRed.email, border:!signRed.email,  text: emailText}
             })
         }
-    }, [signRed.email])
+    }, [signRed])
 
     const obj = {
         theme,

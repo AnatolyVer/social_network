@@ -12,7 +12,6 @@ export const switchTheme = (data: string) => {
 }
 
 export const setModalOpen = (isOpen: boolean, images? : [string], num?: number, image?:string) => {
-    console.log(image)
     return  {
         type: Actions.SET_MODAL_OPEN,
         payload: {isOpen, images, num, image}

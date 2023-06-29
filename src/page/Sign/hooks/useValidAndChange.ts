@@ -8,7 +8,7 @@ import dayjs, {Dayjs} from "dayjs";
 export default function useValidAndChange(user:IUser, changeUser: (updatedValues: Partial<IUser>) => void , changeErrors:(updatedValues: Partial<Errors>)=>void) {
     const dispatch = useDispatch()
 
-    const [date, setDate] = useState<Dayjs | null | unknown>(dayjs(user.birth_date as string));
+    const [date, setDate] = useState<Dayjs | null | unknown>();
     const changeUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         const username = event.target.value
         changeUser({username})

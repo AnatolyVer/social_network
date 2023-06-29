@@ -1,17 +1,19 @@
 import React, {useState } from 'react';
-import {Avatar} from "@mui/material";
+import {Avatar, AvatarGroup} from "@mui/material";
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 import CloseIcon from '@mui/icons-material/Close';
 import CropModal from '../../../shared/CropModal/CropModal';
 import {Crop} from "react-image-crop";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
+import EditIcon from '@mui/icons-material/Edit';
 
 interface AvatarUploaderProps{
     theme:string,
-    avatar:IAvatarHook
+    avatar:IAvatarHook,
+    nickname:string
 }
 
-function AvatarUploader ({theme, avatar}:AvatarUploaderProps){
+function AvatarUploader ({theme, avatar, nickname}:AvatarUploaderProps){
     const [open, setOpen] = useState<boolean>(false)
     const [crop, setCrop] = useState<Crop>()
 
@@ -33,16 +35,17 @@ function AvatarUploader ({theme, avatar}:AvatarUploaderProps){
     const border = theme === 'light' ? "black" : 'white'
 
     const defaultButton = avatar.avatar.fileToUpload ? (
-        <CloseIcon sx={{position:"absolute", left:0, top:0, cursor:'pointer'}} onClick={avatar.setDefaultImage}/>
+        <CloseIcon sx={{position:"absolute", left:-10, top:0, cursor:'pointer'}} onClick={avatar.setDefaultImage}/>
     ) : (<></>)
 
     const reCutButton = avatar.avatar.fileToUpload ? (
-        <ContentCutIcon sx={{position:"absolute", right:0, top:2, cursor:'pointer', width:'18px', height:'18px'}} onClick={() => setOpen(true)}/>
+        <EditIcon sx={{position:"absolute", right:-10, top:2, cursor:'pointer', width:'18px', height:'18px'}} onClick={() => setOpen(true)}/>
     ) : (<></>)
 
     return (
         <div style={{position: "relative"}}>
-            <label htmlFor="avatar"><Avatar alt="Remy Sharp" src={avatar.avatar.previewPhoto!}  sx={{marginTop:2, width: 80, height: 80, border:`1px solid ${border} `, cursor:'pointer' }}/></label>
+            <label htmlFor="avatar">
+                <Avatar alt={nickname.toUpperCase()} src={avatar.avatar.previewPhoto} sx={{marginTop:2, fontSize:'30px', width: 80, height: 80, cursor:'pointer' }}/>            </label>
             <input hidden key={Date.now()} type="file" id="avatar" name="avatar" onChange={(e)=> handleImageChange(e)} />
             {defaultButton}
             {reCutButton}
