@@ -1,24 +1,15 @@
-import { useState} from 'react';
-import dayjs from "dayjs";
-import {IUser} from "@shared/TypesAndInterfaces/IUser";
+import { useState } from 'react';
 
-export default function useUser() {
-    const [user, setUser] = useState<IUser>({
-        username:"",
-        nickname:"",
-        email:"",
-        password:"",
-        confirmPassword:"",
-        birth_date:dayjs().format('YYYY-MM-DD')
-    })
+export default function useUser<T extends object>(defaultUser: Partial<T>) {
 
-    const changeUser = (updatedValues: Partial<IUser>) => {
+    const [user, setUser] = useState<T>(defaultUser as T);
+
+    const changeUser = (updatedValues: Partial<T>) => {
         setUser((prevUser) => ({
             ...prevUser,
             ...updatedValues,
         }));
     };
 
-    return {user, changeUser} ;
+    return { user, changeUser };
 }
-

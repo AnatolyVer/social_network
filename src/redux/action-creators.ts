@@ -47,6 +47,20 @@ export const setProfileInfo = (data: IProfileInfo)  => {
     }
 }
 
+export const setUserInfo = (data: IProfileInfo)  => {
+    return{
+        type: Actions.SET_CURRENT_PROFILE,
+        payload: data
+    }
+}
+
+export const getUserInfo = (data: string)  => {
+    return{
+        type: Actions.GET_CURRENT_USER_API,
+        payload: data
+    }
+}
+
 export const setFetch = (data: IFetch)  => {
     return{
         type: Actions.SET_FETCH,

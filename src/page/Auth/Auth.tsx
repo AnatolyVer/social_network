@@ -55,7 +55,7 @@ export default function Auth() {
             <p className={`${classes.Title}`}>Авторізація</p>
             {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
             <div className={classes.Inputs}>
-                <CustomTextField required theme={theme} onChange={changeLogin} value={user.nickname_or_email} id="standard-basic" label="Введіть нікнейм або пошту" variant="outlined" />
+                <CustomTextField required onChange={changeLogin} value={user.nickname_or_email} id="standard-basic" label="Введіть нікнейм або пошту" variant="outlined" />
                 <CustomPasswordField theme={theme} value={user.password} text="Введіть пароль" onChange={changePassword}/>
             </div>
             <button onClick={sign} className={`${classes.SignButton} ${theme}Text`}>

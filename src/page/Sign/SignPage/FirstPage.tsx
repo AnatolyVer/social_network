@@ -34,8 +34,8 @@ const FirstPage = ({theme, progress, user, changeUser, errors, changeErrors, pag
                 <HeaderSign page={1} progress={progress}/>
                 {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
                 <div className={classes.Inputs}>
-                    <CustomTextField required error={errors.nickname} theme={theme} onChange={changeNickname} value={user.nickname} id="1" label="Введіть нікнейм" variant="outlined" />
-                    <CustomTextField required error={errors.email} theme={theme} onChange={changeEmail} value={user.email} id="2" label="Введіть E-mail" variant="outlined" />
+                    <CustomTextField required error={errors.nickname} onChange={changeNickname} value={user.nickname} id="1" label="Введіть нікнейм" variant="outlined" />
+                    <CustomTextField required error={errors.email} onChange={changeEmail} value={user.email} id="2" label="Введіть E-mail" variant="outlined" />
                     <div className={classes.Passwords}>
                         <CustomPasswordField error={errors.password} theme={theme} value={user.password} text="Введіть пароль" onChange={changePassword}/>
                         <CustomPasswordField error={errors.password} theme={theme} value={user.confirmPassword} text="Повторіть пароль" onChange={changeConfirmPassword}/>

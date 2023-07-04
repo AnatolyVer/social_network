@@ -1,0 +1,82 @@
+@import "../../../colors";
+
+.fixed.light{
+   background: linear-gradient(to right, $headerLeftColorLight, $headerRightColorLight);
+ }
+
+.fixed.dark{
+  background: linear-gradient(to right, $headerLeftColorDark, $headerRightColorDark);
+}
+
+.Banner {
+  position: relative;
+  width: 1280px;
+  z-index: 1000;
+  background: $bannerGradient;
+  border-radius:32px;
+  height: 245px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  .Image{
+    width: 1280px;
+    position: absolute;
+    height: 245px;
+    border-radius:32px;
+    z-index: -1;
+  }
+  .User{
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 20px;
+    .Avatar {
+      border-radius: 50%;
+      margin-left: 20px;
+      width: 100px;
+      height: 100px;
+    }
+    .NN{
+      margin-left: 50px;
+      margin-right: 50px;
+      .Name{
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .Nickame{
+        font-size: 16px;
+      }
+    }
+    .Stat{
+      margin-left: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 10px;
+      .statNumber{
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .statName{
+        font-size: 20px;
+      }
+    }
+    .Subscribe{
+      margin-left: 120px;
+      margin-right: 10px;
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 20px;
+      border-radius: 20px;
+      width: 200px;
+      height: 40px;
+    }
+    .Subscribe:hover{
+      cursor: pointer;
+    }
+  }
+}
+

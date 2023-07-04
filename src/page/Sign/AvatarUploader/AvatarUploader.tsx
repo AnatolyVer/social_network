@@ -1,19 +1,17 @@
 import React, {useState } from 'react';
-import {Avatar, AvatarGroup} from "@mui/material";
-import ContentCutIcon from '@mui/icons-material/ContentCut';
+import {Avatar} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import CropModal from '../../../shared/CropModal/CropModal';
 import {Crop} from "react-image-crop";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import EditIcon from '@mui/icons-material/Edit';
-
+import classes from './styles.module.scss'
 interface AvatarUploaderProps{
-    theme:string,
     avatar:IAvatarHook,
     nickname:string
 }
 
-function AvatarUploader ({theme, avatar, nickname}:AvatarUploaderProps){
+function AvatarUploader ({avatar, nickname}:AvatarUploaderProps){
     const [open, setOpen] = useState<boolean>(false)
     const [crop, setCrop] = useState<Crop>()
 
@@ -32,8 +30,6 @@ function AvatarUploader ({theme, avatar, nickname}:AvatarUploaderProps){
         }
     };
 
-    const border = theme === 'light' ? "black" : 'white'
-
     const defaultButton = avatar.avatar.fileToUpload ? (
         <CloseIcon sx={{position:"absolute", left:-10, top:0, cursor:'pointer'}} onClick={avatar.setDefaultImage}/>
     ) : (<></>)
@@ -43,9 +39,10 @@ function AvatarUploader ({theme, avatar, nickname}:AvatarUploaderProps){
     ) : (<></>)
 
     return (
-        <div style={{position: "relative"}}>
+        <div className={classes.AvatarUploader}>
             <label htmlFor="avatar">
-                <Avatar alt={nickname.toUpperCase()} src={avatar.avatar.previewPhoto} sx={{marginTop:2, fontSize:'30px', width: 80, height: 80, cursor:'pointer' }}/>            </label>
+                <Avatar alt={nickname.toUpperCase()} src={avatar.avatar.previewPhoto} sx={{marginTop:2, fontSize:'30px', width: 80, height: 80, cursor:'pointer' }}/>
+            </label>
             <input hidden key={Date.now()} type="file" id="avatar" name="avatar" onChange={(e)=> handleImageChange(e)} />
             {defaultButton}
             {reCutButton}

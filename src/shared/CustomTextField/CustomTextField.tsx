@@ -2,9 +2,10 @@ import React from 'react';
 import {TextFieldVariants} from "@mui/material";
 import {DarkTextField, LightTextField } from './styles';
 import {Error} from '../TypesAndInterfaces/SignErrors/Errors'
+import {useSelector} from "react-redux";
+import {State} from "@redux/store";
 
 interface TextFieldProps{
-    theme:string,
     id:string,
     label:string,
     variant:TextFieldVariants | undefined,
@@ -14,7 +15,11 @@ interface TextFieldProps{
     error?: Error
 }
 
-export default function CustomTextField({theme, id, label, variant, value, onChange, required, error}:TextFieldProps) {
+export default function CustomTextField({id, label, variant, value, onChange, required, error}:TextFieldProps) {
+
+    const theme:string = useSelector((state:State) => state.theme)
+
+
     return(
         theme === 'light' ? (
             <LightTextField

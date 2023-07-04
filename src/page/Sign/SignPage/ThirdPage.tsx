@@ -77,6 +77,7 @@ const ThirdPage = ({theme, progress, user, page, setPage, avatar}:Props) => {
     }, [lastClickTime]);
 
     const verify = () => {
+        delete user.confirmPassword;
         dispatch(sendCode(code, user, avatar, nav))
     }
 

@@ -11,5 +11,7 @@ export interface IProfileInfo{
     isVerify: boolean,
     created_at: string,
     account_banner:string,
-    account_photo:string
+    account_photo:string,
+    email:string,
+    biography:string
 }

@@ -1,0 +1,81 @@
+.Photos{
+  margin-top: 40px;
+  & > *{
+    margin-bottom: 15px;
+  }
+  .PhotoTitle{
+    font-size: 24px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.Download{
+  cursor: pointer;
+  width: 95px;
+  border-bottom: 2px solid transparent;
+  &:hover{
+    border-bottom: 2px solid white;
+  }
+}
+
+.Up{
+  display: flex;
+  margin-top: 10px;
+  & > *{
+    margin-right: 80px;
+  }
+}
+
+.MainPage{
+  position: relative;
+  margin-left: 20px;
+}
+
+.Title{
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MainData{
+  margin-top: 50px;
+  width: 550px;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+  & > *{
+    width: 250px;
+  }
+}
+
+.Links{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Save{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 2px solid;
+  text-align: center;
+  width: 220px;
+  height: 40px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.TextBioArea{
+  margin-top: 10px;
+  resize: none;
+  width: 380px;
+}

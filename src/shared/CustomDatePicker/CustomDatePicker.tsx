@@ -3,15 +3,19 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { PickerChangeHandlerContext } from '@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue.types';
 import {DarkDatePicker, LightDatePicker } from './styles';
+import {useSelector} from "react-redux";
+import {State} from "@redux/store";
 
 interface CustomDatePickerProps{
-    theme:string,
+
     label: string,
     date: unknown,
     onChange: (value: unknown, context: PickerChangeHandlerContext<DateValidationError>) => void
 }
 
-export default function CustomDatePicker({theme, label, date, onChange}:CustomDatePickerProps) {
+export default function CustomDatePicker({label, date, onChange}:CustomDatePickerProps) {
+
+    const theme:string = useSelector((state:State) => state.theme)
 
     const DatePicker = theme === 'light' ? LightDatePicker : DarkDatePicker
 

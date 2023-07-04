@@ -58,10 +58,10 @@ const SecondPage = ({theme, progress, user, changeUser, errors, isErrors, change
                 <BackButton theme={theme} prev={() => setPage(page-1)}/>
                 <HeaderSign page={2} progress={progress}/>
                 {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
-                <AvatarUploader theme={theme} avatar={avatar} nickname={user.nickname!}/>
+                <AvatarUploader avatar={avatar} nickname={user.nickname!}/>
                 <div className={classes.Inputs}>
-                    <CustomTextField required error={errors.username} theme={theme} onChange={changeUsername} value={user.username} id="standard-basic" label="Введіть ім'я" variant="outlined" />
-                    <CustomDatePicker theme={theme} date={date} onChange={changeDate} label="Введіть день народження"/>
+                    <CustomTextField required error={errors.username} onChange={changeUsername} value={user.username} id="standard-basic" label="Введіть ім'я" variant="outlined" />
+                    <CustomDatePicker date={date} onChange={changeDate} label="Введіть день народження"/>
                 </div>
                 <div className={classes.SignField}>
                     <Rules theme={theme} checked={checked} onClick={() => setChecked(!checked)} />

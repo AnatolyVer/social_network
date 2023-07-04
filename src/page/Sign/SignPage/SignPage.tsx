@@ -9,6 +9,17 @@ import useErrors from '../hooks/useErrors';
 import {State} from "@redux/store";
 import useAvatarUploading from "../hooks/useAvatarUploading";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
+import dayjs from "dayjs";
+import {IUser} from "@shared/TypesAndInterfaces/IUser";
+
+const defUser: IUser = {
+    username: "",
+    nickname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    birth_date: dayjs().format('YYYY-MM-DD')
+};
 
 const SignPage = () => {
 
@@ -22,7 +33,7 @@ const SignPage = () => {
     const [checked, setChecked] = useState(false)
     const [firstTime, setFirstTime] = useState(true)
 
-    const {user, changeUser} = useUser()
+    const {user, changeUser} = useUser(defUser)
     const {errors, isErrors, changeErrors} = useErrors(setProgress)
     const avatar:IAvatarHook = useAvatarUploading()
 

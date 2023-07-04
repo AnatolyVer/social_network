@@ -1,0 +1,58 @@
+.SettingsNavbar{
+  margin-top: 10px;
+  display: flex;
+  position: relative;
+}
+
+
+.Tab{
+  padding: 4px;
+  width: 200px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  & > *{
+    margin-right: 7px;
+  }
+}
+
+
+.ActiveTab{
+  background-color: gray;
+  color: white;
+  height: 32px;
+  border-radius: 10px;
+}
+
+.MainTabs{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+}
+
+.Leave{
+  color: red;
+}
+
+.Delete{
+  background-color: #b70000;
+  color: white;
+  border-radius: 10px;
+}
+
+.Verify{
+  color: deepskyblue;
+}
+
+.ActiveTab.Verify {
+  background-color: deepskyblue;
+  color: white;
+}

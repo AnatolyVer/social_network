@@ -7,6 +7,7 @@ import {modalReducer} from "../../shared/PhotoModalWindow/store/modalReducer";
 import {profileReducer} from "./profileReducer";
 import {fetchReducer} from "./lastFetchReducer";
 import {signReducer} from "./signReducer";
+import { userReducer } from "./userReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     modal: modalReducer,
     profile:profileReducer,
     fetch:fetchReducer,
-    sign:signReducer
+    sign:signReducer,
+    user:userReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
