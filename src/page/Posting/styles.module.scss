@@ -1,0 +1,102 @@
+@import "../../variables";
+
+.Posting{
+  height: 100vh;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Title{
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 50px 0;
+}
+
+.AddPhoto{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding:7px;
+}
+
+.Content{
+  margin-top: 70px;
+  width: $contentWidth;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.DragField{
+  cursor: pointer;
+  height: 140px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.TextBioArea{
+  resize: none;
+  width: 800px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+label{
+  margin-bottom: 5px;
+}
+
+.Photos{
+  width: 450px;
+  .Photo{
+    display: flex;
+    margin-bottom: 35px;
+    img{
+      height: 90px;
+      width: 180px;
+      object-fit: cover;
+    }
+  }
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20px;
+  justify-content: space-between;
+  img:hover{
+    cursor: pointer;
+  }
+}
+
+.Rules{
+  color: #24BDFF;
+  margin-bottom: 10px;
+}
+
+.Button{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  background-color: transparent;
+  width: 150px;
+  padding: 2px;
+  border-radius: 50px;
+}

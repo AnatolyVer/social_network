@@ -3,8 +3,8 @@ import classes from "../styles.module.scss";
 
 import HeaderSign from "../HeaderSign/HeaderSign";
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "@redux/store";
-import {IFetch} from "../../../shared/TypesAndInterfaces/IFetch";
+import {State} from "../../../redux/store";
+import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 
 import {IUser} from "@shared/TypesAndInterfaces/IUser";
 import {Errors} from "@shared/TypesAndInterfaces/SignErrors/Errors";

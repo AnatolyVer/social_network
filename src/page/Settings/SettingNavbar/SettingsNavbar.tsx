@@ -12,7 +12,7 @@ import { Divider } from '@mui/material';
 import classes from './styles.module.scss'
 import {Dispatch, Fragment, SetStateAction} from 'react';
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../../redux/store";
 import {useNavigate} from "react-router-dom";
 
 

@@ -6,7 +6,7 @@ import {clearFetch} from "../../../redux/action-creators";
 import useUser from '../hooks/useUser';
 import {useDispatch, useSelector} from "react-redux";
 import useErrors from '../hooks/useErrors';
-import {State} from "@redux/store";
+import {State} from "../../../redux/store";
 import useAvatarUploading from "../hooks/useAvatarUploading";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import dayjs from "dayjs";
@@ -26,7 +26,7 @@ const SignPage = () => {
     const dispatch = useDispatch()
 
     const theme:string = useSelector((state:State) => state.theme)
-    const signRed: {nickname: boolean, email: boolean} = useSelector((state:State) => state.sign)
+    const signRed = useSelector((state:State) => state.sign)
 
     const [page, setPage] = useState(1)
     const [progress, setProgress] = useState(0)

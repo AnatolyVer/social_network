@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {BrowserRouter, Navigate, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Main from './page/Main/Main';
 import Profile from "./page/Profile/Profile";
 
@@ -10,6 +10,9 @@ import {getUserInfo, switchTheme} from "./redux/action-creators";
 import Auth from './page/Auth/Auth';
 import PhotoModalWindow from "./shared/PhotoModalWindow/PhotoModalWindow";
 import Settings from './page/Settings/Settings';
+import InvalidPage from './page/Error/Error';
+import Posting from "./page/Posting/Posting";
+import FullPost from "./page/FullPost/FullPost";
 function App() {
 
     const dispatch = useDispatch()
@@ -27,6 +30,7 @@ function App() {
     <div className={`${classes.App}`}>
         <BrowserRouter>
             <Routes>
+                <Route path="*" element={<InvalidPage />} />
                 {/*<Route path="" element={<Navigate to="/profile" replace />} />*/}
                 <Route path="" element={<Main/>} />
                 <Route path="/profile/:nickname" element={<Profile/>}/>
@@ -34,6 +38,8 @@ function App() {
                 <Route path='/sign_in' element={<Auth/>}/>
                 <Route path='/settings/:page' element={<Settings/>}/>
                 <Route path='/settings' element={<Navigate to="/settings/main" replace />}/>
+                <Route path='/posting' element={<Posting/>}/>
+                <Route path='/:nickname/post/:slug' element={<FullPost/>}/>
             </Routes>
         </BrowserRouter>
         <PhotoModalWindow/>

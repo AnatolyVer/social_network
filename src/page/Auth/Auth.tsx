@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import classes from './styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../redux/store";
 import CustomTextField from "../../shared/CustomTextField/CustomTextField";
 import CustomPasswordField from "../../shared/CustomPasswordField/CustomPasswordField";
 

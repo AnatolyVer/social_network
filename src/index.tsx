@@ -1,7 +1,7 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import {store} from "./redux/store";
+import {store} from "./redux/store/index";
 import {Provider} from 'react-redux';
 
 import App from './App';

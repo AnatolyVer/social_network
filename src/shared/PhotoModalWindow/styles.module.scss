@@ -12,8 +12,9 @@
 }
 
 .ModalContent{
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 95%;
   width: 100%;
@@ -26,15 +27,18 @@
 }
 
 img{
-  object-fit: fill;
-
+  object-fit: contain;
 }
 
 .Footer{
+  position: absolute;
+  background-color: rgba(0,0,0, .5);
+  bottom: 0;
   width: 100%;
   height: 5%;
   display: flex;
   justify-content: center;
+  align-items: center;
   p{
     color: white;
   }

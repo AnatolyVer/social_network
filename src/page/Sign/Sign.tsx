@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../redux/store";
 
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import Loader from '../../shared/Loader/Loader';

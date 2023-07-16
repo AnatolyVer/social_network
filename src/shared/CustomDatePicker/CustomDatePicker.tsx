@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { PickerChangeHandlerContext } from '@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue.types';
 import {DarkDatePicker, LightDatePicker } from './styles';
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../redux/store";
 
 interface CustomDatePickerProps{
 

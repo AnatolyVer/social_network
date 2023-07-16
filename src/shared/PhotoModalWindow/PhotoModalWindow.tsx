@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-
+import CloseIcon from '@mui/icons-material/Close';
 import classes from "./styles.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../redux/store";
@@ -27,11 +27,9 @@ function PhotoModalWindow() {
         };
     }, []);
 
-    const closeModal = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (event.target instanceof HTMLDivElement) {
-            dispatch(setModalOpen(false, undefined))
-            document.body.style.overflow = 'auto';
-        }
+    const closeModal = () => {
+        dispatch(setModalOpen(false, undefined))
+        document.body.style.overflow = 'auto';
     }
 
     const incImage = () => {
@@ -47,17 +45,22 @@ function PhotoModalWindow() {
     const style = {height: "50px", width: '50px',color: "white"}
 
     const modalWindow = modal.isOpen ? (
-        <div onClick={closeModal} className={`${classes.ModalWindow}`}>
+        <div className={`${classes.ModalWindow}`}>
+            <CloseIcon onClick={closeModal} sx={{...style, position:'absolute', right:'3%', top:'3%',  cursor:'pointer', zIndex:'10000'}}/>
             <div className={classes.ModalContent}>
-                <EffectButton onClick={() => decImage()} sx={{marginLeft:"25px"}}>
-                    <PreviousIcon sx={style}/>
-                </EffectButton>
+                {modal.images.length > 1 &&
+                    <EffectButton onClick={() => decImage()} sx={{position:'absolute', top:'50%', left:'5%'}}>
+                        <PreviousIcon sx={style}/>
+                    </EffectButton>
+                }
                 <div className={classes.ModalFrame}>
-                    <img src={modal.image} alt=""/>
+                    <img src={`https://django-auth-gfm6.onrender.com` + modal.image} alt=""/>
                 </div>
-                <EffectButton onClick={() => incImage()} sx={{marginRight:"25px"}}>
-                    <NextIcon sx={style}/>
-                </EffectButton>
+                {modal.images.length > 1 &&
+                    <EffectButton onClick={() => incImage()} sx={{position:'absolute', top:'50%', right:'5%'}}>
+                        <NextIcon sx={style}/>
+                    </EffectButton>
+                }
             </div>
             <div className={classes.Footer}>
                 <p>Фото &nbsp;{modal.num + 1}/{modal.images.length}</p>

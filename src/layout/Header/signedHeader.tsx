@@ -25,10 +25,12 @@ const SignedHeader = ({theme, search, changeSearch}:HeaderProps) => {
                     <button className={classes.header_button}>Друзі</button>
                 </nav>
                 <nav>
-                    <div className={classes.add_button}>
-                        <AddIcon sx={{color:'white'}}/>
-                        <button>Додати пост</button>
-                    </div>
+                    <Link to={`/posting`}>
+                        <div className={classes.add_button}>
+                            <AddIcon sx={{color:'white'}}/>
+                            <button>Додати пост</button>
+                        </div>
+                    </Link>
                     <div className={classes.header_input}>
                         <SearchIcon sx={{color:'white'}} />
                         <input placeholder="Пошук" value={search} onChange={changeSearch}/>

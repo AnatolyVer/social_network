@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import Posts from "../Posts/Posts";
-
 import classes from './styles.module.scss'
 import SearchBar from "./SearchBar/SearchBar";
 import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
@@ -14,13 +13,12 @@ interface MainProps{
 function Main({isFixed, user}:MainProps) {
 
   const margin = isFixed ? classes.added : classes.no
-  const posts:any[] = []
 
   return (
         <div className={`${classes.Main} ${margin}`}>
             <div>
                 <SearchBar user={user} isFixed={isFixed}/>
-                <Posts posts={posts} />
+                <Posts user={user} />
             </div>
             <ProfileInfo user={user}  isFixed={isFixed}/>
         </div>

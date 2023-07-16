@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useRef, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from 'react';
 import classes from './styles.module.scss'
 import { canvasPreview } from './canvasPreview'
 import { useDebounceEffect } from './useDebounceEffect'
@@ -6,13 +6,17 @@ import ReactCrop, {centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-ima
 
 import 'react-image-crop/src/ReactCrop.scss'
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
+import Loader from "../../shared/Loader/Loader";
 
 interface CropModalProps {
     open:boolean,
     crop:Crop | undefined,
     setCrop:Dispatch<SetStateAction<Crop | undefined>>,
     setOpen:Dispatch<SetStateAction<boolean>>,
-    avatar:IAvatarHook
+    avatar:IAvatarHook,
+    aspectUp:number,
+    aspectDown:number,
+    circle:boolean
 }
 
 
@@ -56,13 +60,20 @@ function centerAspectCropPx(
     )
 }
 
-const CropModal = ({open, setOpen, crop, setCrop, avatar}:CropModalProps) => {
+const CropModal = ({open, setOpen, crop, setCrop, avatar, aspectUp, aspectDown, circle}:CropModalProps) => {
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
     const imgRef = useRef<HTMLImageElement>(null)
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
-    const [aspect, setAspect] = useState<number | undefined>(1)
+    const [aspect, setAspect] = useState(aspectUp/aspectDown)
+    const [loading, setLoading] = useState(false)
+
+    const borderRadius = aspect === 1 ? '50%' : '0'
+    const width = aspect === 1 ? '250px' : '640px'
+    const height = aspect === 1 ? '250px' : '124px'
+
 
     function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+        setLoading(false);
         if (aspect) {
             const { width, height } = e.currentTarget
             setCrop(centerAspectCrop(width, height, aspect))
@@ -71,11 +82,14 @@ const CropModal = ({open, setOpen, crop, setCrop, avatar}:CropModalProps) => {
     }
 
     function undo() {
+        setLoading(true)
         setOpen(false)
         avatar.cancelEditing()
+        setLoading(false)
     }
 
     function imageSave() {
+        setLoading(true)
         if (!previewCanvasRef.current) {
             throw new Error('Crop canvas does not exist');
         }
@@ -92,9 +106,9 @@ const CropModal = ({open, setOpen, crop, setCrop, avatar}:CropModalProps) => {
             };
             reader.readAsDataURL(file);
             setOpen(false)
+            setLoading(false)
         });
     }
-
 
     useDebounceEffect(
         async () => {
@@ -117,42 +131,46 @@ const CropModal = ({open, setOpen, crop, setCrop, avatar}:CropModalProps) => {
 
     return (
        <>
-           {open && ( <div className={classes.CropModal}>
-               <div className={classes.CropField}>
-                   <div className={classes.Frame}>
-                       <ReactCrop
-                           crop={crop}
-                           onChange={(_, percentCrop) => setCrop(percentCrop)}
-                           onComplete={(c) => setCompletedCrop(c)}
-                           aspect={aspect}
-                           circularCrop
-                       >
-                           <img
-                               ref={imgRef}
-                               alt="Crop me"
-                               src={avatar.avatar.photoToEdit as string}
-                               onLoad={onImageLoad}
+           {open && (loading ? (
+               <Loader/>
+                   ) : (
+                   <div className={classes.CropModal}>
+                       <div className={classes.CropField}>
+                           <div className={classes.Frame}>
+                               <ReactCrop
+                                   crop={crop}
+                                   onChange={(_, percentCrop) => setCrop(percentCrop)}
+                                   onComplete={(c) => setCompletedCrop(c)}
+                                   aspect={aspect}
+                                   circularCrop={circle}
+                               >
+                                   <img
+                                       ref={imgRef}
+                                       alt=""
+                                       src={avatar.avatar.photoToEdit as string}
+                                       onLoad={onImageLoad}
+                                   />
+                               </ReactCrop>
+                           </div>
+                       </div>
+                       <div className={classes.PreviewField}>
+                           <canvas
+                               ref={previewCanvasRef}
+                               style={{
+                                   border: '1px solid black',
+                                   objectFit: 'fill',
+                                   width: width,
+                                   height: height,
+                                   borderRadius:borderRadius
+                               }}
                            />
-                       </ReactCrop>
+                           <div className={classes.Buttons}>
+                               <button onClick={undo}>Назад</button>
+                               <button onClick={imageSave}>Зберегти</button>
+                           </div>
+                       </div>
                    </div>
-               </div>
-               <div className={classes.PreviewField}>
-                   <canvas
-                       ref={previewCanvasRef}
-                       style={{
-                           border: '1px solid black',
-                           objectFit: 'fill',
-                           width: 250,
-                           height: 250,
-                           borderRadius:'50%'
-                       }}
-                   />
-                   <div className={classes.Buttons}>
-                       <button onClick={undo}>Назад</button>
-                       <button onClick={imageSave}>Зберегти</button>
-                   </div>
-               </div>
-           </div>)}
+           ))}
        </>
     );
 };

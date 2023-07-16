@@ -1,12 +1,10 @@
-import React from 'react';
 
 import classes from './styles.module.scss'
 
-import Post from '../Profile/Posts/Post/Post';
 import Comment from '../Profile/Posts/Comment/Comment'
 import Stat from './Stat/Stat';
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../redux/store";
 import Header from "../../layout/Header/Header";
 import Footer from '../../layout/Footer/Footer';
 import { Link } from 'react-router-dom';
@@ -24,7 +22,7 @@ function Main() {
                         <div className={`${classes.circle} ${classes.blue}`}></div>
                         <div className={`${classes.circle} ${classes.magenta}`}></div>
                         <div className={`${classes.circle} ${classes.sky}`}></div>
-                        <Post/>
+                       {/* <Post/>*/}
                         <div className={classes.Comment}>
                             <Comment/>
                         </div>
@@ -45,7 +43,7 @@ function Main() {
                     </div>
                 </div>
                 <div className={classes.Part2}>
-                    <Post/>
+                   {/* <Post/>*/}
                     <div className={classes.Stats}>
                         <Stat title="За останні 24 години" num1={14} num2={14} num3={14}/>
                         <Stat title="За весь час" num1={14} num2={14} num3={14}/>

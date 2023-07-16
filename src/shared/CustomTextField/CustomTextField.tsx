@@ -3,7 +3,7 @@ import {TextFieldVariants} from "@mui/material";
 import {DarkTextField, LightTextField } from './styles';
 import {Error} from '../TypesAndInterfaces/SignErrors/Errors'
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../redux/store";
 
 interface TextFieldProps{
     id:string,
@@ -18,7 +18,6 @@ interface TextFieldProps{
 export default function CustomTextField({id, label, variant, value, onChange, required, error}:TextFieldProps) {
 
     const theme:string = useSelector((state:State) => state.theme)
-
 
     return(
         theme === 'light' ? (

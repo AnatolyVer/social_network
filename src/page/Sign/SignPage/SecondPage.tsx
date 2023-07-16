@@ -8,7 +8,7 @@ import Rules from "../Rules/Rules";
 import SignButton from "../SignButton/SignButton";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../../redux/store";
 import {IFetch} from "../../../shared/TypesAndInterfaces/IFetch";
 import CustomTextField from "../../../shared/CustomTextField/CustomTextField";
 

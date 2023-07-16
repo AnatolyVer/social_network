@@ -4,14 +4,14 @@ import HeaderSign from "../HeaderSign/HeaderSign";
 import SignButton from "../SignButton/SignButton";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+import {State} from "../../../redux/store";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import CustomTextField from "../../../shared/CustomTextField/CustomTextField";
 import CustomPasswordField from "../../../shared/CustomPasswordField/CustomPasswordField";
 import useValidAndChange from "../hooks/useValidAndChange";
 import {Errors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 import { IUser } from '@shared/TypesAndInterfaces/IUser';
-import {Dispatch, SetStateAction, useEffect} from "react";
+import {Dispatch, SetStateAction} from "react";
 
 interface Props{
     theme:string,

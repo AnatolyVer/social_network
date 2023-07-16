@@ -2,10 +2,12 @@ import {useState} from 'react';
 import ava from "../default.png";
 import {AvatarState} from '../Interfaces/IAvatar';
 
-const UseAvatarUploading = () => {
+const UseAvatarUploading = (image?: string) => {
+    const [defaultImage, setDefaultImag] = useState(image || '')
+
     const [fileToUpload, setFileToUpload] = useState<File | null>()
     const [photoToEdit, setPhotoToEdit] = useState<string | ArrayBuffer>()
-    const [previewPhoto, setPreviewPhoto] = useState<string>('/static/images/avatar/1.jpg')
+    const [previewPhoto, setPreviewPhoto] = useState<string>(image || '')
     const [lastAvatar, setLastAvatar] = useState<File | null>()
 
     const avatar:AvatarState = {
@@ -23,7 +25,7 @@ const UseAvatarUploading = () => {
 
     const setDefaultImage = () => {
         setFileToUpload(null)
-        setPreviewPhoto('/static/images/avatar/1.jpg')
+        setPreviewPhoto(defaultImage)
         setPhotoToEdit(undefined)
     }
 

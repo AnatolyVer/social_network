@@ -28,8 +28,6 @@ const changeDateMode = (inputDate: string) => {
     return formattedDate
 }
 
-
-
 function ProfileInfo({isFixed, user}:ProfileInfoProps) {
 
     const theme:string = useSelector((state:State) => state.theme)

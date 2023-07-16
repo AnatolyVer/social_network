@@ -2,14 +2,16 @@ import classes from './settings.module.scss'
 import Header from "../../layout/Header/Header";
 import Footer from '../../layout/Footer/Footer';
 import {useSelector} from "react-redux";
-import { State } from '@redux/store';
+import { State } from '../../redux/store/index';
 import SettingsNavbar from './SettingNavbar/SettingsNavbar';
 import {useEffect, useState} from "react";
 import MainPage from "./MainSettings/MainPage";
 import SettingsBanner from "./SettingsBanner/SettingsBanner";
 import Loader from "../../shared/Loader/Loader";
-import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
-import {useNavigate, useParams} from "react-router-dom";
+import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
+import {useParams} from "react-router-dom";
+import useAvatarUploading from "../../page/Sign/hooks/useAvatarUploading";
+import VerificationPage from './VerificationPage/VerificationPage';
 
 const pages = [
     'main',
@@ -28,12 +30,19 @@ const Settings = () => {
 
     const [tab, setTab] = useState(pages.indexOf(page!) || 0)
 
+    const avatar = useAvatarUploading(user?.account_photo)
+    const banner = useAvatarUploading(user?.account_banner)
+
     useEffect(() => {
         setTab(pages.indexOf(page!) || 0)
     }, [page]);
 
     const tabPages = [
-        <MainPage userToEdit={user} />
+        <MainPage banner={banner} avatar={avatar} defaultUser={user} />,
+        <MainPage banner={banner} avatar={avatar} defaultUser={user} />,
+        <MainPage banner={banner} avatar={avatar} defaultUser={user} />,
+        <MainPage banner={banner} avatar={avatar} defaultUser={user} />,
+        <VerificationPage/>
     ]
 
     return ( localStorage.getItem('nickname') ? (
@@ -44,7 +53,7 @@ const Settings = () => {
                     <Header/>
                     <div className={(classes.Content)}>
                         <p className={`${classes.Title} ${theme}Text`}>Налаштування</p>
-                        <SettingsBanner user={user} disabled={false}/>
+                        <SettingsBanner user={user} avatar={avatar.avatar.previewPhoto!} banner={banner.avatar.previewPhoto!}/>
                         <div className={`${classes.Body} ${theme}Post`}>
                             <SettingsNavbar tab={tab} setTab={setTab}/>
                             {tabPages[tab]}
