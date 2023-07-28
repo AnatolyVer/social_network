@@ -1,24 +1,25 @@
 
-import classes from './styles.module.scss'
-
 import Comment from '../Profile/Posts/Comment/Comment'
 import Stat from './Stat/Stat';
 import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
-import Header from "../../layout/Header/Header";
-import Footer from '../../layout/Footer/Footer';
+import {State} from "@redux/store";
+import Header from "@layout/Header/Header";
+import Footer from '@layout/Footer/Footer';
 import { Link } from 'react-router-dom';
+
+
+import classes from './styles.module.scss'
 
 function Main() {
 
     const theme:string = useSelector((state:State) => state.theme)
 
     return (
-        <div className={`${classes.Main}`}>
+        <div className='Page fullscreen-height flex column ai-c'>
             <Header/>
-            <div className={`${classes.Content}`} >
-                <div className={classes.Part1}>
-                    <div className="Left">
+            <div className='Content fullsize-height flex column se' >
+                <section>
+                    <div>
                         <div className={`${classes.circle} ${classes.blue}`}></div>
                         <div className={`${classes.circle} ${classes.magenta}`}></div>
                         <div className={`${classes.circle} ${classes.sky}`}></div>
@@ -41,14 +42,14 @@ function Main() {
                             </div>
                         </Link>
                     </div>
-                </div>
-                <div className={classes.Part2}>
+                </section>
+                <section>
                    {/* <Post/>*/}
                     <div className={classes.Stats}>
                         <Stat title="За останні 24 години" num1={14} num2={14} num3={14}/>
                         <Stat title="За весь час" num1={14} num2={14} num3={14}/>
                     </div>
-                </div>
+                </section>
             </div>
             <Footer/>
         </div>

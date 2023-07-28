@@ -1,13 +1,12 @@
-export interface Error{
+export interface InputError{
     status: boolean,
     border:boolean,
     text: string,
 }
-
-export interface Errors{
-    username:Error,
-    nickname:Error,
-    email:Error,
-    password:Error,
-    birth_date:Error
+export interface InputErrors{
+    username:InputError,
+    nickname:InputError,
+    email:InputError,
+    password:InputError,
+    birth_date:InputError
 }

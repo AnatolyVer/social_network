@@ -10,12 +10,14 @@ import CustomPasswordField from "../../shared/CustomPasswordField/CustomPassword
 import {Link, useNavigate} from "react-router-dom";
 import {clearFetch, logUserAPI} from "../../redux/action-creators";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
-import {Backdrop, CircularProgress} from "@mui/material";
+import Loader from '../../shared/Loader/Loader';
 
 export default function Auth() {
 
     const theme:string = useSelector((state:State) => state.theme)
     const fetch:IFetch = useSelector((state:State) => state.fetch)
+
+    const [loading, setLoading] = useState<boolean>(false)
 
     const nav = useNavigate()
     const dispatch = useDispatch()
@@ -40,16 +42,13 @@ export default function Auth() {
     }
 
     const sign = () => {
+        setLoading(true)
         dispatch(logUserAPI(user, nav))
+        setLoading(false)
     }
 
-    const authForm = fetch.status === 999 ? (
-        <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={true}
-        >
-            <CircularProgress color="inherit" />
-        </Backdrop>
+    const authForm = loading ? (
+        <Loader/>
     ) : (
         <div className={`${classes.AuthForm} ${theme}Post ${theme}Text`}>
             <p className={`${classes.Title}`}>Авторізація</p>

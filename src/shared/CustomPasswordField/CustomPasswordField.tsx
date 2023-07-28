@@ -7,14 +7,14 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from 'react';
 import {DarkFormControl, LightFormControl } from './styles';
-import {Error} from "../TypesAndInterfaces/SignErrors/Errors";
+import {InputError} from "../TypesAndInterfaces/SignErrors/Errors";
 
 interface CustomPasswordFieldProps {
     theme: string;
     value?: string;
     text:string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    error?: Error
+    error?: InputError
 }
 
 function CustomPasswordField({ theme, value, onChange, text, error }: CustomPasswordFieldProps) {

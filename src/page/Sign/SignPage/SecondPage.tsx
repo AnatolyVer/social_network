@@ -12,12 +12,12 @@ import {State} from "../../../redux/store";
 import {IFetch} from "../../../shared/TypesAndInterfaces/IFetch";
 import CustomTextField from "../../../shared/CustomTextField/CustomTextField";
 
-import useValidAndChange from "../hooks/useValidAndChange";
-import {Errors} from "../../../shared/TypesAndInterfaces/SignErrors/Errors";
+import {InputErrors} from "../../../shared/TypesAndInterfaces/SignErrors/Errors";
 import { IUser } from '../../../shared/TypesAndInterfaces/IUser';
-import {Dispatch, SetStateAction} from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import {setFetch} from "../../../redux/action-creators";
+import {Dayjs} from "dayjs";
 
 
 interface Props{
@@ -25,22 +25,24 @@ interface Props{
     progress:number,
     user:IUser,
     changeUser:(updatedValues: Partial<IUser>) => void,
-    errors:Errors,
-    changeErrors:(updatedValues: Partial<Errors>) => void,
+    errors:InputErrors,
+    changeErrors:(updatedValues: Partial<InputErrors>) => void,
     isErrors:boolean,
     page:number,
     setPage:Dispatch<SetStateAction<number>>,
     avatar:IAvatarHook,
     checked:boolean,
     setChecked:Dispatch<SetStateAction<boolean>>,
+    date:Dayjs | null | unknown,
+    changeDate: (e:any) => void,
+    changeUsername: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 
-const SecondPage = ({theme, progress, user, changeUser, errors, isErrors, changeErrors, page, setPage, avatar, checked, setChecked}:Props) => {
+const SecondPage = ({theme, progress, user, changeUser, errors, isErrors, changeErrors, page, setPage, avatar, checked, setChecked, date, changeDate, changeUsername}:Props) => {
 
     const fetch:IFetch = useSelector((state:State) => state.fetch)
     const dispatch = useDispatch()
-    const {date, changeDate, changeUsername} = useValidAndChange(user, changeUser, changeErrors)
 
     const toVerify = () => {
 

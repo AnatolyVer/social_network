@@ -1,8 +1,8 @@
 import {Dispatch, SetStateAction, useEffect, useState} from 'react';
-import {Errors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
+import {InputErrors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 
 export default function useErrors(setProgress:Dispatch<SetStateAction<number>>) {
-    const [errors, setErrors] = useState<Errors>({
+    const [errors, setErrors] = useState<InputErrors>({
         username:{
             status: true,
             border:false,
@@ -32,8 +32,12 @@ export default function useErrors(setProgress:Dispatch<SetStateAction<number>>) 
 
     const [isErrors, setIsErrors] = useState(true)
 
-    useEffect(() => {
-        const countFalseStatus = Object.values(errors).reduce((count, error) => {
+    const changeErrors = (updatedValues: Partial<InputErrors>) => {
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            ...updatedValues,
+        }));
+        const countFalseStatus = Object.values(errors).reduce((count : number, error) => {
             if (error.status === false) {
                 return count + 1;
             }
@@ -43,13 +47,6 @@ export default function useErrors(setProgress:Dispatch<SetStateAction<number>>) 
         const isAllStatusFalse = countFalseStatus === Object.values(errors).length;
         setIsErrors(isAllStatusFalse);
         setProgress(countFalseStatus * 16.6)
-    }, [errors]);
-
-    const changeErrors = (updatedValues: Partial<Errors>) => {
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            ...updatedValues,
-        }));
     };
 
 

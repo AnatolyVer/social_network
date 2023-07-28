@@ -1,9 +1,9 @@
 import React from 'react';
 import {TextFieldVariants} from "@mui/material";
 import {DarkTextField, LightTextField } from './styles';
-import {Error} from '../TypesAndInterfaces/SignErrors/Errors'
 import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
+import {State} from "@redux/store";
+import {InputError} from "@shared/TypesAndInterfaces/SignErrors/Errors"
 
 interface TextFieldProps{
     id:string,
@@ -12,7 +12,7 @@ interface TextFieldProps{
     value?: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     required?: boolean
-    error?: Error
+    error?: InputError
 }
 
 export default function CustomTextField({id, label, variant, value, onChange, required, error}:TextFieldProps) {

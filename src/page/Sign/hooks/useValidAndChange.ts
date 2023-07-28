@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import {checkSignEmail, checkSignNickname} from "../../../redux/action-creators";
+import {checkSignEmail, checkSignNickname} from "@redux/action-creators";
 import {IUser} from "@shared/TypesAndInterfaces/IUser";
 import {useDispatch} from "react-redux";
-import {Errors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
+import {InputErrors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 import dayjs, {Dayjs} from "dayjs";
 
-export default function useValidAndChange(user:IUser, changeUser: (updatedValues: Partial<IUser>) => void , changeErrors:(updatedValues: Partial<Errors>)=>void) {
+export default function useValidAndChange(user:IUser, changeUser: (updatedValues: Partial<IUser>) => void , changeErrors:(updatedValues: Partial<InputErrors>)=>void) {
     const dispatch = useDispatch()
 
     const [date, setDate] = useState<Dayjs | null | unknown>();

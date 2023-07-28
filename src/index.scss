@@ -1,4 +1,5 @@
 @import "colors.scss";
+@import "variables";
 
 body,
 h1, h2, h3, h4, h5, h6,
@@ -81,11 +82,6 @@ img {
   color: $textColorDark  !important;
 }
 
-.flex{
-  display: flex;
-  justify-content: left;
-}
-
 img{
   -webkit-user-drag: none;
 }
@@ -117,4 +113,49 @@ img{
       }
     }
   }
+}
+
+.fullscreen-height{
+  height: 100vh;
+}
+
+.fullsize-height{
+  height: 100%;
+}
+
+.Content{
+  width: $contentWidth;
+  height: 100%;
+}
+
+.Page{
+  flex: 1 1 auto;
+}
+
+.flex{
+  display: flex;
+}
+
+.column{
+  flex-direction: column;
+}
+
+.se{
+  justify-content: space-evenly;
+}
+
+.sb{
+  justify-content: space-between;
+}
+
+.sa{
+  justify-content: space-around;
+}
+
+.c{
+  justify-content: center;
+}
+
+.ai-c{
+  align-items: center;
 }

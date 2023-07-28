@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, SetStateAction, Dispatch} from 'react';
 import classes from './styles.module.scss'
 import {useSelector} from "react-redux";
-import { State } from '../../redux/store/index';
+import { State } from '../../redux/store';
 
 const KEYBOARDS = {
     backspace: 8,

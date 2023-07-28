@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
+import {State} from "@redux/store";
 
 import SignedHeader from "./signedHeader";
 import UnsignedHeader from "./unsignedHeader";
@@ -15,11 +15,13 @@ export default function Header() {
 
     return (
         <>
-            {auth ? (<SignedHeader
+            {auth ? (
+                <SignedHeader
                 theme={theme}
                 search={search}
                 changeSearch={changeSearch}
-            /> ): (<UnsignedHeader
+            /> ) : (
+                <UnsignedHeader
                 theme={theme}
                 search={search}
                 changeSearch={changeSearch}

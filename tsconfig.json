@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "paths": {
       "@interfaces/*": ["src/interfaces/*"],
       "@layout/*": ["src/layout/*"],
@@ -7,12 +8,9 @@
       "@redux/*": ["src/redux/*"],
       "@shared/*": ["src/shared/*"],
     },
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vite/client", "vite-plugin-svgr/client"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

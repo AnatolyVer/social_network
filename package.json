@@ -34,18 +34,16 @@
     "react-image-crop": "^10.1.4",
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.11.2",
-    "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "redux-saga": "^1.2.3",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "nodemon index.tsx",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -71,6 +69,10 @@
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.195",
-    "sass": "^1.62.1"
+    "@vitejs/plugin-react": "^4.0.3",
+    "sass": "^1.62.1",
+    "vite": "^4.4.7",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }

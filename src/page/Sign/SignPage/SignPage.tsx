@@ -2,15 +2,16 @@ import {useEffect, useState} from 'react';
 import FirstPage from './FirstPage';
 import SecondPage from './SecondPage';
 import ThirdPage from './ThirdPage';
-import {clearFetch} from "../../../redux/action-creators";
+import {clearFetch} from "@redux/action-creators";
 import useUser from '../hooks/useUser';
 import {useDispatch, useSelector} from "react-redux";
 import useErrors from '../hooks/useErrors';
-import {State} from "../../../redux/store";
+import {State} from "@redux/store";
 import useAvatarUploading from "../hooks/useAvatarUploading";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import dayjs from "dayjs";
 import {IUser} from "@shared/TypesAndInterfaces/IUser";
+import useValidAndChange from "@page/Sign/hooks/useValidAndChange";
 
 const defUser: IUser = {
     username: "",
@@ -36,6 +37,8 @@ const SignPage = () => {
     const {user, changeUser} = useUser(defUser)
     const {errors, isErrors, changeErrors} = useErrors(setProgress)
     const avatar:IAvatarHook = useAvatarUploading()
+    const validAndChange = useValidAndChange(user, changeUser, changeErrors)
+
 
     useEffect(() => {
         dispatch(clearFetch())
@@ -48,7 +51,6 @@ const SignPage = () => {
 
     useEffect(() => {
         if (!firstTime){
-            setFirstTime(true)
             const nicknameTextValid = signRed.nickname ? " " : 'Зайнято'
             const emailText = signRed.email ? " " : 'Зайнято'
             changeErrors({
@@ -56,6 +58,7 @@ const SignPage = () => {
                 email:{status: !signRed.email, border:!signRed.email,  text: emailText}
             })
         }
+        setFirstTime(false)
     }, [signRed])
 
     const obj = {
@@ -72,7 +75,7 @@ const SignPage = () => {
 
     const signPages = [
         <FirstPage {...obj}/>,
-        <SecondPage {...obj} avatar={avatar} checked={checked} setChecked={setChecked} />,
+        <SecondPage {...obj} avatar={avatar} checked={checked} setChecked={setChecked} {...validAndChange} />,
         <ThirdPage {...obj} avatar={avatar.avatar.fileToUpload!}/>
     ]
 
