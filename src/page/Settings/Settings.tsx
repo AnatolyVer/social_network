@@ -7,7 +7,7 @@ import SettingsNavbar from './SettingNavbar/SettingsNavbar';
 import {useEffect, useState} from "react";
 import MainPage from "./MainSettings/MainPage";
 import SettingsBanner from "./SettingsBanner/SettingsBanner";
-import Loader from "../../shared/Loader/Loader";
+import Loader from "@entities/Loader/Loader";
 import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
 import {useParams} from "react-router-dom";
 import useAvatarUploading from "../../page/Sign/hooks/useAvatarUploading";

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import CropModal from '../../../shared/CropModal/CropModal';
+import CropModal from '@entities/CropModal/CropModal';
 import {Crop} from "react-image-crop";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 interface PhotoUploaderProps{

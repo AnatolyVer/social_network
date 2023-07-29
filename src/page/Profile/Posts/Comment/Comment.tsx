@@ -1,10 +1,10 @@
 import {useSelector} from "react-redux";
-import {State} from "../../../../redux/store";
+import {State} from "@redux/store";
 
 import classes from  './styles.module.scss';
 
 import avatar from '../../medusa.jpg'
-import {ArrowDownIcon, ArrowLeftIcon, Dot, LikeIcon, TvIcon} from '../../../../shared/Icons';
+import {ArrowDownIcon, ArrowLeftIcon, Dot, LikeIcon, TvIcon} from '@shared/Icons';
 
 
 function Comment() {

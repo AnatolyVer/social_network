@@ -7,8 +7,8 @@ import {useSelector} from "react-redux";
 import {State} from "../../redux/store";
 import {getPostBySlug} from "../../redux/saga/API/user";
 import {useParams} from "react-router-dom";
-import Post from '../Profile/Posts/Post/Post';
-import Loader from '../../shared/Loader/Loader';
+import Post from '@entities/Post/Post';
+import Loader from '@entities/Loader/Loader';
 import {IPost} from "@shared/TypesAndInterfaces/IPost";
 import { Avatar } from '@mui/material';
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
@@ -47,7 +47,7 @@ const FullPost = () => {
             <div className={`${classes.Content} ${theme}Text`}>
                 {loaded ? (
                    <>
-                       <Post post={post}/>
+                       <Post post={post!}/>
                        <div>
                            <div className={`${classes.Comments} `}>
                                {post!.comments ? (

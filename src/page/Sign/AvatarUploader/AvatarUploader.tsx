@@ -1,7 +1,7 @@
 import React, {useState } from 'react';
 import {Avatar} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import CropModal from '../../../shared/CropModal/CropModal';
+import CropModal from '@entities/CropModal/CropModal';
 import {Crop} from "react-image-crop";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import EditIcon from '@mui/icons-material/Edit';

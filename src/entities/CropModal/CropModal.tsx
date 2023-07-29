@@ -6,7 +6,7 @@ import ReactCrop, {centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-ima
 
 import 'react-image-crop/src/ReactCrop.scss'
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
-import Loader from "../../shared/Loader/Loader";
+import Loader from "@entities/Loader/Loader";
 
 interface CropModalProps {
     open:boolean,

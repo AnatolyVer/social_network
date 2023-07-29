@@ -7,6 +7,8 @@
       "@page/*": ["src/page/*"],
       "@redux/*": ["src/redux/*"],
       "@shared/*": ["src/shared/*"],
+      "@entities/*": ["src/entities/*"],
+      "@Icons/*": ["src/shared/Icons.ts"]
     },
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],

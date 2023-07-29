@@ -10,7 +10,7 @@ import CustomPasswordField from "../../shared/CustomPasswordField/CustomPassword
 import {Link, useNavigate} from "react-router-dom";
 import {clearFetch, logUserAPI} from "../../redux/action-creators";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
-import Loader from '../../shared/Loader/Loader';
+import Loader from '@entities/Loader/Loader';
 
 export default function Auth() {
 

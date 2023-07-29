@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, SetStateAction, Dispatch} from 'react';
 import classes from './styles.module.scss'
 import {useSelector} from "react-redux";
-import { State } from '../../redux/store';
+import { State } from '@redux/store';
 
 const KEYBOARDS = {
     backspace: 8,
@@ -71,7 +71,6 @@ const CodeInputForm = ({code, setCode}:CodeInputProps) => {
         if (previousInput) {
             previousInput.focus();
         }
-
     };
 
     const handleArrowLeft = (index: number) => (event: React.KeyboardEvent<HTMLInputElement>) => {

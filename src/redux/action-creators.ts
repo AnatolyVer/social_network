@@ -11,7 +11,7 @@ export const switchTheme = (data: string) => {
     }
 }
 
-export const setModalOpen = (isOpen: boolean, images? : [string], num?: number, image?:string) => {
+export const setModalOpen = (isOpen: boolean, images? : string[], num?: number, image?:string) => {
     return  {
         type: Actions.SET_MODAL_OPEN,
         payload: {isOpen, images, num, image}
@@ -30,13 +30,6 @@ export const logUserAPI = (data: ILogUser, nav:NavigateFunction)  => {
         type: Actions.LOG_USER_API,
         payload: data,
         nav
-    }
-}
-
-export const getProfileInfo = (data: string)  => {
-    return{
-        type: Actions.GET_USER_API,
-        payload: data
     }
 }
 

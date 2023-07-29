@@ -7,11 +7,11 @@ import {State} from "../../../redux/store";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 
 import {IUser} from "@shared/TypesAndInterfaces/IUser";
-import {Errors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
+import {InputErrors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
-import VerifyCode from "../../../shared/VerifyCode/VerifyCode";
+import VerifyCode from "@entities/VerifyCode/VerifyCode";
 import SignButton from "../SignButton/SignButton";
-import {clearFetch, sendCode, sendEmail} from "../../../redux/action-creators";
+import {clearFetch, sendCode, sendEmail} from "@redux/action-creators";
 import {useNavigate} from "react-router-dom";
 
 interface Props{
@@ -19,8 +19,8 @@ interface Props{
     progress:number,
     user:IUser,
     changeUser:(updatedValues: Partial<IUser>) => void,
-    errors:Errors,
-    changeErrors:(updatedValues: Partial<Errors>) => void,
+    errors:InputErrors,
+    changeErrors:(updatedValues: Partial<InputErrors>) => void,
     page:number,
     setPage:Dispatch<SetStateAction<number>>,
     avatar:File

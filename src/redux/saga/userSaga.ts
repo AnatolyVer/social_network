@@ -21,8 +21,10 @@ function* SignInWorker(action: IAction){
     try {
         yield put(setFetch({text: 'Loading', status: 999}))
         const {data, headers} = yield call(signIn, action.payload);
+        console.log(data)
         localStorage.setItem('access-token', data.access_token)
         localStorage.setItem('nickname', data.nickname)
+        localStorage.setItem('id', data.id)
         const refreshToken = headers['refresh-token'];
         Cookies.set('refreshToken', refreshToken, {
             secure: false,
@@ -45,12 +47,10 @@ function* SignUpWorker(action: IAction) {
         for (const key in action.payload) {
             if (key !== 'account_photo') formData.append(key, action.payload[key]);
         }
-        formData.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
         const {data, headers} = yield call(signUp, formData);
         localStorage.setItem('access-token', data.access_token)
         localStorage.setItem('nickname', data.nickname)
+        localStorage.setItem('id', data.id)
         const refreshToken = headers['refresh-token'];
         Cookies.remove('refreshToken')
         Cookies.set('refreshToken', refreshToken, {
@@ -68,19 +68,6 @@ function* SignUpWorker(action: IAction) {
     } catch (error) {
         yield put(setFetch({ text: 'Не вдалося створити акаунт', status: 404 }));
         console.log(error);
-    }
-}
-
-
-function* getProfileInfoWorker(action: IAction){
-    try {
-        yield put(setFetch({ text: 'Loading', status: 999 }));
-        const {data} = yield call(getProfileInfo, action.payload);
-        yield put(setProfileInfo(data.data || null))
-        yield put(setFetch({ text: 'Done', status: 200 }));
-    }catch (error) {
-        console.log(error)
-        yield put(setFetch({ text: '', status: 404 }));
     }
 }
 
@@ -184,7 +171,6 @@ function* CreatePostWorker(action: IAction){
 export default function* userWatcher() {
     yield takeLatest(Actions.LOG_USER_API, SignInWorker)
     yield takeLatest(Actions.REG_USER_API, SignUpWorker)
-    yield takeLatest(Actions.GET_USER_API, getProfileInfoWorker)
     yield takeLatest(Actions.GET_CURRENT_USER_API, getUserInfoWorker)
     yield takeLatest(Actions.CHECK_SIGN_NICKNAME, checkNicknameWorker)
     yield takeLatest(Actions.CHECK_SIGN_EMAIL, checkEmailWorker)

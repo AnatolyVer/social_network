@@ -25,16 +25,7 @@ export const signUp = (data: FormData):Promise<Axios> =>{
         data,
     });
 }
-export const getProfileInfo = (data: string):Promise<Axios> =>{
-    return axios({
-        url: REACT_APP_DEPLOY_URL + `account/${data}/`,
-        method: 'GET',
-        withCredentials: true,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+
 export const checkNickname = (data: string):Promise<Axios> =>{
     return axios({
         url: REACT_APP_DEPLOY_URL + `account/check_nickname/${data}/`,
@@ -108,9 +99,20 @@ export const createPost = (data: any):Promise<Axios> =>{
     });
 }
 
-export const getPostsByNickname = (nickname: string):Promise<AxiosPromise> =>{
+export const getPostsByID = (id: string):Promise<AxiosPromise> =>{
     return axios({
-        url: REACT_APP_DEPLOY_URL + `posts/${nickname}/`,
+        url: REACT_APP_DEPLOY_URL + `posts/${id}/`,
+        method: 'GET',
+        withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+}
+
+export const getPostBySlug = (slug: string):Promise<AxiosPromise> =>{
+    return axios({
+        url: REACT_APP_DEPLOY_URL + `post/${slug}/`,
         method: 'GET',
         withCredentials: true,
         headers: {
@@ -120,9 +122,9 @@ export const getPostsByNickname = (nickname: string):Promise<AxiosPromise> =>{
     });
 }
 
-export const getPostBySlug = (slug: string):Promise<AxiosPromise> =>{
+export const getProfileInfo = (data: string):Promise<AxiosPromise> => {
     return axios({
-        url: REACT_APP_DEPLOY_URL + `post/${slug}/`,
+        url: REACT_APP_DEPLOY_URL + `account/${data}/`,
         method: 'GET',
         withCredentials: true,
         headers: {

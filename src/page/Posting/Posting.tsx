@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Loader from "../../shared/Loader/Loader";
+import Loader from "@entities/Loader/Loader";
 import classes from "./styles.module.scss";
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";

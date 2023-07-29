@@ -10,4 +10,5 @@ export interface IPost{
     reply?:IPost,
     slug:string,
     comments:[]
+    author_is_verify:boolean
 }

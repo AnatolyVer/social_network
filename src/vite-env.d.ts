@@ -26,3 +26,10 @@ declare module 'path' {
     const path: any;
     export default path;
 }
+
+declare namespace NodeJS {
+    interface ProcessEnv {
+        REACT_APP_DEPLOY_URL: string;
+        DOMEN_NAME: string;
+    }
+}

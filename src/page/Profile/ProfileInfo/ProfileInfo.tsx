@@ -1,7 +1,7 @@
 import classes from './styles.module.scss';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {useSelector} from "react-redux";
-import {State} from "../../../redux/store";
+import {State} from "@redux/store";
 import dayjs from 'dayjs';
 import 'dayjs/locale/uk'
 import {
@@ -14,7 +14,7 @@ import {
 
 } from '../../../shared/Icons';
 import {Avatar, AvatarGroup} from '@mui/material';
-import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
+import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 
 interface ProfileInfoProps{
     isFixed:boolean,
@@ -79,17 +79,13 @@ function ProfileInfo({isFixed, user}:ProfileInfoProps) {
             </div>
             <div className={`${classes.Friends} ${theme}Post`}>
                 <AvatarGroup max={4}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
+                    {/*<Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
                     <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg"/>
                     <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg"/>
                     <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg"/>
-                    <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg"/>
+                    <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg"/>*/}
                 </AvatarGroup>
             </div>
-
-
-
-
         </div>
     );
 }

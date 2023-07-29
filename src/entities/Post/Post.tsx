@@ -1,23 +1,27 @@
 import React from 'react';
-import classes from  './styles.module.scss';
+import classes from './styles.module.scss';
 import './photos.scss'
 import VerifiedIcon from '@mui/icons-material/Verified';
-import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '../../../../shared/Icons'
+import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '@shared/Icons'
 
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "../../../../redux/store";
-import {setModalOpen} from "../../../../redux/action-creators";
+import {State} from "@redux/store";
+import {setModalOpen} from "@redux/action-creators";
 import {Avatar} from "@mui/material";
 import dayjs from "dayjs";
 import {useNavigate} from "react-router-dom";
+import {IPost} from "@shared/TypesAndInterfaces/IPost";
 
 const changeDateMode = (inputDate: string) => {
     dayjs.locale('uk');
-    const formattedDate = dayjs(inputDate).format('DD.MM.YY HH:mm')
-    return formattedDate
+    return dayjs(inputDate).format('DD.MM.YY HH:mm')
 }
 
-function Post({post}:any) {
+interface PostProps{
+    post:IPost
+}
+
+function Post({post}:PostProps) {
 
     const dispatch = useDispatch()
     const nav = useNavigate()
@@ -27,7 +31,7 @@ function Post({post}:any) {
     const styles = imageCount === 3 ? [2, 4, 4] : [imageCount, imageCount, imageCount, imageCount]
     const theme:string = useSelector((state:State) => state.theme)
 
-    const openModal = (images: [string], num: number) => {
+    const openModal = (images: string[], num: number) => {
         dispatch(setModalOpen(true, images, num, images.at(num)))
         document.body.style.overflow = 'hidden'
     }
@@ -37,7 +41,7 @@ function Post({post}:any) {
             <div>
                 <div className={classes.Title}>
                     <div className={'flex'}>
-                        <Avatar alt={post.author_nickname.toUpperCase()} src={`https://django-auth-gfm6.onrender.com` + post.author_account_photo}/>
+                        <Avatar alt={post.author_nickname.toUpperCase()} src={post.author_account_photo}/>
                         <div className={classes.User}>
                             <div style={{display:'flex', alignItems:"center"}}>
                                 <p className={`${classes.Name} ${theme}Text`}>{post.author_username}</p>
@@ -59,7 +63,7 @@ function Post({post}:any) {
 
             {post.photos.length > 0 && (
                 <div className={classes.Photos}>
-                    {post.photos.map((image: File, index: number) => (
+                    {post.photos.map((image: string, index: number) => (
                         <img onClick={() => openModal(post.photos, index)} className={`Photo${styles[index]}`} key={index} src={`https://django-auth-gfm6.onrender.com` + image} alt={`${index}`} />
                     ))}
                 </div>
