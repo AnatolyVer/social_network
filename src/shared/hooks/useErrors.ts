@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {Dispatch, SetStateAction, useState} from 'react';
 import {InputErrors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 
 export default function useErrors(setProgress:Dispatch<SetStateAction<number>>) {
