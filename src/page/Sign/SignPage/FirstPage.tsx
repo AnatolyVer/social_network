@@ -8,7 +8,7 @@ import {State} from "@redux/store";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import CustomTextField from "../../../shared/CustomTextField/CustomTextField";
 import CustomPasswordField from "../../../shared/CustomPasswordField/CustomPasswordField";
-import useValidAndChange from "../hooks/useValidAndChange";
+import useValidAndChange from "@shared/hooks/useValidAndChange";
 import {InputErrors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
 import {IUser} from '@shared/TypesAndInterfaces/IUser';
 import {Dispatch, SetStateAction} from "react";

@@ -3,15 +3,15 @@ import FirstPage from './FirstPage';
 import SecondPage from './SecondPage';
 import ThirdPage from './ThirdPage';
 import {clearFetch} from "@redux/action-creators";
-import useUser from '../hooks/useUser';
+import useUser from '@shared/hooks/useUser';
 import {useDispatch, useSelector} from "react-redux";
-import useErrors from '../hooks/useErrors';
+import useErrors from '@shared/hooks/useErrors';
 import {State} from "@redux/store";
-import useAvatarUploading from "../hooks/useAvatarUploading";
+import useAvatarUploading from "@shared/hooks/useAvatarUploading";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import dayjs from "dayjs";
 import {IUser} from "@shared/TypesAndInterfaces/IUser";
-import useValidAndChange from "@page/Sign/hooks/useValidAndChange";
+import useValidAndChange from "@shared/hooks/useValidAndChange";
 
 const defUser: IUser = {
     username: "",

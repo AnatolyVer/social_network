@@ -1,17 +1,17 @@
 import classes from './styles.module.scss'
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
-import CustomTextField from '../../../shared/CustomTextField/CustomTextField';
-import useUser from '../../Sign/hooks/useUser';
-import CustomDatePicker from "../../../shared/CustomDatePicker/CustomDatePicker";
+import CustomTextField from '@shared/CustomTextField/CustomTextField';
+import useUser from '@shared/hooks/useUser';
+import CustomDatePicker from "@shared/CustomDatePicker/CustomDatePicker";
 import React, {useEffect, useState} from "react";
 import dayjs, {Dayjs} from "dayjs";
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "../../../redux/store";
+import {State} from "@redux/store";
 import { isEqual } from 'lodash';
-import AutocompleteField from '../../../shared/Autocomplete/Autocomplete';
-import PhotoUploader from "../../../page/Settings/PhotoUploader/PhotoUploader";
-import {IAvatarHook} from "../../../page/Sign/Interfaces/IAvatar";
-import {editUser} from "../../../redux/action-creators";
+import AutocompleteField from '@shared/Autocomplete/Autocomplete';
+import PhotoUploader from "@page/Settings/PhotoUploader/PhotoUploader";
+import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
+import {editUser} from "@redux/action-creators";
 
 const API_KEY = 'AbJZ1oPWJbwhZ8PEgLR3PGw9guBFNgTR'
 

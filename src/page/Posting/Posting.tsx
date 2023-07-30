@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import Loader from "@entities/Loader/Loader";
 import classes from "./styles.module.scss";
-import Header from "../../layout/Header/Header";
-import Footer from "../../layout/Footer/Footer";
+import Header from "@layout/Header/Header";
+import Footer from "@layout/Footer/Footer";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "@redux/store";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CloseIcon from '@mui/icons-material/Close';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-import {createPost} from "../../redux/action-creators";
+import {createPost} from "@redux/action-creators";
 import {useNavigate} from "react-router-dom";
 
 const Posting = () => {
@@ -57,7 +57,7 @@ const Posting = () => {
                     setFiles(prevState => [...prevState, file]);
                     setPhotos(prevState => [...prevState, dataURL]);
                 } catch (error) {
-                    console.error('Error reading file:', error);
+                    console.error('InvalidPage reading file:', error);
                 }
             }
         }
@@ -121,7 +121,7 @@ const Posting = () => {
                                     { photos.length > 0 &&
                                         photos.map((photo, index) => (
                                             <div key={index} className={classes.Photo}>
-                                                <img src={photo}/>
+                                                <img alt='Photo' src={photo}/>
                                                 <CloseIcon sx={{cursor:'pointer'}} onClick={() => RemoveImage(index)}/>
                                             </div>
                                         ))

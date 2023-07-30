@@ -1,6 +1,5 @@
 import {useState} from 'react';
-import ava from "../default.png";
-import {AvatarState} from '../Interfaces/IAvatar';
+import {AvatarState} from '@page/Sign/Interfaces/IAvatar';
 
 const UseAvatarUploading = (image?: string) => {
     const [defaultImage, setDefaultImag] = useState(image || '')

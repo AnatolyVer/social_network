@@ -2,15 +2,15 @@ import classes from './settings.module.scss'
 import Header from "../../layout/Header/Header";
 import Footer from '../../layout/Footer/Footer';
 import {useSelector} from "react-redux";
-import { State } from '../../redux/store/index';
+import { State } from '@redux/store';
 import SettingsNavbar from './SettingNavbar/SettingsNavbar';
 import {useEffect, useState} from "react";
 import MainPage from "./MainSettings/MainPage";
 import SettingsBanner from "./SettingsBanner/SettingsBanner";
 import Loader from "@entities/Loader/Loader";
-import {IFetch} from "../../shared/TypesAndInterfaces/IFetch";
+import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import {useParams} from "react-router-dom";
-import useAvatarUploading from "../../page/Sign/hooks/useAvatarUploading";
+import useAvatarUploading from "@shared/hooks/useAvatarUploading";
 import VerificationPage from './VerificationPage/VerificationPage';
 
 const pages = [
