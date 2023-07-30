@@ -85,8 +85,8 @@ const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avata
                 <div>
                     <p className={classes.Title}>Загальні дані</p>
                     <div className={classes.MainData}>
-                        <CustomTextField value={user.username!} onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUser({username: e.target.value})} id="standard-basic" label="Ім'я користувача" variant="outlined" />
-                        <CustomTextField value={user.nickname!} onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUser({nickname: e.target.value})} id="standard-basic" label="Нікнейм" variant="outlined" />
+                        <CustomTextField value={user.username!} onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUser({username: e.target.value})} label="Ім'я користувача"/>
+                        <CustomTextField value={user.nickname!} onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUser({nickname: e.target.value})} label="Нікнейм"/>
                         <CustomDatePicker date={date} onChange={changeDate} label="День народження"/>
                         <AutocompleteField onFocus={() => changePlacement(placement || new String as string)} onBlur={() => changePlacement(new String as string)} placement={placement!} changePlacement={changePlacement} array={cities!}/>
                     </div>

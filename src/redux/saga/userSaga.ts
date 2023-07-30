@@ -8,7 +8,6 @@ import Cookies from 'js-cookie';
 import {
     clearFetch, editUser, getUserInfo,
     setFetch,
-    setProfileInfo,
     setSignEmail,
     setSignNickname,
     setUserInfo,
@@ -19,9 +18,8 @@ const call: any = Effects.call;
 
 function* SignInWorker(action: IAction){
     try {
-        yield put(setFetch({text: 'Loading', status: 999}))
+        yield put(setFetch({text: 'Loading', loading:true}))
         const {data, headers} = yield call(signIn, action.payload);
-        console.log(data)
         localStorage.setItem('access-token', data.access_token)
         localStorage.setItem('nickname', data.nickname)
         localStorage.setItem('id', data.id)
@@ -36,12 +34,14 @@ function* SignInWorker(action: IAction){
         action.nav!(`/profile/${data.nickname}`)
     }catch (error) {
         yield put(setFetch({text: 'Не вдалося авторизуватися', status: 404}))
+    }finally {
+        yield put(setFetch({loading:false}))
     }
 }
 
 function* SignUpWorker(action: IAction) {
     try {
-        yield put(setFetch({ text: 'Loading', status: 999 }))
+        yield put(setFetch({ text: 'Loading', status: 0, loading:true}))
         const formData = new FormData();
         if (action.payload.account_photo) formData.append('account_photo', action.payload['account_photo'])
         for (const key in action.payload) {
@@ -60,26 +60,29 @@ function* SignUpWorker(action: IAction) {
         localStorage.setItem('logged', 'true')
         try {
             yield call(getUserInfoWorker, getUserInfo(data.nickname));
-        }catch (e){
-            console.log(e)
+        }catch (error){
+            console.log(error)
         }
         action.nav!(`/profile/${data.nickname}`)
-        yield put(clearFetch());
     } catch (error) {
-        yield put(setFetch({ text: 'Не вдалося створити акаунт', status: 404 }));
+        yield put(setFetch({ text: 'Не вдалося створити акаунт', status: 404}));
         console.log(error);
+    }finally {
+        yield put(setFetch({loading:false}));
     }
 }
 
 function* getUserInfoWorker(action: IAction){
     try {
-        yield put(setFetch({ text: 'Loading', status: 999 }));
+        yield put(setFetch({ text: 'Loading', loading:true}));
         const {data} = yield call(getProfileInfo, action.payload);
         yield put(setUserInfo(data.data || null))
-        yield put(setFetch({ text: 'Done', status: 200 }));
+        yield put(setFetch({ text: 'Done', status: 200, loading:false }));
     }catch (error) {
         console.log(error)
-        yield put(setFetch({ text: '', status: 404 }));
+        yield put(setFetch({ text: '', status: 404}));
+    }finally {
+        yield put(setFetch({loading:false}));
     }
 }
 
@@ -156,14 +159,16 @@ function* CreatePostWorker(action: IAction){
             formData.append(key, action.payload[key]);
         }
         yield call(createPost, formData);
-        yield put(setFetch({ text: 'Done', status: 200 }));
-
+        yield put(setFetch({ text: 'Loaded', status: 200 }));
         action.nav!(`/profile/${localStorage.getItem('nickname')}`)
     }catch (error: any) {
         if (error.response.status === 401) {
             localStorage.setItem('access-token', error.response.data.access_token)
             yield call(CreatePostWorker, createPost(action.payload));
         }
+        yield put(setFetch({ text: 'Error posting', status: 404 }));
+    }finally {
+        yield put(setFetch({ loading:false}));
     }
 }
 

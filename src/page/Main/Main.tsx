@@ -1,12 +1,12 @@
-
-import Comment from '../Profile/Posts/Comment/Comment'
-import Stat from './Stat/Stat';
+import { Link } from 'react-router-dom';
 import {useSelector} from "react-redux";
+
 import {State} from "@redux/store";
 import Header from "@layout/Header/Header";
 import Footer from '@layout/Footer/Footer';
-import { Link } from 'react-router-dom';
 
+import Comment from '../Profile/Posts/Comment/Comment'
+import Stat from './Stat/Stat';
 
 import classes from './styles.module.scss'
 

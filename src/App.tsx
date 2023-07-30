@@ -25,7 +25,7 @@ export default function App() {
                 <Routes>
                     <Route path="" element={<Main/>} />
                     <Route path="*" element={<Navigate to="/error" replace />} />
-                    <Route path="/error" element={<InvalidPage />} />
+                    <Route path="/error" element={<InvalidPage/>} />
                     <Route path="/profile/:nickname" element={<Profile/>}/>
                     <Route path='/sign_up' element={<Sign/>}/>
                     <Route path='/sign_in' element={<Auth/>}/>

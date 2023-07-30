@@ -54,7 +54,7 @@ export const getUserInfo = (data: string)  => {
     }
 }
 
-export const setFetch = (data: IFetch)  => {
+export const setFetch = (data: Partial<IFetch>)  => {
     return{
         type: Actions.SET_FETCH,
         payload: data

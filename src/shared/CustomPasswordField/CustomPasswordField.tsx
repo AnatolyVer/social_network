@@ -8,17 +8,19 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from 'react';
 import {DarkFormControl, LightFormControl } from './styles';
 import {InputError} from "../TypesAndInterfaces/SignErrors/Errors";
+import {useSelector} from "react-redux";
+import {State} from "@redux/store";
 
 interface CustomPasswordFieldProps {
-    theme: string;
     value?: string;
-    text:string;
+    label:string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     error?: InputError
 }
 
-function CustomPasswordField({ theme, value, onChange, text, error }: CustomPasswordFieldProps) {
+function CustomPasswordField({ value, onChange, label, error }: CustomPasswordFieldProps) {
     const [showPassword, setShowPassword] = useState(false);
+    const theme:string = useSelector((state:State) => state.theme)
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -31,9 +33,9 @@ function CustomPasswordField({ theme, value, onChange, text, error }: CustomPass
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', width:'100%' }}>
             <CustomFormControl sx={{width:'100%' }} variant="outlined">
-                <InputLabel required htmlFor="outlined-adornment-password">{text}</InputLabel>
+                <InputLabel required htmlFor="outlined-adornment-password">{label}</InputLabel>
                 <OutlinedInput
-                    id={text}
+                    id={label}
                     type={showPassword ? 'text' : 'password'}
                     value={value}
                     onChange={onChange}
@@ -49,7 +51,7 @@ function CustomPasswordField({ theme, value, onChange, text, error }: CustomPass
                             </IconButton>
                         </InputAdornment>
                     }
-                    label="Введіть пароль"
+                    label={label}
                     error={error && error.border}
                 />
             </CustomFormControl>
