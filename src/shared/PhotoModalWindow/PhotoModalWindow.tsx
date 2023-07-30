@@ -4,7 +4,7 @@ import classes from "./styles.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../redux/store";
 import {changeModalNum, setModalOpen} from "../../redux/action-creators";
-import {EffectButton, NextIcon, PreviousIcon} from "../Icons";
+import {EffectButton, NextIcon, PreviousIcon} from "@Icons/*";
 import ReactDOM from 'react-dom';
 
 function PhotoModalWindow() {

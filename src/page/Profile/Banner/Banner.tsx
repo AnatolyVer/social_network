@@ -1,5 +1,5 @@
 
-import {VertDots,  EffectButton } from '../../../shared/Icons'
+import {VertDots,  EffectButton } from '@Icons/*'
 import classes from './styles.module.scss'
 import {useSelector} from "react-redux";
 import {State} from "../../../redux/store";

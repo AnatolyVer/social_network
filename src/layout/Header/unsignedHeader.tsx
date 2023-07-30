@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./styles.module.scss";
 import {Link} from "react-router-dom";
-import {SearchIcon} from "../../shared/Icons";
+import {SearchIcon} from "@Icons/*";
 import ThemeSwitcher from "../../shared/Switcher/ThemeSwitcher";
 
 interface HeaderProps{

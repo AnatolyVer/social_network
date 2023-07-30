@@ -1,5 +1,5 @@
 import React from 'react';
-import {EffectButton, MoonIcon, SunIcon} from "../Icons";
+import {EffectButton, MoonIcon, SunIcon} from "@Icons/*";
 import {switchTheme} from "@redux/action-creators";
 import {useDispatch} from "react-redux";
 

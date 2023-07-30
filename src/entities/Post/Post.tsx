@@ -1,16 +1,16 @@
 import React from 'react';
 import classes from './styles.module.scss';
 import './photos.scss'
-import VerifiedIcon from '@mui/icons-material/Verified';
-import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '@shared/Icons'
+import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '@Icons/*'
 
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "@redux/store";
 import {setModalOpen} from "@redux/action-creators";
 import {Avatar} from "@mui/material";
 import dayjs from "dayjs";
-import {useNavigate} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {IPost} from "@shared/TypesAndInterfaces/IPost";
+import Verified from '@entities/Verified';
 
 const changeDateMode = (inputDate: string) => {
     dayjs.locale('uk');
@@ -23,9 +23,9 @@ interface PostProps{
 
 function Post({post}:PostProps) {
 
-    const dispatch = useDispatch()
-    const nav = useNavigate()
+    const params = useParams()
 
+    const dispatch = useDispatch()
     const imageCount = post.photos?.length
 
     const styles = imageCount === 3 ? [2, 4, 4] : [imageCount, imageCount, imageCount, imageCount]
@@ -37,7 +37,7 @@ function Post({post}:PostProps) {
     }
 
     return (
-        <div onClick={() => nav(`/${post.author_nickname}/post/${post.slug}`)} className={`${classes.Post} ${theme}Post`}>
+        <div className={`${classes.Post} ${theme}Post`}>
             <div>
                 <div className={classes.Title}>
                     <div className={'flex'}>
@@ -45,15 +45,15 @@ function Post({post}:PostProps) {
                         <div className={classes.User}>
                             <div style={{display:'flex', alignItems:"center"}}>
                                 <p className={`${classes.Name} ${theme}Text`}>{post.author_username}</p>
-                                {post.author_is_verify ? (<VerifiedIcon sx={{marginLeft:'5px', color:'#29ABE2'}}/>) : (<></>)}
+                                <Verified verified={post.author_is_verify}/>
                             </div>
-                            <p className={`${classes.Nickname}`}>{post.author_nickname}</p>
+                            <Link className={`${classes.Nickname}`} to={`../../profile/${post.author_nickname}`}>{post.author_nickname}</Link>
                         </div>
                     </div>
                     <div className={`${classes.Actions} ${theme}Text`}>
-                        <ReplyIcon sx={{cursor: "pointer"}}/>
-                        <BookmarkIcon sx={{cursor: "pointer"}}/>
-                        <HorDots sx={{cursor: "pointer"}}/>
+                        <ReplyIcon/>
+                        <BookmarkIcon/>
+                        <HorDots/>
                     </div>
                 </div>
                 <div className={`${classes.Text} ${theme}Text`}>
@@ -68,8 +68,8 @@ function Post({post}:PostProps) {
                     ))}
                 </div>
             )}
-
             <div>
+                {!params.slug ? <Link className={classes.Link} to={`/${post.author_nickname}/post/${post.slug}`}>Розгорнути</Link> : <></>}
                 <div className={classes.Date}>
                     <p>Опубліковано: {changeDateMode(post.published_date)}</p>
                     {post.device === 'pc' ? (

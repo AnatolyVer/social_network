@@ -17,7 +17,7 @@ function Main() {
     return (
         <div className='Page fullscreen-height flex column ai-c'>
             <Header/>
-            <div className='Content fullsize-height flex column se' >
+            <div className='Content fullness flex column se' >
                 <section>
                     <div>
                         <div className={`${classes.circle} ${classes.blue}`}></div>

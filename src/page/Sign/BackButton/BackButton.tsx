@@ -1,4 +1,4 @@
-import {EffectButton, PreviousIcon} from "../../../shared/Icons";
+import {EffectButton, PreviousIcon} from "@Icons/*";
 
 interface BackButtonProps{
     prev: () => void,

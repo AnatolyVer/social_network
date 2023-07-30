@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
+import {State} from "@redux/store";
 
 import classes from './styles.module.scss'
 import {Link} from "react-router-dom";
@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 function Footer() {
 
     const theme:string = useSelector((state:State) => state.theme)
-    const auth = localStorage.getItem('logged') === 'true' ? true : false
+    const auth = localStorage.getItem('logged') === 'true'
 
     return (!auth ? (
         <div className={`${classes.Footer} ${theme}Header`}>

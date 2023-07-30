@@ -1,29 +1,28 @@
 import React from 'react';
-import error from "../../shared/images/404.svg";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
+import ErrorPageImage from '@entities/ErrorPageImage';
+import Footer from '@layout/Footer/Footer';
+import Header from '@layout/Header/Header';
+import {State} from "@redux/store";
 
 import classes from './style.module.scss'
-
-import {useSelector} from "react-redux";
-import {State} from "@redux/store";
-import Header from '../../layout/Header/Header';
-import Footer from '../../layout/Footer/Footer';
-import {Link} from "react-router-dom";
 
 const InvalidPage = () => {
 
     const theme:string = useSelector((state:State) => state.theme)
+    const nav = useNavigate()
 
     return (
-        <div className={classes.InvalidPage}>
+        <div className="Page fullscreen-height flex column ai-c">
             <Header/>
-            <div className={`${classes.Content} ${theme}Text`}>
-                <img style={{width:'500px', height:'500px'}} src={error} alt=""/>
-                <div style={{width:'700px', height:'500px', display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                    <p style={{textTransform:'uppercase', color:'#7C7C7C', fontSize:'45px'}}>Сторінку не знайдено</p>
+            <div className={`Content flex ai-c fullness-height sa ${theme}Text`}>
+               <ErrorPageImage/>
+                <div className={`flex column c ${classes.ErrorPageContent}`}>
+                    <p className={classes.PageNotFoundMessage}>Сторінку не знайдено</p>
                     <p style={{fontSize:'25px'}}>Схоже, вміст цього посилання було видалено або невірна URL адреса</p>
-                    <Link to={'../'}>
-                        <button className={`${classes.Button} ${theme}Text`}>На головну</button>
-                    </Link>
+                    <button onClick={() => nav('../')} className={`${classes.Button} ${theme}Text`}>На головну</button>
                 </div>
             <Footer/>
             </div>

@@ -12,7 +12,7 @@ import {
     PlaceIcon,
     PortraitIcon,
 
-} from '../../../shared/Icons';
+} from '@Icons/*';
 import {Avatar, AvatarGroup} from '@mui/material';
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../../../redux/store";
 
 import classes from './styles.module.scss'
-import {FilterIcon, SearchIcon} from "../../../../shared/Icons";
+import {FilterIcon, SearchIcon} from "@Icons/*";
 import {IProfileInfo} from "../../../../shared/TypesAndInterfaces/IProfileInfo";
 
 interface SearchBarProps {

@@ -28,6 +28,8 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import PhotoIcon from '@mui/icons-material/Photo';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import VerifiedIcon from "@mui/icons-material/Verified";
+import React from "react";
 
 export {
     MoreVertIcon as VertDots,
@@ -61,3 +63,4 @@ export {
     ChevronLeftIcon as PreviousIcon,
     ChevronRightIcon as NextIcon
 };
+
