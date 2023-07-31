@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {State} from "../../redux/store";
+import {State} from "@redux/store";
 
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import Loader from '@entities/Loader/Loader';
@@ -9,5 +9,5 @@ export default function Sign() {
 
     const fetch:IFetch = useSelector((state:State) => state.fetch)
 
-    return (fetch.status === 999 ? <Loader/> : <SignPage/>);
+    return (fetch.loading ? <Loader/> : <SignPage/>);
 }

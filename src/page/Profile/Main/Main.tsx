@@ -18,7 +18,7 @@ function Main({isFixed, user}:MainProps) {
         <div className={`${classes.Main} ${margin}`}>
             <div>
                 <SearchBar user={user} isFixed={isFixed}/>
-                <Posts/>
+                <Posts user={user}/>
             </div>
             <ProfileInfo user={user}  isFixed={isFixed}/>
         </div>

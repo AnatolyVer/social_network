@@ -74,18 +74,11 @@ function* SignUpWorker(action: IAction) {
 
 function* getUserInfoWorker(action: IAction){
     try {
-        yield put(setFetch({ text: 'Loading', loading:true}));
         const {data} = yield call(getProfileInfo, action.payload);
         yield put(setUserInfo(data.data || null))
-        yield put(setFetch({ text: 'Done', status: 200, loading:false }));
     }catch (error) {
-        console.log(error)
-        yield put(setFetch({ text: '', status: 404}));
-    }finally {
-        yield put(setFetch({loading:false}));
     }
 }
-
 
 function* checkNicknameWorker(action: IAction){
     try {

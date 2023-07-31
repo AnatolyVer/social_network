@@ -54,7 +54,7 @@ function PhotoModalWindow() {
                     </EffectButton>
                 }
                 <div className={classes.ModalFrame}>
-                    <img src={`https://django-auth-gfm6.onrender.com` + modal.image} alt=""/>
+                    <img src={modal.image} alt=""/>
                 </div>
                 {modal.images.length > 1 &&
                     <EffectButton onClick={() => incImage()} sx={{position:'absolute', top:'50%', right:'5%'}}>

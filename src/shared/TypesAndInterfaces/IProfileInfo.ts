@@ -14,5 +14,6 @@ export interface IProfileInfo{
     account_photo:string,
     email:string,
     biography:string,
-    posts_count:number
+    posts_count:number,
+    id:number,
 }

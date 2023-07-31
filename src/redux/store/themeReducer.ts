@@ -1,7 +1,7 @@
 import {Actions} from "../action-types";
 import IAction from "@shared/TypesAndInterfaces/IAction";
 
-const defaultTheme  = "light"
+const defaultTheme  = localStorage.getItem('theme')
 
 export const themeReducer = (state = defaultTheme, action: IAction) => {
     switch (action.type){

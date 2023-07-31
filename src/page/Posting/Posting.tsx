@@ -9,7 +9,7 @@ import {State} from "@redux/store";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CloseIcon from '@mui/icons-material/Close';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-import {createPost} from "@redux/action-creators";
+import {createPost, setModalOpen} from "@redux/action-creators";
 import {useNavigate} from "react-router-dom";
 
 const Posting = () => {
@@ -23,6 +23,11 @@ const Posting = () => {
 
     const fetch:IFetch = useSelector((state:State) => state.fetch)
     const theme:string = useSelector((state:State) => state.theme)
+
+    const openModal = (images: string[], num: number) => {
+        dispatch(setModalOpen(true, images, num, images.at(num)))
+        document.body.style.overflow = 'hidden'
+    }
 
     const RemoveImage = (index: number) => {
         setPhotos(prevState => prevState!.filter((_, i) => i !== index));
@@ -105,7 +110,6 @@ const Posting = () => {
                                                 </div>
                                             </div></label>
                                         <input multiple hidden key={Date.now()} type="file" id="avatar" name="avatar" onChange={(e)=> handleClick(e)} />
-
                                     </>
                                 }
                                 <p className={classes.Rules}>
@@ -121,8 +125,8 @@ const Posting = () => {
                                     { photos.length > 0 &&
                                         photos.map((photo, index) => (
                                             <div key={index} className={classes.Photo}>
-                                                <img alt='Photo' src={photo}/>
-                                                <CloseIcon sx={{cursor:'pointer'}} onClick={() => RemoveImage(index)}/>
+                                                <img onClick={() => openModal(photos, index)} alt='Photo' src={photo}/>
+                                                <CloseIcon className='clickable' onClick={() => RemoveImage(index)}/>
                                             </div>
                                         ))
                                     }

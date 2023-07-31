@@ -8,26 +8,31 @@ import {getPostsByID} from "@redux/saga/API/user";
 import { IPost } from '@shared/TypesAndInterfaces/IPost';
 
 import classes from "./styles.module.scss";
+import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 
-function Posts() {
+interface PostsProps{
+    user:IProfileInfo
+}
+
+function Posts({user}:PostsProps) {
 
     const [posts, setPosts] = useState<IPost[]>([])
     const theme:string = useSelector((state:State) => state.theme)
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
-                const res = await getPostsByID(localStorage.getItem('id')!);
+                const res = await getPostsByID(String(user.id));
                 setPosts(res.data.results)
                 console.log(res.data.results.length)
             } catch (e: unknown) {
-                console.log(e)
+                console.error(e)
             }
         };
 
         fetchData();
     }, []);
-
 
     return (
         <div className={classes.Posts}>
