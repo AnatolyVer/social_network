@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import ErrorPageImage from '@entities/ErrorPageImage';
+import {ErrorPageImage} from '@entities/ErrorPageImage';
 import Footer from '@layout/Footer/Footer';
 import Header from '@layout/Header/Header';
 import {State} from "@redux/store";

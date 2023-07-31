@@ -1,11 +1,11 @@
 import React from 'react';
-import svg from "@shared/images/looking_release.svg";
 import verify from "@shared/images/verify.svg";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {State} from "@redux/store";
 
 import classes from "@page/Profile/styles.module.scss";
+import { NotFound } from './NotFound';
 
 interface NoUserProps{
     nickname:string,
@@ -18,7 +18,7 @@ const NoUser = ({nickname, similar}:NoUserProps) => {
 
     return (
         <div className={`${classes.NoUser} ${theme}Text`}>
-            <img style={{width:'400px', height:'400px'}} src={svg} alt=""/>
+            <NotFound/>
             <div style={{width:'700px', height:'500px', display:'flex', flexDirection:'column', justifyContent:'center'}}>
                 <div style={{display:'flex', marginBottom:'20px'}}>
                     <p style={{fontSize:'35px', textTransform:'uppercase', color:'#7C7C7C'}}>Користувача</p>

@@ -26,7 +26,7 @@ function Post({post}:PostProps) {
     const params = useParams()
 
     const dispatch = useDispatch()
-    const imageCount = post.photos?.length
+    const imageCount = post?.photos?.length
 
     const styles = imageCount === 3 ? [2, 4, 4] : [imageCount, imageCount, imageCount, imageCount]
     const theme:string = useSelector((state:State) => state.theme)
@@ -41,13 +41,13 @@ function Post({post}:PostProps) {
             <div>
                 <div className={classes.Title}>
                     <div className={'flex'}>
-                        <Avatar alt={post.author_nickname.toUpperCase()} src={post.author_account_photo}/>
+                        <Avatar alt={post?.author_nickname.toUpperCase()} src={post?.author_account_photo}/>
                         <div className={classes.User}>
                             <div style={{display:'flex', alignItems:"center"}}>
-                                <p className={`${classes.Name} ${theme}Text`}>{post.author_username}</p>
-                                <Verified verified={post.author_is_verify}/>
+                                <p className={`${classes.Name} ${theme}Text`}>{post?.author_username}</p>
+                                <Verified verified={post?.author_is_verify}/>
                             </div>
-                            <Link className={`${classes.Nickname}`} to={`../../profile/${post.author_nickname}`}>{post.author_nickname}</Link>
+                            <Link className={`${classes.Nickname}`} to={`../../profile/${post?.author_nickname}`}>{post?.author_nickname}</Link>
                         </div>
                     </div>
                     <div className={`${classes.Actions} ${theme}Text`}>
@@ -57,22 +57,22 @@ function Post({post}:PostProps) {
                     </div>
                 </div>
                 <div className={`${classes.Text} ${theme}Text`}>
-                    {post.content}
+                    {post?.content}
                 </div>
             </div>
 
-            {post.photos.length > 0 && (
+            {post?.photos.length > 0 && (
                 <div className={classes.Photos}>
-                    {post.photos.map((image: string, index: number) => (
+                    {post?.photos.map((image: string, index: number) => (
                         <img onClick={() => openModal(post.photos, index)} className={`Photo${styles[index]}`} key={index} src={`https://django-auth-gfm6.onrender.com` + image} alt={`${index}`} />
                     ))}
                 </div>
             )}
             <div>
-                {!params.slug ? <Link className={classes.Link} to={`/${post.author_nickname}/post/${post.slug}`}>Розгорнути</Link> : <></>}
+                {!params.slug ? <Link className={classes.Link} to={`/${post?.author_nickname}/post/${post?.slug}`}>Розгорнути</Link> : <></>}
                 <div className={classes.Date}>
-                    <p>Опубліковано: {changeDateMode(post.published_date)}</p>
-                    {post.device === 'pc' ? (
+                    <p>Опубліковано: {changeDateMode(post?.published_date)}</p>
+                    {post?.device === 'pc' ? (
                         <TvIcon sx={{height: "17px"}}/>
                     ) : (
                         <PhoneIcon sx={{height: "17px"}}/>
