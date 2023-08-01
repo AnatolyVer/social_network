@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../variables";
 
 .fixed.light{
    background: linear-gradient(to right, $headerLeftColorLight, $headerRightColorLight);
@@ -53,21 +54,21 @@
 
 }
 
-
 .Banner {
-  width: 1280px;
-
+  width: calc(#{$contentWidth} * 142.8%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-start;
   .Image{
-    width: 1280px;
+    width: calc(#{$contentWidth} * 142.8%);
   }
   .User{
+    width: 100%;
     color: white;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 100px;
     .Avatar {
       border-radius: 50%;
@@ -89,7 +90,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-right: 10px;
       .statNumber{
         font-size: 32px;
         font-weight: 700;
