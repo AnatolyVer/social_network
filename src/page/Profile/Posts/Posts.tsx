@@ -25,7 +25,6 @@ function Posts({user}:PostsProps) {
             try {
                 const res = await getPostsByID(String(user.id));
                 setPosts(res.data.results)
-                console.log(res.data.results.length)
             } catch (e: unknown) {
                 console.error(e)
             }

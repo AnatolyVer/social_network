@@ -15,8 +15,7 @@ import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 import {setFetch} from "@redux/action-creators";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import {State} from "@redux/store";
-
-import classes from './styles.module.scss'
+import dayjs from "dayjs";
 
 function Profile() {
 
@@ -35,17 +34,19 @@ function Profile() {
                 dispatch(setFetch({loading:true, text:'Loading'}))
                 const {data} = await getProfileInfo(params.nickname!)
                 if (data.similar_accounts) {
-                    setSimilar(data.similar_accounts)
-                    dispatch(setFetch({status:404, text:'Loaded'}))
+                    setSimilar(data.similar_accounts.slice(0, 3))
+                    dispatch(setFetch({status:404}))
                 }
                 else {
                     setProfile(data.data)
-                    dispatch(setFetch({status:200, text:'Loaded'}))
+                    dispatch(setFetch({status:200}))
                 }
             }catch (e){
                 dispatch(setFetch({status:500}))
             }finally {
-                dispatch(setFetch({loading:false}))
+                setTimeout(() => {
+                    dispatch(setFetch({text:'Loaded', loading:false}))
+                }, 100);
             }
         }
 
@@ -60,32 +61,23 @@ function Profile() {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [params.nickname]);
 
-
-    useEffect(() => {
-        console.log(similar)
-        console.log(fetch)
-    }, [fetch]);
-
-    return ( fetch.loading ? (
+    return ( fetch.loading || fetch.status === 0 ? (
             <Loader/>
        ) : (
-            <div className={`${classes.Profile}`}>
+            <div className='Page flex c'>
                 <Header/>
-                {fetch.status === 200 ? (
-                    <div className={classes.Content}>
-                        <Banner user={profile!} disabled={isFixed}/>
-                        <Main user={profile!} isFixed={isFixed}/>
-                    </div>
-                ) : (
-                    <></>
-                )}
-                {fetch.status === 404 ? (
-                    <NoUser nickname={params.nickname!} similar={similar}/>
-                ):(
-                    <></>
-                )}
+                <div className='Content min-fullness'>
+                    {fetch.status === 200 ? (
+                        <>
+                            <Banner user={profile!} disabled={isFixed}/>
+                            <Main user={profile!} isFixed={isFixed}/>
+                        </>
+                    ) : (
+                        <NoUser nickname={params.nickname!} similar={similar}/>
+                    )}
+                </div>
                 <Footer/>
             </div>
         )

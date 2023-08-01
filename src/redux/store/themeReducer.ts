@@ -8,7 +8,6 @@ export const themeReducer = (state = defaultTheme, action: IAction) => {
         case Actions.SWITCH_THEME:
             localStorage.setItem("theme", action.payload)
             const color = action.payload === "light" ? '#EBEBEB' : '#333333'
-            document.body.classList.add(action.payload === "light" ? 'light' : 'dark');
             document.body.style.backgroundColor = color;
             return action.payload
         default:
