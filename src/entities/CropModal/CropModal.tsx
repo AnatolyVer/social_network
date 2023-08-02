@@ -1,76 +1,34 @@
-import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from 'react';
-import classes from './styles.module.scss'
+import React, {Dispatch, SetStateAction, useRef, useState} from 'react';
+import 'react-image-crop/src/ReactCrop.scss'
+import ReactCrop, {Crop, PixelCrop } from 'react-image-crop';
+
 import { canvasPreview } from './canvasPreview'
 import { useDebounceEffect } from './useDebounceEffect'
-import ReactCrop, {centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-image-crop';
+import { centerAspectCrop, centerAspectCropPx } from './centerAspectCrop';
 
-import 'react-image-crop/src/ReactCrop.scss'
-import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import Loader from "@entities/Loader/Loader";
+import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
+
+import classes from './styles.module.scss'
 
 interface CropModalProps {
     open:boolean,
     crop:Crop | undefined,
     setCrop:Dispatch<SetStateAction<Crop | undefined>>,
     setOpen:Dispatch<SetStateAction<boolean>>,
-    avatar:IAvatarHook,
-    aspectUp:number,
-    aspectDown:number,
-    circle:boolean
+    photo:IAvatarHook,
+    aspect:number,
 }
 
-
-function centerAspectCrop(
-    mediaWidth: number,
-    mediaHeight: number,
-    aspect: number,
-) {
-    return centerCrop(
-        makeAspectCrop(
-            {
-                unit: '%',
-                width: 70,
-            },
-            aspect,
-            mediaWidth,
-            mediaHeight,
-        ),
-        mediaWidth,
-        mediaHeight,
-    )
-}
-
-function centerAspectCropPx(
-    mediaWidth: number,
-    mediaHeight: number,
-    aspect: number,
-) {
-    return centerCrop(
-        makeAspectCrop(
-            {
-                unit: 'px',
-                width: 202,
-            },
-            aspect,
-            mediaWidth,
-            mediaHeight,
-        ),
-        mediaWidth,
-        mediaHeight,
-    )
-}
-
-const CropModal = ({open, setOpen, crop, setCrop, avatar, aspectUp, aspectDown, circle}:CropModalProps) => {
+const CropModal = ({open, setOpen, crop, setCrop, photo, aspect}:CropModalProps) => {
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
     const imgRef = useRef<HTMLImageElement>(null)
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
-    const [aspect, setAspect] = useState(aspectUp/aspectDown)
     const [loading, setLoading] = useState(false)
 
     const borderRadius = aspect === 1 ? '50%' : '0'
     const width = aspect === 1 ? '250px' : '640px'
     const height = aspect === 1 ? '250px' : '124px'
-
 
     function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
         setLoading(false);
@@ -84,7 +42,7 @@ const CropModal = ({open, setOpen, crop, setCrop, avatar, aspectUp, aspectDown, 
     function undo() {
         setLoading(true)
         setOpen(false)
-        avatar.cancelEditing()
+        photo.cancelEditing()
         setLoading(false)
     }
 
@@ -98,11 +56,11 @@ const CropModal = ({open, setOpen, crop, setCrop, avatar, aspectUp, aspectDown, 
             if (!blob) {
                 throw new Error('Failed to create blob');
             }
-            const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg' });
+            const file = new File([blob], 'photo.jpg', { type: 'image/jpeg' });
 
             const reader = new FileReader();
             reader.onload = function (event) {
-                avatar.confirmEditing(file, event.target!.result! as string)
+                photo.confirmEditing(file, event.target!.result! as string)
             };
             reader.readAsDataURL(file);
             setOpen(false)
@@ -142,12 +100,12 @@ const CropModal = ({open, setOpen, crop, setCrop, avatar, aspectUp, aspectDown, 
                                    onChange={(_, percentCrop) => setCrop(percentCrop)}
                                    onComplete={(c) => setCompletedCrop(c)}
                                    aspect={aspect}
-                                   circularCrop={circle}
+                                   circularCrop={aspect == 1}
                                >
                                    <img
                                        ref={imgRef}
                                        alt=""
-                                       src={avatar.avatar.photoToEdit as string}
+                                       src={photo.avatar.photoToEdit as string}
                                        onLoad={onImageLoad}
                                    />
                                </ReactCrop>

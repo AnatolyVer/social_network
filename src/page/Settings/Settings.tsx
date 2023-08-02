@@ -24,7 +24,7 @@ const pages = [
 const Settings = () => {
 
     const theme:string = useSelector((state:State) => state.theme)
-    const {page} = useParams()
+    const {page = 'main'} = useParams()
     const user = useSelector((state:State) => state.user)
     const fetch:IFetch = useSelector((state:State) => state.fetch)
 
@@ -34,7 +34,7 @@ const Settings = () => {
     const banner = useAvatarUploading(user?.account_banner)
 
     useEffect(() => {
-        setTab(pages.indexOf(page!) || 0)
+        setTab(pages.indexOf(page))
     }, [page]);
 
     const tabPages = [
@@ -46,7 +46,7 @@ const Settings = () => {
     ]
 
     return ( localStorage.getItem('nickname') ? (
-            fetch.status !== 200 ? (
+            fetch.loading ? (
                 <Loader/>
             ) : (
                 <div className={classes.Settings}>

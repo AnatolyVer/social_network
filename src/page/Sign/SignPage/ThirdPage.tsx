@@ -95,7 +95,7 @@ const ThirdPage = ({theme, progress, user, page, setPage, avatar}:Props) => {
                 <div className={classes.Message}>
                     Ми надіслали вам 6-значний код на адресу <strong>{user.email}</strong> для перевірки пошти
                 </div>
-                <VerifyCode code={code} setCode={setCode} />
+                <VerifyCode setCode={setCode} />
                 <div className={classes.Resend}>
                     {remainingTime ? (
                         <p>Повторно надіслати код через {remainingTime} сек.</p>

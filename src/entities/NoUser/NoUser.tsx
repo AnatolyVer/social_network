@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { NotFound } from './NotFound';
+import { NotFound } from '../NotFound';
 
 import VerifiedImage from "@entities/VerifiedImage";
 import { State } from "@redux/store";
 
-import classes from "@page/Profile/styles.module.scss"
+import classes from "./styles.module.scss";
 
 interface NoUserProps {
     nickname: string;
@@ -23,8 +23,8 @@ const NoUser = ({ nickname, similar }: NoUserProps) => {
             <NotFound />
             <div className={`flex column c`} style={{ width: '800px', height: '500px'}}>
                 <div style={{ display: 'flex', marginBottom: '20px' }}>
-                    <p style={{ fontSize: '35px', textTransform: 'uppercase', color: '#7C7C7C' }}>Користувача
-                        <strong className={`${theme}Text`} style={{ fontSize: '35px', textTransform:'none' }}> @{nickname} </strong>
+                    <p className={classes.Message}>Користувача
+                        <strong className={`${theme}Text ${classes.Nickname}`}> @{nickname} </strong>
                         не знайдено
                     </p>
                 </div>

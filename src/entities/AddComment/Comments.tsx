@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useSelector} from "react-redux";
+
 import classes from "@page/FullPost/styles.module.scss";
-import {Avatar} from "@mui/material";
+import {State} from "@redux/store";
 import CustomTextField from "@shared/CustomTextField/CustomTextField";
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
-import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+
+import {Avatar} from "@mui/material";
 
 const Comments = ({comments}:any) => {
 

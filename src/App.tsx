@@ -18,13 +18,12 @@ export default function App() {
 
     useThemeCustom()
     GettingUser()
-    {/*<Navigate to="/error" replace />*/}
     return (
         <div className={`${classes.App}`}>
             <BrowserRouter>
                 <Routes>
                     <Route path="" element={<Main/>} />
-                    <Route path="*" element={<InvalidPage/>}/>
+                    <Route path="*" element={<Navigate to="/error" replace />}/>
                     <Route path="/error" element={<InvalidPage/>} />
                     <Route path="/profile/:nickname" element={<Profile/>}/>
                     <Route path='/sign_up' element={<Sign/>}/>

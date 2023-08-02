@@ -40,7 +40,7 @@ function AvatarUploader ({avatar, nickname}:AvatarUploaderProps){
             <input hidden key={Date.now()} type="file" id="avatar" name="avatar" onChange={(e)=> handleImageChange(e)} />
             <CloseIcon sx={{position:"absolute", left:-10, top:0, cursor:'pointer', display:display}} onClick={avatar.setDefaultImage}/>
             <EditIcon sx={{position:"absolute", right:-10, top:2, cursor:'pointer', width:'18px', height:'18px', display:display}} onClick={() => setOpen(true)}/>
-            <CropModal open={open} crop={crop} setCrop={setCrop} setOpen={setOpen} avatar={avatar} aspectUp={1} aspectDown={1} circle={true}/>
+            <CropModal open={open} crop={crop} setCrop={setCrop} setOpen={setOpen} photo={avatar} aspect={1} circle={true}/>
         </div>
     );
 };

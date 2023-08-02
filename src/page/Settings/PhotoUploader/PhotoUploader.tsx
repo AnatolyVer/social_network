@@ -1,16 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {Crop} from "react-image-crop";
 
 import CropModal from '@entities/CropModal/CropModal';
-import {Crop} from "react-image-crop";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 interface PhotoUploaderProps{
-    avatar:IAvatarHook,
-    aspectUp:number,
-    aspectDown:number,
-    circle:boolean
+    photo:IAvatarHook,
+    aspect:number,
 }
 
-function PhotoUploader ({avatar, aspectUp, aspectDown, circle}:PhotoUploaderProps){
+function PhotoUploader ({photo, aspect}:PhotoUploaderProps){
     const [open, setOpen] = useState<boolean>(false)
     const [crop, setCrop] = useState<Crop>()
 
@@ -19,12 +17,10 @@ function PhotoUploader ({avatar, aspectUp, aspectDown, circle}:PhotoUploaderProp
         let file = e.target.files?.item(0);
         if (file) {
             if (file.type && file.type.startsWith('image/')) {
-                console.log(aspectUp)
                 setCrop(undefined)
                 setOpen(true)
-                console.log(aspectUp)
                 reader.onloadend = () => {
-                    avatar.uploadImage(file!, reader.result!)
+                    photo.uploadImage(file!, reader.result!)
                 };
                 reader.readAsDataURL(file);
             }
@@ -33,23 +29,23 @@ function PhotoUploader ({avatar, aspectUp, aspectDown, circle}:PhotoUploaderProp
 
     return (
         <div>
-            {!avatar.avatar.fileToUpload ? (
-                <label style={{cursor:'pointer'}} htmlFor={`avatar${aspectUp}`}>
+            {!photo.avatar.fileToUpload ? (
+                <label className='clickable' htmlFor={`avatar${aspect}`}>
                     Завантажити
                 </label>
             ) : (
-                <div style={{display:'flex'}}>
-                    <p style={{cursor:'pointer'}} onClick={avatar.setDefaultImage}>Видалити</p>
+                <div className='flex'>
+                    <p className='clickable' onClick={photo.setDefaultImage}>Видалити</p>
                     &nbsp;
                     &nbsp;
-                    <label style={{cursor:'pointer'}} htmlFor={`avatar` + aspectUp}>
+                    <label className='clickable' htmlFor={`avatar` + aspect}>
                         Змінити
                     </label>
                 </div>
             )}
 
-            <input hidden key={Date.now()} type="file" id={`avatar` + aspectUp} name={`avatar` + aspectUp} onChange={(e)=> handleImageChange(e)} />
-            <CropModal open={open} crop={crop} setCrop={setCrop} setOpen={setOpen} avatar={avatar} aspectUp={aspectUp} aspectDown={aspectDown} circle={circle}/>
+            <input hidden key={Date.now()} type="file" id={`avatar` + aspect} name={`avatar` + aspect} onChange={(e)=> handleImageChange(e)} />
+            <CropModal open={open} crop={crop} setCrop={setCrop} setOpen={setOpen} photo={photo} aspect={aspect}/>
         </div>
     );
 };

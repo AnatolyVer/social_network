@@ -74,9 +74,16 @@ function* SignUpWorker(action: IAction) {
 
 function* getUserInfoWorker(action: IAction){
     try {
+        yield put(setFetch({ text: 'Loading', status: 0, loading:true}))
         const {data} = yield call(getProfileInfo, action.payload);
         yield put(setUserInfo(data.data || null))
+        yield put(setFetch({ text: 'Loaded', status: 200}))
+
     }catch (error) {
+        yield put(setFetch({ text: 'Error', status: 404}))
+
+    }finally {
+        yield put(setFetch({loading:false}))
     }
 }
 

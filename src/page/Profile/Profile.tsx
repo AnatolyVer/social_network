@@ -6,7 +6,7 @@ import Banner from "./Banner/Banner";
 import Main from "./Main/Main";
 
 import Loader from '@entities/Loader/Loader';
-import NoUser from "@entities/NoUser";
+import NoUser from "@entities/NoUser/NoUser";
 import Header from "@layout/Header/Header";
 import Footer from "@layout/Footer/Footer";
 import {getProfileInfo} from "@redux/saga/API/user";
@@ -27,6 +27,7 @@ function Profile() {
     const [profile, setProfile] = useState<IProfileInfo>()
     const [similar, setSimilar] = useState<string[]>([])
     const [isFixed,setIsFixed] = useState(false);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const getData = async () => {
@@ -39,13 +40,14 @@ function Profile() {
                 }
                 else {
                     setProfile(data.data)
-                    dispatch(setFetch({status:200}))
+                    dispatch(setFetch({text:'Profile loaded', status:200}))
                 }
             }catch (e){
                 dispatch(setFetch({status:500}))
             }finally {
                 setTimeout(() => {
-                    dispatch(setFetch({text:'Loaded', loading:false}))
+                    dispatch(setFetch({loading:false}))
+                    setLoading(false)
                 }, 100);
             }
         }
@@ -63,7 +65,8 @@ function Profile() {
         };
     }, [params.nickname]);
 
-    return ( fetch.loading || fetch.status === 0 ? (
+
+    return ( loading ? (
             <Loader/>
        ) : (
             <div className='Page flex c'>

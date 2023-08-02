@@ -24,7 +24,9 @@ const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avata
 
     const [cities, setSities] = useState<Array<string>>([])
 
-    const [placement, setPlacement] = useState<string>(`${user.city}, ${user.country}`)
+
+    const preplacement = user?.city?.length && user?.country?.length ? `${user.city}, ${user.country}` : ''
+    const [placement, setPlacement] = useState<string>(preplacement)
     const [saveButtonIsVisible, setSaveButtonIsVisible] = useState(false)
 
     useEffect(() => {
@@ -96,11 +98,11 @@ const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avata
                     <div className={classes.Photos}>
                         <div>
                             <p className={classes.PhotoTitle}>Фото профіля</p>
-                            <PhotoUploader circle={true} aspectUp={1} aspectDown={1} avatar={avatar}/>
+                            <PhotoUploader aspect={1} photo={avatar}/>
                         </div>
                         <div>
                             <p className={classes.PhotoTitle}>Банер профіля</p>
-                            <PhotoUploader circle={false} aspectUp={256} aspectDown={49} avatar={banner}/>
+                            <PhotoUploader aspect={256/49} photo={banner}/>
                         </div>
                     </div>
                 </div>

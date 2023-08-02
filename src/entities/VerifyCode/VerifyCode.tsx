@@ -1,7 +1,9 @@
 import React, {useRef, useEffect, SetStateAction, Dispatch} from 'react';
-import classes from './styles.module.scss'
 import {useSelector} from "react-redux";
+
 import { State } from '@redux/store';
+
+import classes from './styles.module.scss'
 
 const KEYBOARDS = {
     backspace: 8,
@@ -10,11 +12,10 @@ const KEYBOARDS = {
 };
 
 interface CodeInputProps{
-    code:string,
     setCode: Dispatch<SetStateAction<string>>
 }
 
-const CodeInputForm = ({code, setCode}:CodeInputProps) => {
+const CodeInputForm = ({setCode}:CodeInputProps) => {
     const inputsRef = useRef<HTMLInputElement[]>([]);
 
     const theme:string = useSelector((state:State) => state.theme)
