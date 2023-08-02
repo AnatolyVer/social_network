@@ -29,7 +29,7 @@ const UnsignedHeader = ({search, changeSearch}:HeaderProps) => {
                 </nav>
                 <nav>
                     <div className={classes.header_input}>
-                        <SearchIcon sx={{color:'white'}} />
+                        <SearchIcon sx={{color:'white'}}/>
                         <input placeholder="Пошук" value={search} onChange={changeSearch}/>
                     </div>
                     <ThemeSwitcher/>
