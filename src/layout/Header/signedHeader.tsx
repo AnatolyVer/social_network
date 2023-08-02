@@ -1,22 +1,26 @@
 import React from 'react';
-import classes from "./styles.module.scss";
+import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+
+import {State} from "@redux/store";
+import ThemeSwitcher from "@shared/Switcher/ThemeSwitcher";
 import {AddIcon, SearchIcon} from "@Icons/*";
-import ThemeSwitcher from "../../shared/Switcher/ThemeSwitcher";
+
+import classes from "./styles.module.scss";
 
 interface HeaderProps{
-    theme:string,
     search:string,
     changeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SignedHeader = ({theme, search, changeSearch}:HeaderProps) => {
+const SignedHeader = ({search, changeSearch}:HeaderProps) => {
 
+    const theme:string = useSelector((state:State) => state.theme)
     const nickname = localStorage.getItem('nickname')
 
     return (
-        <header className={`${classes.Header} ${theme}Header`}>
-            <div className={classes.Content}>
+        <header className={`flex c ai-c ${classes.Header} ${theme}Header`}>
+            <div className='Content flex sb'>
                 <nav>
                     <Link to={`/profile/${nickname}`}>
                         <div className={classes.header_button}>Профіль</div>
@@ -35,7 +39,7 @@ const SignedHeader = ({theme, search, changeSearch}:HeaderProps) => {
                         <SearchIcon sx={{color:'white'}} />
                         <input placeholder="Пошук" value={search} onChange={changeSearch}/>
                     </div>
-                    <ThemeSwitcher theme={theme}/>
+                    <ThemeSwitcher/>
                 </nav>
             </div>
         </header>

@@ -1,24 +1,18 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+
+import {State} from "@redux/store";
+import useThemeCustom from "@shared/hooks/useThemeCustom";
 import {EffectButton, MoonIcon, SunIcon} from "@Icons/*";
-import {switchTheme} from "@redux/action-creators";
-import {useDispatch} from "react-redux";
 
-const ThemeSwitcher = ({theme}:{theme:string}) => {
+const ThemeSwitcher = () => {
 
-    const dispatch = useDispatch()
-
-    const style = {color: "white"}
-
-    const swapTheme = () => {
-        if (localStorage.getItem("theme") === "light") dispatch(switchTheme("dark"))
-        else dispatch(switchTheme("light"))
-    }
-
-    const switcher = theme === "light" ? <MoonIcon sx={style}/> : <SunIcon sx={style}/>
+    const theme:string = useSelector((state:State) => state.theme)
+    const changeTheme = useThemeCustom()
 
     return (
-        <EffectButton sx={style} onClick = {swapTheme}>
-            {switcher}
+        <EffectButton sx={{color: "white"}} onClick = {changeTheme}>
+            {theme === "light" ? <MoonIcon sx={{color: "white"}}/> : <SunIcon sx={{color: "white"}}/>}
         </EffectButton>
     );
 };

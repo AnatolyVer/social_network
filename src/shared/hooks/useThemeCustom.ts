@@ -11,10 +11,11 @@ const useThemeCustom = () => {
         dispatch(switchTheme(localStorage.getItem("theme") || 'light'))
     }, []);
 
-    const changeTheme = (theme:string) =>{
-
+    const changeTheme = () =>{
+        if (localStorage.getItem("theme") === "light") dispatch(switchTheme("dark"))
+        else dispatch(switchTheme("light"))
     }
-
+    return changeTheme
 };
 
 export default useThemeCustom;
