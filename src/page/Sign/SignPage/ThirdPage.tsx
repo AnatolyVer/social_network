@@ -1,40 +1,32 @@
-import BackButton from "../BackButton/BackButton";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+
+import SignButton from "../SignButton/SignButton";
+
+import VerifyCode from "@entities/VerifyCode/VerifyCode";
+import {State} from "@redux/store";
+import {clearFetch, sendCode, sendEmail} from "@redux/action-creators";
+import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
+import {IUser} from "@shared/TypesAndInterfaces/IUser";
+
 import classes from "../styles.module.scss";
 
-import HeaderSign from "../HeaderSign/HeaderSign";
-import {useDispatch, useSelector} from "react-redux";
-import {State} from "../../../redux/store";
-import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
-
-import {IUser} from "@shared/TypesAndInterfaces/IUser";
-import {InputErrors} from "@shared/TypesAndInterfaces/SignErrors/Errors";
-import {Dispatch, SetStateAction, useEffect, useState} from "react";
-import VerifyCode from "@entities/VerifyCode/VerifyCode";
-import SignButton from "../SignButton/SignButton";
-import {clearFetch, sendCode, sendEmail} from "@redux/action-creators";
-import {useNavigate} from "react-router-dom";
-
 interface Props{
-    theme:string,
-    progress:number,
     user:IUser,
-    changeUser:(updatedValues: Partial<IUser>) => void,
-    errors:InputErrors,
-    changeErrors:(updatedValues: Partial<InputErrors>) => void,
-    page:number,
-    setPage:Dispatch<SetStateAction<number>>,
     avatar:File
 }
 
 
-const ThirdPage = ({theme, progress, user, page, setPage, avatar}:Props) => {
+const ThirdPage = ({user, avatar}:Props) => {
 
     const dispatch = useDispatch()
     const nav = useNavigate()
 
+    const theme:string = useSelector((state:State) => state.theme)
     const fetch:IFetch = useSelector((state:State) => state.fetch)
-    const [code, setCode] = useState<string>('')
 
+    const [code, setCode] = useState<string>('')
     const [lastClickTime, setLastClickTime] = useState<Date | null>(null);
     const [disableButton, setDisableButton] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
@@ -87,27 +79,24 @@ const ThirdPage = ({theme, progress, user, page, setPage, avatar}:Props) => {
     };
 
     return (
-        <div className={classes.Sign}>
-            <div className={`${classes.SignForm} ${theme}Post ${theme}Text`}>
-                <BackButton theme={theme} prev={() => setPage(page-1)}/>
-                <HeaderSign page={3} progress={progress}/>
-                {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
-                <div className={classes.Message}>
-                    Ми надіслали вам 6-значний код на адресу <strong>{user.email}</strong> для перевірки пошти
-                </div>
-                <VerifyCode setCode={setCode} />
-                <div className={classes.Resend}>
-                    {remainingTime ? (
-                        <p>Повторно надіслати код через {remainingTime} сек.</p>
-                    ) : (
-                        <p>Натисність, щоб надіслати код</p>
-                    )}
-                    <button onClick={handleClick} disabled={disableButton} className={`${classes.Send} ${theme}Text`}>Надіслати</button>
-                </div>
-                <SignButton theme={theme} next={verify} page={3} />
+        <>
+            {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
+            <div className={classes.Message}>
+                Ми надіслали вам 6-значний код на адресу <strong>{user.email}</strong> для перевірки пошти
             </div>
-        </div>
+            <VerifyCode setCode={setCode} />
+            <div className={classes.Resend}>
+                {remainingTime ? (
+                    <p>Повторно надіслати код через {remainingTime} сек.</p>
+                ) : (
+                    <p>Натисність, щоб надіслати код</p>
+                )}
+                <button onClick={handleClick} disabled={disableButton} className={`${classes.Send} ${theme}Text`}>Надіслати</button>
+            </div>
+            <SignButton next={verify} page={3} />
+        </>
     );
 };
 
 export default ThirdPage;
+

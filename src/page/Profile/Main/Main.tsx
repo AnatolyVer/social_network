@@ -1,7 +1,9 @@
 import React from 'react'
-import ProfileInfo from "../ProfileInfo/ProfileInfo";
-import Posts from "../Posts/Posts";
+
 import SearchBar from "./SearchBar/SearchBar";
+import Posts from "../Posts/Posts";
+import ProfileInfo from "../ProfileInfo/ProfileInfo";
+
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 
 import classes from './styles.module.scss'

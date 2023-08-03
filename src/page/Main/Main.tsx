@@ -5,7 +5,7 @@ import {State} from "@redux/store";
 import Header from "@layout/Header/Header";
 import Footer from '@layout/Footer/Footer';
 
-import Comment from '../Profile/Posts/Comment/Comment'
+import Comment from '@entities/Comment/Comment'
 import Stat from './Stat/Stat';
 
 import classes from './styles.module.scss'

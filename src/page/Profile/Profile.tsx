@@ -15,7 +15,6 @@ import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 import {setFetch} from "@redux/action-creators";
 import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 import {State} from "@redux/store";
-import dayjs from "dayjs";
 
 function Profile() {
 

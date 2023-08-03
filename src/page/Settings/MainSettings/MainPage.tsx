@@ -1,19 +1,21 @@
-import classes from './styles.module.scss'
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
+import dayjs, {Dayjs} from "dayjs";
+import { isEqual } from 'lodash';
+
+import PhotoUploader from "@page/Settings/PhotoUploader/PhotoUploader";
+import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
+import {State} from "@redux/store";
+import {editUser} from "@redux/action-creators";
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 import CustomTextField from '@shared/CustomTextField/CustomTextField';
 import useUser from '@shared/hooks/useUser';
 import CustomDatePicker from "@shared/CustomDatePicker/CustomDatePicker";
-import React, {useEffect, useState} from "react";
-import dayjs, {Dayjs} from "dayjs";
-import {useDispatch, useSelector} from "react-redux";
-import {State} from "@redux/store";
-import { isEqual } from 'lodash';
 import AutocompleteField from '@shared/Autocomplete/Autocomplete';
-import PhotoUploader from "@page/Settings/PhotoUploader/PhotoUploader";
-import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
-import {editUser} from "@redux/action-creators";
 
-const API_KEY = 'AbJZ1oPWJbwhZ8PEgLR3PGw9guBFNgTR'
+import classes from './styles.module.scss'
+import {getPlacements} from "@redux/saga/API/user";
 
 const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avatar:IAvatarHook, banner:IAvatarHook}) => {
 
@@ -23,7 +25,6 @@ const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avata
     const dispatch = useDispatch()
 
     const [cities, setSities] = useState<Array<string>>([])
-
 
     const preplacement = user?.city?.length && user?.country?.length ? `${user.city}, ${user.country}` : ''
     const [placement, setPlacement] = useState<string>(preplacement)
@@ -56,8 +57,7 @@ const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avata
         const country = placement.split(',')[1]
         setSities(new Array<string>())
         if (placement.length){
-            const res = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${city}`)
-            const data = await res.json()
+            const {data} = await getPlacements(city)
             data.map((obj:any) => {
                 setSities(prevState => [...prevState, `${obj.LocalizedName}, ${obj.AdministrativeArea.LocalizedName}, ${obj.Country.LocalizedName}`])
             })
@@ -90,7 +90,7 @@ const MainPage = ({defaultUser, avatar, banner}:{defaultUser:IProfileInfo, avata
                         <CustomTextField value={user.username!} onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUser({username: e.target.value})} label="Ім'я користувача"/>
                         <CustomTextField value={user.nickname!} onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUser({nickname: e.target.value})} label="Нікнейм"/>
                         <CustomDatePicker date={date} onChange={changeDate} label="День народження"/>
-                        <AutocompleteField onFocus={() => changePlacement(placement || new String as string)} onBlur={() => changePlacement(new String as string)} placement={placement!} changePlacement={changePlacement} array={cities!}/>
+                        <AutocompleteField onFocus={() => changePlacement(placement || new String as string)} placement={placement!} changePlacement={changePlacement} array={cities!}/>
                     </div>
                 </div>
                 <div>

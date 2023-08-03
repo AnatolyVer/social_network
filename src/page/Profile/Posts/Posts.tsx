@@ -2,13 +2,12 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
 import Post from '@entities/Post/Post';
-
 import {State} from "@redux/store";
 import {getPostsByID} from "@redux/saga/API/user";
 import { IPost } from '@shared/TypesAndInterfaces/IPost';
+import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 
 import classes from "./styles.module.scss";
-import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 
 interface PostsProps{
     user:IProfileInfo
@@ -20,7 +19,6 @@ function Posts({user}:PostsProps) {
     const theme:string = useSelector((state:State) => state.theme)
 
     useEffect(() => {
-
         const fetchData = async () => {
             try {
                 const res = await getPostsByID(String(user.id));
@@ -29,7 +27,6 @@ function Posts({user}:PostsProps) {
                 console.error(e)
             }
         };
-
         fetchData();
     }, []);
 

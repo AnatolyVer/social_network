@@ -1,11 +1,12 @@
+import React from "react";
+import {useSelector} from "react-redux";
+
+import {State} from "@redux/store";
+import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
 
 import {VertDots,  EffectButton } from '@Icons/*'
-import classes from './styles.module.scss'
-import {useSelector} from "react-redux";
-import {State} from "../../../redux/store";
-import {IProfileInfo} from "../../../shared/TypesAndInterfaces/IProfileInfo";
 import {Avatar} from "@mui/material";
-import React from "react";
+import classes from './styles.module.scss'
 
 interface BannerProps {
     disabled: boolean,

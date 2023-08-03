@@ -1,11 +1,14 @@
 import {EffectButton, PreviousIcon} from "@Icons/*";
+import {useSelector} from "react-redux";
+import {State} from "@redux/store";
 
 interface BackButtonProps{
     prev: () => void,
-    theme: string
 }
 
-const BackButton = ({prev,theme}:BackButtonProps) => {
+const BackButton = ({prev}:BackButtonProps) => {
+
+    const theme:string = useSelector((state:State) => state.theme)
 
     return (
         <>

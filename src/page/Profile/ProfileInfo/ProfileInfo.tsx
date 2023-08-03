@@ -1,20 +1,15 @@
-import classes from './styles.module.scss';
-import ContactsIcon from '@mui/icons-material/Contacts';
 import {useSelector} from "react-redux";
-import {State} from "@redux/store";
+
 import dayjs from 'dayjs';
 import 'dayjs/locale/uk'
-import {
-    CakeIcon,
-    CalendarIcon,
-    Dot,
-    PeopleIcon,
-    PlaceIcon,
-    PortraitIcon,
 
-} from '@Icons/*';
-import {Avatar, AvatarGroup} from '@mui/material';
+import {State} from "@redux/store";
 import {IProfileInfo} from "@shared/TypesAndInterfaces/IProfileInfo";
+
+import ContactsIcon from '@mui/icons-material/Contacts';
+import {CakeIcon, CalendarIcon, Dot, PeopleIcon, PlaceIcon, PortraitIcon,} from '@Icons/*';
+import {AvatarGroup} from '@mui/material';
+import classes from './styles.module.scss';
 
 interface ProfileInfoProps{
     isFixed:boolean,
@@ -24,14 +19,14 @@ interface ProfileInfoProps{
 const changeDateMode = (inputDate: string) => {
     dayjs.locale('uk');
     const date = inputDate?.slice(0, 10)
-    const formattedDate = dayjs(date).format('D MMM YYYY')
-    return formattedDate
+    return dayjs(date).format('D MMM YYYY')
 }
 
 function ProfileInfo({isFixed, user}:ProfileInfoProps) {
 
     const theme:string = useSelector((state:State) => state.theme)
     const fixed = isFixed ? classes.fixed : classes.free
+
     return (
         <div className={`${classes.ProfileInfo} ${fixed}`}>
             <div className={`${theme}Text ${classes.Label}`}>
@@ -56,17 +51,14 @@ function ProfileInfo({isFixed, user}:ProfileInfoProps) {
                     <p className={`${theme}Text`}>Учасник з <strong>{changeDateMode(user?.created_at!)}</strong></p>
                 </div>
             </div>
-
             <div className={`${theme}Text ${classes.Label}`}>
                 <ContactsIcon/>
                 <p className={`${theme}Text ${classes.bold}`}>Про себе</p>
             </div>
             <div className={`${classes.Bio} ${theme}Post ${theme}Text`}>
                 <p>
-                    Велика війна, яка почалася майже рік тому змінила кожне українське місто і село, однак у Харкові, можливо, ці зміни відчуваються по-особливому.
-                    Друге за величиною місто України, університетський та науковий центр, з ошатними парками, до яких на dsgfdfg dfg
+                    {user?.biography}
                 </p>
-                {/*{user?.biography}*/}
             </div>
             <div className={`${theme}Text ${classes.Label}`}>
                 <PeopleIcon/>
@@ -75,7 +67,6 @@ function ProfileInfo({isFixed, user}:ProfileInfoProps) {
                     <Dot sx={{height: "10px", alignSelf:"center"}}/>
                     <p className={`${theme}Text ${classes.bold}`}>7</p>
                 </div>
-
             </div>
             <div className={`${classes.Friends} ${theme}Post`}>
                 <AvatarGroup max={4}>

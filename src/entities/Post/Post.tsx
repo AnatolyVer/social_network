@@ -1,27 +1,20 @@
 import React from 'react';
-import classes from './styles.module.scss';
-import './photos.scss'
-import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '@Icons/*'
-
 import {useDispatch, useSelector} from "react-redux";
+import {Link, useParams} from "react-router-dom";
+
+import Verified from '@entities/Verified';
 import {State} from "@redux/store";
 import {setModalOpen} from "@redux/action-creators";
-import {Avatar} from "@mui/material";
-import dayjs from "dayjs";
-import {Link, useParams} from "react-router-dom";
 import {IPost} from "@shared/TypesAndInterfaces/IPost";
-import Verified from '@entities/Verified';
 
-const changeDateMode = (inputDate: string) => {
-    dayjs.locale('uk');
-    return dayjs(inputDate).format('DD.MM.YY HH:mm')
-}
+import {Avatar} from "@mui/material";
+import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '@Icons/*'
+import classes from './styles.module.scss';
+import './photos.scss'
+import {convertDate} from "@shared/DateConvertor";
 
-interface PostProps{
-    post:IPost
-}
 
-function Post({post}:PostProps) {
+function Post({post}: {post:IPost}) {
 
     const params = useParams()
 
@@ -71,11 +64,11 @@ function Post({post}:PostProps) {
             <div>
                 {!params.slug ? <Link className={classes.Link} to={`/${post?.author_nickname}/post/${post?.slug}`}>Розгорнути</Link> : <></>}
                 <div className={classes.Date}>
-                    <p>Опубліковано: {changeDateMode(post?.published_date)}</p>
+                    <p>Опубліковано: {convertDate(post?.published_date)}</p>
                     {post?.device === 'pc' ? (
-                        <TvIcon sx={{height: "17px"}}/>
+                        <TvIcon sx={{height: "17px", marginLeft:'5px'}}/>
                     ) : (
-                        <PhoneIcon sx={{height: "17px"}}/>
+                        <PhoneIcon sx={{height: "17px", marginLeft:'5px'}}/>
                     )}
                 </div>
                 <div className={classes.PostStat}>

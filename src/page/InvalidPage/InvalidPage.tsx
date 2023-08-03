@@ -17,7 +17,7 @@ const InvalidPage = () => {
     return (
         <div className="Page fullscreen-height flex column ai-c">
             <Header/>
-            <div className={`Content flex ai-c fullness-height sa ${theme}Text`}>
+            <div className={`Content flex ai-c fullness sb ${theme}Text`}>
                <ErrorPageImage/>
                 <div className={`flex column c ${classes.ErrorPageContent}`}>
                     <p className={classes.PageNotFoundMessage}>Сторінку не знайдено</p>

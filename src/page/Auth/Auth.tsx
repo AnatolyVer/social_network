@@ -42,12 +42,12 @@ export default function Auth() {
         fetch.loading ? (
             <Loader/>
         ) : (
-            <div className={classes.Auth}>
-                <div className={`${classes.AuthForm} ${theme}Post ${theme}Text`}>
+            <div className='flex c ai-c fullscreen-height'>
+                <div className={`flex column c ab ${classes.AuthForm} ${theme}Post ${theme}Text`}>
                     <p className={`${classes.Title}`}>Авторізація</p>
                     {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
                     <div className={classes.Inputs}>
-                        <CustomTextField onChange={changeLogin} value={user.nickname_or_email}  label="Введіть нікнейм або пошту"/>
+                        <CustomTextField onChange={changeLogin} value={user.nickname_or_email} label="Введіть нікнейм або пошту"/>
                         <CustomPasswordField value={user.password} onChange={changePassword} label="Введіть пароль"/>
                     </div>
                     <button onClick={() => dispatch(logUserAPI(user, nav))} className={`${classes.SignButton} ${theme}Text`}>

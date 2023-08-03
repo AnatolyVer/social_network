@@ -1,8 +1,9 @@
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+
 import {State} from "@redux/store";
 
 import classes from './styles.module.scss'
-import {Link} from "react-router-dom";
 
 function Footer() {
 
@@ -10,8 +11,8 @@ function Footer() {
     const auth = localStorage.getItem('logged') === 'true'
 
     return (!auth ? (
-        <div className={`${classes.Footer} ${theme}Header`}>
-            <div className={classes.Content}>
+        <div className={`${classes.Footer} flex c ${theme}Header`}>
+            <div className='Content flex sb ai-c'>
                 <div className={classes.Message}>
                     👋 Увійдіть або зарєєструйтеся, щоб публікувати пости, коментувати, реагувати на дописи і т.д
                 </div>
@@ -21,9 +22,10 @@ function Footer() {
                     </div>
                 </Link>
             </div>
-            </div>) :(
+            </div>
+        ) :(
                 <></>
-        )
+           )
     );
 }
 

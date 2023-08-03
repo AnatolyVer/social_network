@@ -2,6 +2,7 @@ import axios, {Axios, AxiosPromise} from 'axios';
 import Cookies from "js-cookie";
 
 const REACT_APP_DEPLOY_URL = `https://django-auth-gfm6.onrender.com/api/`
+const API_KEY = 'AbJZ1oPWJbwhZ8PEgLR3PGw9guBFNgTR'
 
 export const signIn = (data: string):Promise<Axios> =>{
     return axios({
@@ -127,6 +128,17 @@ export const getProfileInfo = (data: string):Promise<AxiosPromise> => {
         url: REACT_APP_DEPLOY_URL + `account/${data}/`,
         method: 'GET',
         withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json'
+
+        },
+    });
+}
+
+export const getPlacements = (city: string):Promise<AxiosPromise> => {
+    return axios({
+        url: `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${city}`,
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
 

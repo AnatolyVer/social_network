@@ -1,14 +1,19 @@
 import React from 'react';
-import classes from "../styles.module.scss";
+import {useSelector} from "react-redux";
+
+import {State} from "@redux/store";
+
 import {Checkbox} from "@mui/material";
+import classes from "../styles.module.scss";
 
 interface RulesProps{
-    theme:string,
     checked: boolean,
     onClick: () => void
 }
 
-const Rules = ({theme, checked, onClick}:RulesProps) => {
+const Rules = ({checked, onClick}:RulesProps) => {
+
+    const theme:string = useSelector((state:State) => state.theme)
 
     return (
         <>
