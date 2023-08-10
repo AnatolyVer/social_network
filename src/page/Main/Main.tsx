@@ -24,9 +24,9 @@ function Main() {
                         <div className={`${classes.circle} ${classes.magenta}`}></div>
                         <div className={`${classes.circle} ${classes.sky}`}></div>
                        {/* <Post/>*/}
-                        <div className={classes.Comment}>
+                       {/* <div className={classes.Comment}>
                             <Comment/>
-                        </div>
+                        </div>*/}
                     </div>
                     <div className={classes.Right}>
                         <div>

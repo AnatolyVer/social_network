@@ -14,8 +14,8 @@ import GettingUser from "@shared/preloading/Preloading";
 import useThemeCustom from "@shared/hooks/useThemeCustom";
 
 import classes from './App.module.scss'
-export default function App() {
 
+export default function App() {
     useThemeCustom()
     GettingUser()
     return (

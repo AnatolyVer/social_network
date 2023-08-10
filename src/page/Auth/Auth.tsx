@@ -43,7 +43,7 @@ export default function Auth() {
             <Loader/>
         ) : (
             <div className='flex c ai-c fullscreen-height'>
-                <div className={`flex column c ab ${classes.AuthForm} ${theme}Post ${theme}Text`}>
+                <div className={`flex column c ai-c ${classes.AuthForm} ${theme}Post ${theme}Text`}>
                     <p className={`${classes.Title}`}>Авторізація</p>
                     {fetch.status === 404 ?  <p className={classes.Error}>{fetch.text}</p> : <></>}
                     <div className={classes.Inputs}>

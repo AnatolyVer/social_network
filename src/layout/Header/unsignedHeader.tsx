@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
+import SettingsButton from "@entities/SettingsButton/SettingsButton";
 import {State} from "@redux/store";
 import ThemeSwitcher from "@shared/Switcher/ThemeSwitcher";
 import {SearchIcon} from "@Icons/*";
@@ -32,6 +33,7 @@ const UnsignedHeader = ({search, changeSearch}:HeaderProps) => {
                         <SearchIcon sx={{color:'white'}}/>
                         <input placeholder="Пошук" value={search} onChange={changeSearch}/>
                     </div>
+                    <SettingsButton/>
                     <ThemeSwitcher/>
                 </nav>
             </div>

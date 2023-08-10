@@ -141,7 +141,28 @@ export const getPlacements = (city: string):Promise<AxiosPromise> => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
-
         },
+    });
+}
+
+export const postComment = (data: any):Promise<Axios> => {
+    return axios({
+        url: REACT_APP_DEPLOY_URL + `comment/add/`,
+        method: 'POST',
+        withCredentials: true,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`,
+            'refresh-token': Cookies.get('refreshToken')
+        },
+        data,
+    });
+}
+
+export const getComments = (slug: string):Promise<AxiosPromise> => {
+    return axios({
+        url: REACT_APP_DEPLOY_URL + `comments/${slug}/`,
+        method: 'GET',
+        withCredentials: true,
     });
 }

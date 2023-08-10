@@ -6,13 +6,12 @@ import Verified from '@entities/Verified';
 import {State} from "@redux/store";
 import {setModalOpen} from "@redux/action-creators";
 import {IPost} from "@shared/TypesAndInterfaces/IPost";
+import {convertDate} from "@shared/DateConvertor";
 
 import {Avatar} from "@mui/material";
 import {BookmarkIcon, Comment, Dot, EyeIcon, HorDots, LikeIcon, PhoneIcon, ReplyIcon, TvIcon, } from '@Icons/*'
 import classes from './styles.module.scss';
 import './photos.scss'
-import {convertDate} from "@shared/DateConvertor";
-
 
 function Post({post}: {post:IPost}) {
 

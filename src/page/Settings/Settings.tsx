@@ -48,23 +48,20 @@ const Settings = () => {
         <VerificationPage/>
     ]
 
-    return ( localStorage.getItem('nickname') ? (
-            fetch.loading ? (
-                <Loader/>
-            ) : (
-                <div className='Page fullscreen-height flex column ai-c'>
-                    <Header/>
-                    <div className={(classes.Content)}>
-                        <p className={`${classes.Title} ${theme}Text`}>Налаштування</p>
-                        <SettingsBanner user={user} avatar={avatar.avatar.previewPhoto!} banner={banner.avatar.previewPhoto!}/>
-                        <div className={`${classes.Body} ${theme}Post`}>
-                            <SettingsNavbar tab={tab} setTab={setTab}/>
-                            {tabPages[tab]}
-                        </div>
+    return ( user ? (
+            <div className='Page fullscreen-height flex column ai-c'>
+                <Header/>
+                <div className={(classes.Content)}>
+                    <p className={`${classes.Title} ${theme}Text`}>Налаштування</p>
+                    <SettingsBanner user={user} avatar={avatar.avatar.previewPhoto!} banner={banner.avatar.previewPhoto!}/>
+                    <div className={`${classes.Body} ${theme}Post`}>
+                        <SettingsNavbar tab={tab} setTab={setTab}/>
+                        {tabPages[tab]}
                     </div>
-                    <Footer/>
                 </div>
-            )):(
+                <Footer/>
+            </div>
+        ):(
             <div className={classes.Settings}>
                 <Header/>
                 <div className={`${classes.Error} ${theme}Text`}>

@@ -9,6 +9,7 @@ export interface IPost{
     published_date: string,
     reply?:IPost,
     slug:string,
-    comments:[]
-    author_is_verify:boolean
+    comments:[],
+    author_is_verify:boolean,
+    id: number
 }

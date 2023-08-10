@@ -18,7 +18,7 @@ function SettingsBanner({user, avatar, banner}: BannerProps) {
 
     const color = theme === "light" ? classes.light : classes.dark
     return (
-        <div className={`${classes.Banner} ${ classes.free} ${color}`}>
+        <div className={`${classes.Banner} ${classes.free} ${color}`}>
             {user?.account_banner || banner ? <img className={classes.Image} src={banner || `https://django-auth-gfm6.onrender.com` + user?.account_banner} alt="User banner" /> : <></>}
             <div className={classes.User}>
                 <Avatar alt={user?.nickname.toUpperCase()} className={classes.Avatar} src={avatar || `https://django-auth-gfm6.onrender.com` + user?.account_photo}/>

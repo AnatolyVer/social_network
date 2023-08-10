@@ -139,3 +139,10 @@ export const createPost = (data: any, nav:NavigateFunction)  => {
         nav
     }
 }
+
+export const postComment = (data: any) => {
+    return  {
+        type: Actions.POST_COMMENT,
+        payload: data
+    }
+}

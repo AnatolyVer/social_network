@@ -56,6 +56,14 @@ const SettingsNavbar = ({tab, setTab}:{tab:number, setTab:Dispatch<SetStateActio
         marginLeft:'20px'
     }
 
+    const leave = () => {
+        localStorage.setItem('logged', 'false')
+        localStorage.removeItem('nickname')
+        localStorage.removeItem('access-token')
+        localStorage.removeItem('user')
+        nav('../')
+    }
+
     return (
         <div className={`${classes.SettingsNavbar} ${theme}Text`}>
             <div className={classes.Tabs}>
@@ -67,7 +75,7 @@ const SettingsNavbar = ({tab, setTab}:{tab:number, setTab:Dispatch<SetStateActio
                 <div>
                     <div className={`${classes.Tab} ${classes.Leave}`}>
                         <LogoutIcon/>
-                        <p>Вийти з акаунту</p>
+                        <p onClick={leave}>Вийти з акаунту</p>
                     </div>
                     <div className={`${classes.Tab} ${classes.Delete}`}>
                         <DeleteIcon/>

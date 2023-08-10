@@ -23,7 +23,7 @@ const FullPost = () => {
 
     const slug = params.slug
 
-    const [post, setPost] = useState<IPost | undefined>()
+    const [post, setPost] = useState<IPost>()
 
     useEffect(() => {
         const fetch = async () => {
@@ -37,10 +37,10 @@ const FullPost = () => {
         <div className='Page fullscreen-height flex column ai-c'>
             <Header/>
             <div className={`Content flex sb ai-c fullness ${theme}Text`}>
-                {fetch.status === 200 ? (
+                {post ? (
                    <>
                        <Post post={post!}/>
-                       <Comments comments={post?.comments}/>
+                       <Comments post={post!}/>
                    </>
                 ) : (
                     <>
@@ -53,7 +53,7 @@ const FullPost = () => {
         </div>
     )
 
-    return (fetch.loading ? <Loader/> : page);
+    return (fetch.status === 999 ? <Loader/> : page);
 };
 
 export default FullPost

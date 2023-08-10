@@ -5,7 +5,7 @@ import {IFetch} from "@shared/TypesAndInterfaces/IFetch";
 const defaultFetch:IFetch = {
     loading: false,
     text: "",
-    status:0
+    status:999
 }
 
 export const fetchReducer = (state = defaultFetch, action: IAction) => {

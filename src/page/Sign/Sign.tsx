@@ -11,7 +11,7 @@ import Loader from "@entities/Loader/Loader";
 import {IAvatarHook} from "@page/Sign/Interfaces/IAvatar";
 import HeaderSign from "@page/Sign/HeaderSign/HeaderSign";
 import BackButton from "@page/Sign/BackButton/BackButton";
-import {clearFetch} from "@redux/action-creators";
+import {clearFetch, setFetch} from "@redux/action-creators";
 import {State} from "@redux/store";
 import useUser from '@shared/hooks/useUser';
 import useErrors from '@shared/hooks/useErrors';
@@ -48,7 +48,6 @@ const Sign = () => {
     const {errors, isErrors, changeErrors} = useErrors(setProgress)
     const avatar:IAvatarHook = useAvatarUploading()
     const validAndChange = useValidAndChange(user, changeUser, changeErrors)
-
 
     useEffect(() => {
         dispatch(clearFetch())

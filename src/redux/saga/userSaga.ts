@@ -3,7 +3,19 @@ import {Actions} from '../action-types'
 
 import * as Effects from "redux-saga/effects";
 import IAction from "@shared/TypesAndInterfaces/IAction";
-import {checkEmail, checkNickname, createPost, edit, getProfileInfo, sendCode, sendEmail, signIn, signUp} from "./API/user";
+import {
+    checkEmail,
+    checkNickname,
+    createPost,
+    edit,
+    getProfileInfo,
+    postComment,
+    sendCode,
+    sendEmail,
+    signIn,
+    signUp
+} from "./API/user";
+
 import Cookies from 'js-cookie';
 import {
     clearFetch, editUser, getUserInfo,
@@ -49,8 +61,6 @@ function* SignUpWorker(action: IAction) {
         }
         const {data, headers} = yield call(signUp, formData);
         localStorage.setItem('access-token', data.access_token)
-        localStorage.setItem('nickname', data.nickname)
-        localStorage.setItem('id', data.id)
         const refreshToken = headers['refresh-token'];
         Cookies.remove('refreshToken')
         Cookies.set('refreshToken', refreshToken, {
@@ -76,8 +86,9 @@ function* getUserInfoWorker(action: IAction){
     try {
         yield put(setFetch({ text: 'Loading', status: 0, loading:true}))
         const {data} = yield call(getProfileInfo, action.payload);
+        localStorage.setItem('user', JSON.stringify(data.data))
         yield put(setUserInfo(data.data || null))
-        yield put(setFetch({ text: 'Loaded', status: 200}))
+        yield put(setFetch({ text: 'Done', status: 200}))
 
     }catch (error) {
         yield put(setFetch({ text: 'Error', status: 404}))
@@ -172,6 +183,22 @@ function* CreatePostWorker(action: IAction){
     }
 }
 
+function* PostCommentWorker(action: IAction){
+    try {
+        yield put(setFetch({ text: 'Loading', status: 999 }));
+        yield call(postComment, action.payload);
+        yield put(setFetch({ text: 'Loaded', status: 200 }));
+    }catch (error: any) {
+        if (error.response.status === 401) {
+            localStorage.setItem('access-token', error.response.data.access_token)
+            yield call(postComment, postComment(action.payload));
+        }
+        yield put(setFetch({ text: 'Error posting', status: 404 }));
+    }finally {
+        yield put(setFetch({ loading:false}));
+    }
+}
+
 
 export default function* userWatcher() {
     yield takeLatest(Actions.LOG_USER_API, SignInWorker)
@@ -183,4 +210,6 @@ export default function* userWatcher() {
     yield takeLatest(Actions.SEND_CODE, sendCodeWorker)
     yield takeLatest(Actions.EDIT_USER, EditUserWorker)
     yield takeLatest(Actions.CREATE_POST, CreatePostWorker)
+    yield takeLatest(Actions.POST_COMMENT, PostCommentWorker)
+
 }

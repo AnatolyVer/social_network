@@ -1,10 +1,18 @@
+
+.CommentList{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 700px;
+}
+
 .Comments{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 500px;
-  width: 400px;
+  width: 500px;
 }
 
 .NoComments{
@@ -15,6 +23,7 @@
 
 .AddComment{
   display: flex;
+  justify-content: space-between;
   & > *{
     margin-right: 5px;
   }

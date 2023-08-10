@@ -1,0 +1,10 @@
+.Gear{
+  &:hover > *{
+    animation: rotate 5s ease infinite;
+  }
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
